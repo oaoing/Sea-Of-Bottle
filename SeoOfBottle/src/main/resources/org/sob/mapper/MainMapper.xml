@@ -7,19 +7,19 @@
   <mapper namespace="org.sob.mapper.MainMapper">
   <!-- 이하 수정 중 -->
 	  <select id="getList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
-	  <![CDATA[select * from 테이블명 where to = #{userid} or from = #{userid} group by groupId order by #{latterId}]]><!-- id부분 변경해야함. -->	
+	  <![CDATA[select * from bottlemain where `to` = #{userId} or #{userId} = 'to' group by groupId order by letterid;]]><!-- id부분 변경해야함. -->	
 	  </select>
 	  
 	  <insert id="insert"><!-- 새글 등록 -->
-	  	insert into bottlemain (`from`, `to`, cnt, `groupId`, `contents`,`letterId`,`categoryId`, `boast`) values(#{from}, #{to},#{cnt},#{groupId},#{contents},#{letterId},#{categoryId},#{boast})
+	  	insert into bottlemain (`from`, `to`, cnt, `groupId`, `contents`,`categoryId`, `boast`) values(#{from}, #{to},#{cnt},#{groupId},#{contents},#{categoryId},#{boast})
 	  </insert>
 	  
 	  <select id="read" resultType="org.sob.domain.MainVO"><!-- 내가 받은 편지 상세보기 -->
-	  	select * from 테이블명 where groupId = #{groupId} order by cnt
+	  	select * from bottlemain where groupId = #{groupId} order by cnt
 	  </select>
 	  
 	  <delete id="delete">
-	  	delete from 테이블명 where groupId = #{groupId}
+	  	delete from bottlemain where groupId = #{groupId}
 	  
 	  </delete>
 	  

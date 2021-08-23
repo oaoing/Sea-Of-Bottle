@@ -24,14 +24,41 @@ public class MainServiceTest {
 		mvo.setBoast("false");
 		mvo.setCategoryId(1);
 		mvo.setCnt(1);
-		mvo.setFrom("tlstmdrbs");
-		mvo.setTo("snrnsk");
+		mvo.setFrom(1);
+		mvo.setTo(2);
 		mvo.setGroupId("그룹아이디");
 		
 		service.register(mvo);
 		
+	}
+	
+	@Test
+	public void testGet() {//상세
+		String groupId = "그룹아이디";
+		service.get(groupId).forEach(mvo->log.info(mvo));
 		
 	}
+	
+	
+	@Test
+	public void testRemove() {//삭제
+		String groupId = "groupidid";
+		service.remove(groupId);
+		
+	}
+	
+	@Test
+	public void testGetList() {//전체리스트
+		
+		service.getList(1).forEach(mvo->log.info(mvo));
+		
+		
+		
+	}
+	
+	
+	
+	
 	
 	
 	

@@ -5,8 +5,8 @@ import lombok.Data;
 @Data
 public class MainVO {
 
-	private String from;
-	private String to;
+	private int from;
+	private int to;
 	private int cnt;
 	private String groupId;
 	private String contents;

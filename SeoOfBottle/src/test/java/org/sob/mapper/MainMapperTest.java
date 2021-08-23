@@ -18,7 +18,7 @@ public class MainMapperTest {
 	
 	@Test
 	public void testGetList() {//내가 받은 유리병 목록 출력
-		String userId = "tlstmdrbs";
+		int userId = 1;
 		mapper.getList(userId).forEach(main->log.info(main));
 		
 	}
@@ -30,8 +30,8 @@ public class MainMapperTest {
 		mvo.setBoast("false");
 		mvo.setCnt(1);
 		mvo.setContents("내용내용내용");
-		mvo.setFrom("tlstmdrbs");
-		mvo.setTo("snrndlfRk");
+		mvo.setFrom(1);
+		mvo.setTo(2);
 		mvo.setGroupId("newgroup");
 		
 		mapper.insert(mvo);

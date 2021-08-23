@@ -12,5 +12,5 @@ public interface MainService {
 	//4.글 삭제
 	public boolean remove(String groupId);
 	//5.목록 읽기
-	public List<MainVO> getList(String userid);
+	public List<MainVO> getList(int userid);
 }

@@ -22,7 +22,7 @@ public class MainController {
 	
 	//목록
 	@GetMapping("/main")//자기자신.jsp 페이지 오픈
-	public void list(String userid, Model model) {
+	public void list(int userid, Model model) {
 		log.info("목록페이지요청");
 		model.addAttribute("list",service.getList(userid));
 		

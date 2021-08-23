@@ -5,9 +5,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="org.sob.mapper.MainMapper">
-  <!-- 이하 수정 중 -->
+  <!-- 기본기능 -->
 	  <select id="getList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
-	  <![CDATA[select * from bottlemain where `to` = #{userId} or #{userId} = 'to' group by groupId order by letterid;]]><!-- id부분 변경해야함. -->	
+	  <![CDATA[select * from bottlemain where `to` = #{userId} or `from` = #{userId} group by groupId order by #{letterId};]]><!-- id부분 변경해야함. -->	
 	  </select>
 	  
 	  <insert id="insert"><!-- 새글 등록 -->
@@ -23,25 +23,14 @@
 	  
 	  </delete>
 	  
-	  <select id="getListWithPaging" resultType="org.sob.domain.MainVO">
-	 
-	  <![CDATA[ select bno,title,writer,regdate,updatedate 
-	  from (select rownum rn,bno,title,writer,regdate,updatedate 
-	  from (select * from(select*from tbl_board order by bno desc)  
-	  where ROWNUM<=#{pageNum}*#{amount}
-	  ]]>	
-	  <include refid="criteria"></include>
-	  <![CDATA[
-	  )) where rn > (#{pageNum}-1)*#{amount}
-	  ]]>	
-                                                                   
+  <!-- 자랑게시판 기능 쿼리짜야함. -->	
+	  <select id="getBoastList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
+	  <![CDATA[select * from bottlemain where `to` = #{userId} or `from` = #{userId} group by groupId order by #{letterId};]]><!-- id부분 변경해야함. -->	
 	  </select>
-	  
-	  <select id="getTotalCount" resultType="long">
-	  <![CDATA[select count(*) from tbl_board where bno>0]]>
-	  <include refid="criteria"></include>
-	  </select>
-	  
+  
+  
+  
+    
 	  
 	  
 	  

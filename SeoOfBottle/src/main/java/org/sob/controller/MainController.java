@@ -22,10 +22,10 @@ public class MainController {
 	
 	//목록
 	@GetMapping("/main")//자기자신.jsp 페이지 오픈
-	public void list(Model model) {
-//		log.info("목록페이지요청");
-//		model.addAttribute("list",service.getList());
-//		
+	public void list(String userid, Model model) {
+		log.info("목록페이지요청");
+		model.addAttribute("list",service.getList(userid));
+		
 	}
 	
 	//등록
@@ -37,9 +37,9 @@ public class MainController {
 		return "redirect:/sob/main";//리다이렉트로 보냄//get형식으로 url에 값 실어서 보내기 가능
 	}	
 	
-	@GetMapping("/register")//등록페이지 jsp 열기
-	public void register(String groupId, Model model) {
-		model.addAttribute("groupId",groupId);
+	@GetMapping("/register")//등록페이지 jsp 열기 groupid 추후 수정
+	public void register() {
+		
 	}
 	
 	//상세

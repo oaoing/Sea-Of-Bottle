@@ -14,6 +14,7 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class MainServiceImpl implements MainService {
 	private MainMapper mapper;
+	
 	@Override
 	public void register(MainVO mvo) {
 		log.info("유리병 바다에 던지기"+mvo);
@@ -34,9 +35,9 @@ public class MainServiceImpl implements MainService {
 	}
 
 	@Override
-	public List<MainVO> getList() {
+	public List<MainVO> getList(String userid) {
 		log.info("밀려들어온 유리병들 목록");
-		return mapper.getList();
+		return mapper.getList(userid);
 	}
 
 }

@@ -8,7 +8,7 @@ public interface MainService {
 	//1.글등록
 	public void register(MainVO main);
 	//2.글 읽기
-	public MainVO get(String groupId);
+	public List<MainVO> get(String groupId);
 	//4.글 삭제
 	public boolean remove(String groupId);
 	//5.목록 읽기

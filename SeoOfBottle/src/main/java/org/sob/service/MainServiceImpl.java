@@ -23,7 +23,7 @@ public class MainServiceImpl implements MainService {
 	}
 
 	@Override
-	public MainVO get(String groupId) {
+	public List<MainVO> get(String groupId) {
 		log.info("편지읽기"+groupId);
 		return mapper.read(groupId);
 	}

@@ -32,8 +32,9 @@ public class MainController {
 	
 	//등록
 	@PostMapping("/register")//새유리병, 이어쓴 편지 등록
-	public String register(MainVO mvo ) {
+	public String register(UserVO uvo, MainVO mvo) {
 		//편지 등록 후 list페이지로 돌아감
+		
 		service.register(mvo); 
 		
 		return "redirect:/sob/main";//리다이렉트로 보냄//get형식으로 url에 값 실어서 보내기 가능

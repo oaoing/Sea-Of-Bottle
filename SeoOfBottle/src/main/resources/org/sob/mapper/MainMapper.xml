@@ -11,7 +11,7 @@
 	  </select>
 	  
 	  <insert id="insert"><!-- 새글 등록 -->
-	  	insert into 테이블명 (from, to, cnt, groupId, contents,letterId,categoriId, boast) values(#{from}, #{to},#{cnt},#{groupId},#{contents},#{letterId},#{categoriId},#{boast})
+	  	insert into bottlemain (`from`, `to`, cnt, `groupId`, `contents`,`letterId`,`categoryId`, `boast`) values(#{from}, #{to},#{cnt},#{groupId},#{contents},#{letterId},#{categoryId},#{boast})
 	  </insert>
 	  
 	  <select id="read" resultType="org.sob.domain.MainVO"><!-- 내가 받은 편지 상세보기 -->

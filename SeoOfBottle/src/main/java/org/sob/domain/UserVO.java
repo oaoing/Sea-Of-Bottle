@@ -6,5 +6,5 @@ import lombok.Data;
 public class UserVO {
 	private String nick;
 	private int userId;
-	private boolean google;
+	private boolean google=false;
 }

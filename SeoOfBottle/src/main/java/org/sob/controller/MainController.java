@@ -1,6 +1,7 @@
 package org.sob.controller;
 
 import org.sob.domain.MainVO;
+import org.sob.domain.UserVO;
 import org.sob.service.MainService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,9 +23,10 @@ public class MainController {
 	
 	//목록
 	@GetMapping("/main")//자기자신.jsp 페이지 오픈
-	public void list(int userid, Model model) {
+	public void list(UserVO uvo, Model model) {
 		log.info("목록페이지요청");
-		model.addAttribute("list",service.getList(userid));
+		model.addAttribute("list",service.getList(uvo.getUserId()));
+		model.addAttribute("UserVO",uvo);
 		
 	}
 	

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,10 +13,12 @@ import org.sob.domain.UserVO;
 import org.sob.service.LoginService;
 import org.sob.service.MainService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -41,35 +44,36 @@ public class LoginController {
 		return "index";
 	}
 	
-	@RequestMapping(value = "/list", method = RequestMethod.POST)
-	public String list(HttpServletRequest httpServletRequest, RedirectAttributes rttr) {
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String list(HttpServletRequest httpServletRequest, HttpSession session, Model model) {
 		// google login 후 결과 발송
 		UserVO user = null;
 		if (httpServletRequest.getParameter("google")!=null) {
 			String googleId = httpServletRequest.getParameter("googleId");
-			log.info(googleId);
 			user = service.getUserIdToGoogle(googleId);
-			user.setGoogle(true);
-			if(user.getNick() == null) {
+			if(user == null) {
 				log.info("로그인 실패");
-				rttr.addAttribute("error", "가입하지 않은 구글 계정입니다.");
-				return "list";
+				model.addAttribute("error", "아이디 또는 비밀번호를 잘못 입력하셨습니다.");
+				model.addAttribute("google", true);
+				model.addAttribute("googleId", googleId);
+				model.addAttribute("email", httpServletRequest.getParameter("email"));
+				return "index";
 			}
-
 		}else {
-			log.info(httpServletRequest.getParameter("email"));
-			log.info(httpServletRequest.getParameter("pw"));
-			user = service.getUserIdToEmail(httpServletRequest.getParameter("emailId"), httpServletRequest.getParameter("PW"));
-			user.setGoogle(false);
-			if(user.getNick() == null) {
+			user = service.getUserIdToEmail(httpServletRequest.getParameter("email"), httpServletRequest.getParameter("pw"));
+			if(user == null) {
 				log.info("로그인 실패");
-				rttr.addAttribute("error", "아이디 또는 비밀번호를 잘못 입력하셨습니다.");
-				return "list";
+				model.addAttribute("error", "아이디 또는 비밀번호를 잘못 입력하셨습니다.");
+				model.addAttribute("google", false);
+				return "index";
 			}
 		}
+		
+		
 		log.info("로그인 성공");
-		rttr.addFlashAttribute("uvo", user);
-		return "redirect:/sob/main";
+		session.setAttribute("uvo", user);
+		session.setMaxInactiveInterval(30*60);
+		return "/sob/main";
 	}
 	
 	@RequestMapping(value = "/join")
@@ -77,9 +81,14 @@ public class LoginController {
 		return "join";
 	}
 	
-	@GetMapping(value = "/confirmEmail")
-	public ResponseEntity<String> confirmEmail(HttpServletRequest httpServletRequest) {
-		return new ResponseEntity<String>(service.dupleCheck(httpServletRequest.getParameter("email")), HttpStatus.OK);
+	@RequestMapping(value = "/joinGoogle")
+	public String joinGoogle(Model model) {
+		return "joinGoogle";
+	}
+	
+	@GetMapping(value = "/confirmEmail/{email}", produces= {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<String> confirmEmail(@PathVariable("page") String email) {
+		return new ResponseEntity<String>(service.dupleCheck(email), HttpStatus.OK);
 	}
 	
 //	@GetMapping(value = "/requestAuthEmail")

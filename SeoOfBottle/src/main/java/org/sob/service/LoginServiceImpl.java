@@ -34,6 +34,7 @@ public class LoginServiceImpl implements LoginService {
 	
 	@Override
 	public String dupleCheck(String emailId) {
+		log.info("------- 중복 체크 중 -----------");
 		if (mapper.dupleCheck(emailId) != null) {
 			return "unuseable";
 		}else {

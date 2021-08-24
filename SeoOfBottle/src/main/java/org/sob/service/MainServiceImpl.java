@@ -35,9 +35,9 @@ public class MainServiceImpl implements MainService {
 	}
 
 	@Override
-	public List<MainVO> getList(int userid) {
+	public List<MainVO> getList(int cno) {
 		log.info("밀려들어온 유리병들 목록");
-		return mapper.getList(userid);
+		return mapper.getList(cno);
 	}
 
 }

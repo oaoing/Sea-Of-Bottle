@@ -49,8 +49,8 @@ function onSignIn(googleUser) {
 </head>
 <body>
 <form action="list" method="post">
-	ID: <input type="text" name="emailId"><br>
-	PW: <input type="password" name="PW"><br>
+	ID: <input type="text" name="email"><br>
+	PW: <input type="password" name="pw"><br>
 	<input type='submit' value="로그인">
 </form>
 <br>

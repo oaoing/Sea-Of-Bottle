@@ -51,5 +51,8 @@ public class LoginServiceTest {
 	public void testDuple() {
 		String check = service.dupleCheck("polkmn1024@gmail.com");
 		System.out.println(check);
+		
+		check = service.dupleCheck("oaoing2@gmail.com");
+		System.out.println(check);
 	}
 }

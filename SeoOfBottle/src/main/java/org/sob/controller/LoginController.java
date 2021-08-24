@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.sob.domain.UserVO;
 import org.sob.service.LoginService;
+import org.sob.service.MainService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 /**
@@ -26,6 +28,7 @@ import lombok.extern.log4j.Log4j;
  */
 @Log4j
 @Controller
+@AllArgsConstructor
 public class LoginController {
 	
 	private LoginService service;
@@ -54,7 +57,8 @@ public class LoginController {
 			}
 
 		}else {
-			log.info(httpServletRequest.getParameter("emailId"));
+			log.info(httpServletRequest.getParameter("email"));
+			log.info(httpServletRequest.getParameter("pw"));
 			user = service.getUserIdToEmail(httpServletRequest.getParameter("emailId"), httpServletRequest.getParameter("PW"));
 			user.setGoogle(false);
 			if(user.getNick() == null) {
@@ -64,7 +68,7 @@ public class LoginController {
 			}
 		}
 		log.info("로그인 성공");
-		rttr.addFlashAttribute("user", user);
+		rttr.addFlashAttribute("uvo", user);
 		return "redirect:/sob/main";
 	}
 	

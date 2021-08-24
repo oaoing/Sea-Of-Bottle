@@ -31,11 +31,12 @@ function emailAuthentication(){
 		data: {},
 		dataType: "text",
 		success: function(data){
-			if (data=="useable"){
+			if (data == "useable"){
 				console.log("중복확인 성공 - 중복 아님");
 				//requestAuthEamil();
 			}else{
 				console.log("중복확인 성공 - 중복");
+				console.log(data)
 				//중복 이메일 확인
 				//사용불가 메세지 띄우기
 			}

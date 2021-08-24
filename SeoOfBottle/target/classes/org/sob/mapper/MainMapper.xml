@@ -7,7 +7,7 @@
   <mapper namespace="org.sob.mapper.MainMapper">
   <!-- 기본기능 -->
 	  <select id="getList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
-	  <![CDATA[select * from bottlemain where groupid in (select groupid from bottlemain where `to` = #{userid} or `from` = #{userid}) group by groupid order by letterid desc]]><!-- id부분 변경해야함. -->	
+	  <![CDATA[select * from bottlemain where groupid in (select groupid from bottlemain where `to` = #{cno} or `from` = #{cno}) group by groupid order by letterid desc]]><!-- id부분 변경해야함. -->	
 	  </select>
 	  
 	  <insert id="insert"><!-- 새글 등록 -->
@@ -25,7 +25,7 @@
 	  
   <!-- 자랑게시판 기능 쿼리짜야함. -->	
 	  <select id="getBoastList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
-	  <![CDATA[select * from bottlemain where `to` = #{userId} or `from` = #{userId} group by groupId order by #{letterId};]]><!-- id부분 변경해야함. -->	
+	  <![CDATA[select * from bottlemain where `to` = #{cno} or `from` = #{cno} group by groupId order by #{letterId};]]><!-- id부분 변경해야함. -->	
 	  </select>
   
   

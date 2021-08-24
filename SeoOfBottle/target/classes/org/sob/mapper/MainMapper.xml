@@ -7,7 +7,7 @@
   <mapper namespace="org.sob.mapper.MainMapper">
   <!-- 기본기능 -->
 	  <select id="getList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
-	  <![CDATA[select * from bottlemain where groupid in (select groupid from bottlemain where `to` = #{cno} or `from` = #{cno}) group by groupid order by letterid desc]]><!-- id부분 변경해야함. -->	
+	  <![CDATA[select * from (select * from bottlemain where `to` = #{cno} or `from` = #{cno}) where groupid in (select groupid from bottlemain where `to` = #{cno} or `from` = #{cno}) group by groupid order by letterid desc]]><!-- id부분 변경해야함. -->	
 	  </select>
 	  
 	  <insert id="insert"><!-- 새글 등록 -->

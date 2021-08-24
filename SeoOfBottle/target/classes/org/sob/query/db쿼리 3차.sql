@@ -16,17 +16,6 @@
 CREATE DATABASE IF NOT EXISTS `seaofbottle` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `seaofbottle`;
 
--- 테이블 seaofbottle.boast 구조 내보내기
-CREATE TABLE IF NOT EXISTS `boast` (
-  `rno` int(20) NOT NULL AUTO_INCREMENT COMMENT '리플번호',
-  `letterid` int(20) NOT NULL DEFAULT '0' COMMENT '편지번호',
-  `reply` varchar(100) DEFAULT '0' COMMENT '리플내용',
-  `indate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '작성시간',
-  PRIMARY KEY (`rno`),
-  KEY `FK_boast_bottlemain` (`letterid`),
-  CONSTRAINT `FK_boast_bottlemain` FOREIGN KEY (`letterid`) REFERENCES `bottlemain` (`letterid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='자랑게시판 리플관련 테이블';
-
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 -- 테이블 seaofbottle.bottlemain 구조 내보내기
 CREATE TABLE IF NOT EXISTS `bottlemain` (
@@ -58,6 +47,17 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `pw` varchar(40) NOT NULL DEFAULT '0' COMMENT '고객pw',
   PRIMARY KEY (`index`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='고객테이블';
+
+-- 테이블 seaofbottle.boast 구조 내보내기
+CREATE TABLE IF NOT EXISTS `boast` (
+  `rno` int(20) NOT NULL AUTO_INCREMENT COMMENT '리플번호',
+  `letterid` int(20) NOT NULL DEFAULT '0' COMMENT '편지번호',
+  `reply` varchar(100) DEFAULT '0' COMMENT '리플내용',
+  `indate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '작성시간',
+  PRIMARY KEY (`rno`),
+  KEY `FK_boast_bottlemain` (`letterid`),
+  CONSTRAINT `FK_boast_bottlemain` FOREIGN KEY (`letterid`) REFERENCES `bottlemain` (`letterid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='자랑게시판 리플관련 테이블';
 
 -- 내보낼 데이터가 선택되어 있지 않습니다.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

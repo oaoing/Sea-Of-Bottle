@@ -35,9 +35,6 @@
 	</table>
 <form action="/sob/remove" method="post">
 <input type="hidden" name="groupId" value="${latter[0].groupId}">
-<input type="hidden" name="nick" value="tls">
-<input type="hidden" name="userId" value="1">
-<input type="hidden" name="google" value="true">
 
 <input type="submit" value="삭제">
 

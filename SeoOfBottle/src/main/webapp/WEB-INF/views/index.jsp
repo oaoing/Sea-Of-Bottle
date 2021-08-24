@@ -7,7 +7,7 @@
 <meta name ="google-signin-client_id" content="854655733822-odgivq9t2i7nj64vo28sot38ugttg42c.apps.googleusercontent.com">
 <script>
 
-function sendPost(userId){
+function sendPost(googleId){
 	var form = document.createElement('form');
 	form.setAttribute('method', 'post');
 	form.setAttribute('action', '/list');
@@ -15,8 +15,14 @@ function sendPost(userId){
 	
 	var hiddenField = document.createElement('input');
 	hiddenField.setAttribute('type', 'hidden');
-	hiddenField.setAttribute('name', 'userId');
-	hiddenField.setAttribute('value', userId);
+	hiddenField.setAttribute('name', 'googleId');
+	hiddenField.setAttribute('value', googleId);
+	form.append(hiddenField);
+	
+	var hiddenField = document.createElement('input');
+	hiddenField.setAttribute('type', 'hidden');
+	hiddenField.setAttribute('name', 'google');
+	hiddenField.setAttribute('value', "g");
 	form.append(hiddenField);
 	
 	document.body.appendChild(form);
@@ -42,7 +48,14 @@ function onSignIn(googleUser) {
 </script>
 </head>
 <body>
+<form action="list" method="post">
+	ID: <input type="text" name="emailId"><br>
+	PW: <input type="password" name="PW"><br>
+	<input type='submit' value="로그인">
+</form>
+<br>
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
+<a href='join'>회원 가입</a>
 
 </body>
 </html>

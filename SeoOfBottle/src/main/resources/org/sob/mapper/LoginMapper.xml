@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="org.sob.mapper.LoginMapper">
+  
+    <select id="getUserIdToGoogle" resultType="org.sob.domain.UserVO">
+    select cno, nick, true "google" from customer where #{googleId}=googleid
+    </select> 
+    
+    <select id="getUserIdToEmail" resultType="org.sob.domain.UserVO">
+    select cno, nick, false "google" from customer where #{email}=id AND #{pw}=pw
+    </select>  
+    
+    <insert id="joinUser">
+    	insert into customer (nick, id, pw, googleid) values(#{nick}, #{id}, #{pw}, null)
+    </insert>
+    
+    <select id="dupleCheck" resultType="String">
+    	select id from customer where #{emailId}=id
+    </select>
+	  
+  </mapper>

@@ -5,9 +5,6 @@
 <head>
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
 	<meta name ="google-signin-client_id" content="854655733822-odgivq9t2i7nj64vo28sot38ugttg42c.apps.googleusercontent.com">
      <script>
     function signOut() {
@@ -28,7 +25,7 @@
 </head>
 <body>
 성공 페이지 <br>
-${param.userId }
+${error }
 <br>
 <a href="/" onclick="signOut();">로그아웃</a>
 

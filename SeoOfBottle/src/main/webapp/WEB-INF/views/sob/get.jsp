@@ -26,7 +26,7 @@
 				<tr>
 					<td>${test1.groupId }</td>
 					<td>${test1.contents }</td>
-					<td>${test1.categoryId }</td>
+					<td>${test1.category }</td>
 					<td>${test1.cnt }</td>
 
 				</tr>

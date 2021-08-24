@@ -40,4 +40,10 @@ public class MainServiceImpl implements MainService {
 		return mapper.getList(cno);
 	}
 
+	@Override
+	public List<MainVO> getCategoryList() {
+		
+		return mapper.getCategoryList();
+	}
+
 }

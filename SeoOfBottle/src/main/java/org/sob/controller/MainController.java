@@ -44,7 +44,8 @@ public class MainController {
 	}	
 	
 	@GetMapping("/register")//등록페이지 jsp 열기 groupid 추후 수정
-	public void register() {
+	public void register(Model model) {
+		model.addAttribute("categoryList",service.getCategoryList());
 		log.info("register페이지요청");
 		
 	}
@@ -54,6 +55,7 @@ public class MainController {
 	public void get(String groupId, Model model,@SessionAttribute("uvo") UserVO uvo) {//테스트 완료
 		log.info("유리병 보기 요청"+groupId);
 		model.addAttribute("latter",service.get(groupId));
+		
 		
 	}
 	

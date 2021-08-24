@@ -13,4 +13,6 @@ public interface MainService {
 	public boolean remove(String groupId);
 	//5.목록 읽기
 	public List<MainVO> getList(int cno);
+	
+	public List<MainVO> getCategoryList();
 }

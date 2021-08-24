@@ -22,6 +22,10 @@
 	  	delete from bottlemain where groupId = #{groupId }
 	  
 	  </delete>
+	   <!-- 카테고리관련. -->
+	  <select id="getCategoryList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
+	  select * from category
+	  </select>
 	  
   <!-- 자랑게시판 기능 쿼리짜야함. -->	
 	  <select id="getBoastList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	

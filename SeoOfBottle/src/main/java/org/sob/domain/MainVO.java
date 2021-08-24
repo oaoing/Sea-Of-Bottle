@@ -12,6 +12,7 @@ public class MainVO {
 	private String contents;
 	private int letterId;
 	private int categoryId;
+	private String category;
 	private String boast;//자랑하기 게시판으로 보낼지 
 	
 		

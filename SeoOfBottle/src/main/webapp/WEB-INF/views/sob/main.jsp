@@ -25,7 +25,7 @@
 
 				<tr>
 					<td>${test.groupId }</td>
-					<td>${test.categoryId }</td>
+					<td>${test.category }</td>
 					<td><a href="get?groupId=${test.groupId }">${test.contents }</a></td>
 					<td>${test.boast }</td>
 

@@ -19,7 +19,7 @@
 	  </select>
 	  
 	  <delete id="delete">
-	  	delete from bottlemain where groupId = #{groupId}
+	  	delete from bottlemain where groupId = #{groupId }
 	  
 	  </delete>
 	  

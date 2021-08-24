@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class UserVO {
 	private String nick;
-	private int userId;
+	private int cno;
 	private boolean google=false;
 }

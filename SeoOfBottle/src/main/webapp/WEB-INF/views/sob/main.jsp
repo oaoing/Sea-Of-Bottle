@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-메인페이지 예정
+<a href="/sob/register">등록창</a>
+
+
+
 </body>
 </html>

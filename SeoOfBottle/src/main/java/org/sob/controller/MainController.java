@@ -35,7 +35,7 @@ public class MainController {
 	}
 	
 	//등록
-	@PostMapping("/register")//새유리병, 이어쓴 편지 등록 확인 필요 (돌아가는지)
+	@PostMapping("/register")//새유리병, 이어쓴 편지 등록 확인 필요 (돌아가는지)//새로쓴 편지는 테스트완료
 	public String register(UserVO uvo,RedirectAttributes rttr, MainVO mvo) {
 		//편지 등록 후 list페이지로 돌아감
 		

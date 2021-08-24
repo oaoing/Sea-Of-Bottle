@@ -42,7 +42,21 @@ public class MainControllerTest {
 		.getModelMap());
 	}
 	
-	
+	@Test
+	public void testRegister() throws Exception{
+		log.info(mockMvc.perform(MockMvcRequestBuilders
+				.post("/sob/register")
+				.param("from","1")
+				.param("to","2")
+				.param("cnt","3")
+				.param("contents","test 내용")
+				.param("groupid","test 내용")
+				.param("categoryid","1")
+				.param("boast","true"))
+				.andReturn()
+				.getModelAndView()
+				.getViewName());
+	}
 	
 	
 	

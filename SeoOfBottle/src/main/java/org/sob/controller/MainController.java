@@ -5,11 +5,11 @@ import org.sob.domain.UserVO;
 import org.sob.service.MainService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
@@ -26,46 +26,45 @@ public class MainController {
 	
 	//목록 전제척으로 rttr기능 하는지 테스트완료.
 	@GetMapping("/main")//자기자신.jsp 페이지 오픈 테스트 완료
-	public void list(Model model, UserVO uvo) {//, String userid 테스트용
-		UserVO uvo2 = (UserVO)model.asMap().get("uvo");
-
-		log.info("목록페이지요청"+uvo2);
-		model.addAttribute("list", service.getList(uvo2.getCno()));
-		model.addAttribute("uvo",uvo2);
+	public void list(Model model,@SessionAttribute("uvo") UserVO uvo) {//, String userid 테스트용
+		
+		log.info("목록페이지요청"+uvo);
+		model.addAttribute("list", service.getList(uvo.getCno()));
+		
 	}
 	
 	//등록
 	@PostMapping("/register")//새유리병, 이어쓴 편지 등록 확인 필요 (돌아가는지)//새로쓴 편지는 테스트완료
-	public String register(UserVO uvo,RedirectAttributes rttr, MainVO mvo) {
+	public String register(@SessionAttribute("uvo") UserVO uvo, MainVO mvo) {
 		//편지 등록 후 list페이지로 돌아감
 		log.info("register페이지"+uvo);
 		service.register(mvo); 
-		rttr.addFlashAttribute("uvo",uvo);
+		
 		return "redirect:/sob/main";//리다이렉트로 보냄
 	}	
 	
 	@GetMapping("/register")//등록페이지 jsp 열기 groupid 추후 수정
-	public void register(Model model,UserVO uvo) {
-		log.info("register페이지요청"+uvo);
-		model.addAttribute("uvo",uvo);
+	public void register() {
+		log.info("register페이지요청");
+		
 	}
 	
 	//상세
 	@GetMapping("/get")
-	public void get(String groupId, Model model,UserVO uvo) {//테스트 완료
+	public void get(String groupId, Model model,@SessionAttribute("uvo") UserVO uvo) {//테스트 완료
 		log.info("유리병 보기 요청"+groupId);
 		model.addAttribute("latter",service.get(groupId));
-		model.addAttribute("uvo",uvo);
+		
 	}
 	
 	//버리기
 	@PostMapping("/remove")
-	public String remove(String groupId ,UserVO uvo, RedirectAttributes rttr) {//UserVO 테스트완료
+	public String remove(String groupId ,@SessionAttribute("uvo") UserVO uvo) {//UserVO 테스트완료
 		log.info("유리병버리기 요청"+groupId);
 		
 		log.info("유리병버리기 요청"+uvo);
 		service.remove(groupId);
-		rttr.addFlashAttribute("uvo",uvo);
+		
 		return "redirect:/sob/main";
 	}
 	

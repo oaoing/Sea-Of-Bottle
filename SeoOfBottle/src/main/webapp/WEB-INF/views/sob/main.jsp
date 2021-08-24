@@ -35,8 +35,6 @@
 	</table>
 
 <br>
-${uvo.cno}<br>
-${uvo.nick}<br>
-${uvo.google}<br>
+
 </body>
 </html>

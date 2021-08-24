@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.sob.domain.JoinVO;
 import org.sob.domain.UserVO;
 import org.sob.service.LoginService;
 import org.sob.service.MainService;
@@ -18,9 +19,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
@@ -48,23 +49,22 @@ public class LoginController {
 	public String list(HttpServletRequest httpServletRequest, HttpSession session, Model model) {
 		// google login 후 결과 발송
 		UserVO user = null;
+		String email = httpServletRequest.getParameter("email");
 		if (httpServletRequest.getParameter("google")!=null) {
 			String googleId = httpServletRequest.getParameter("googleId");
 			user = service.getUserIdToGoogle(googleId);
 			if(user == null) {
 				log.info("로그인 실패");
-				model.addAttribute("error", "아이디 또는 비밀번호를 잘못 입력하셨습니다.");
-				model.addAttribute("google", true);
+				model.addAttribute("email", email);
 				model.addAttribute("googleId", googleId);
-				model.addAttribute("email", httpServletRequest.getParameter("email"));
-				return "index";
+				model.addAttribute("dupleCheck", service.dupleCheck(email));
+				return "joinGoogle";
 			}
 		}else {
-			user = service.getUserIdToEmail(httpServletRequest.getParameter("email"), httpServletRequest.getParameter("pw"));
+			user = service.getUserIdToEmail(email, httpServletRequest.getParameter("pw"));
 			if(user == null) {
 				log.info("로그인 실패");
 				model.addAttribute("error", "아이디 또는 비밀번호를 잘못 입력하셨습니다.");
-				model.addAttribute("google", false);
 				return "index";
 			}
 		}
@@ -73,7 +73,7 @@ public class LoginController {
 		log.info("로그인 성공");
 		session.setAttribute("uvo", user);
 		session.setMaxInactiveInterval(30*60);
-		return "/sob/main";
+		return "redirect:/sob/main";
 	}
 	
 	@RequestMapping(value = "/join")
@@ -86,11 +86,23 @@ public class LoginController {
 		return "joinGoogle";
 	}
 	
-	@GetMapping(value = "/confirmEmail/{email}", produces= {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<String> confirmEmail(@PathVariable("page") String email) {
-		return new ResponseEntity<String>(service.dupleCheck(email), HttpStatus.OK);
+	@RequestMapping(value = "/signUpInput", method = RequestMethod.POST)
+	public String signUpInput(HttpServletRequest httpServletRequest) {
+		JoinVO join = new JoinVO();
+		join.setId((String) httpServletRequest.getAttribute("email"));
+		join.setPw((String) httpServletRequest.getAttribute("pw"));
+		join.setNick((String) httpServletRequest.getAttribute("nick"));
+		join.setGoogleid((String) httpServletRequest.getAttribute("googleId"));
+		service.joinUser(join);
+		return "redirect:/login";
 	}
 	
+	@GetMapping(value = "/confirmEmail", produces = {MediaType.TEXT_PLAIN_VALUE})
+	public ResponseEntity<String> confirmEmail(@RequestParam(value = "email") String email) {
+		log.info("중복 확인");
+		return new ResponseEntity<String>(service.dupleCheck(email), HttpStatus.OK);
+	}
+
 //	@GetMapping(value = "/requestAuthEmail")
 //	public ResponseEntity<String> requestAuthEmail(HttpServletRequest httpServletRequest){
 //		String inputedEmail = httpServletRequest.getParameter("email");

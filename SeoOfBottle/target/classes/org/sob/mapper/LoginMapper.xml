@@ -15,7 +15,7 @@
     </select>  
     
     <insert id="joinUser">
-    	insert into customer (nick, id, pw, googleid) values(#{nick}, #{id}, #{pw}, null)
+    	insert into customer (nick, id, pw, googleid) values(#{nick}, #{id}, #{pw}, #{googleid})
     </insert>
     
     <select id="dupleCheck" resultType="String">

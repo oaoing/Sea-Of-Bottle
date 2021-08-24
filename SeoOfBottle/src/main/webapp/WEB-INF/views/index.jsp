@@ -63,9 +63,6 @@
 <script type="text/javascript">
 
 	if ('${error}'){
-		if(${google}){	// 구글로그인인지 판별
-			location.replace("joinGoogle");		//구글 로그인이라면 구글 신규 가입으로 이동
-		}
 		var form = document.getElementById("loginForm");
 		var newNode = document.createElement("p");
 		newNode.appendChild(document.createTextNode( "${error}" ));

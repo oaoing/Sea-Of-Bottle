@@ -11,4 +11,6 @@ public interface LoginService {
 	public void joinUser(JoinVO join);	// 회원 가입
 	
 	public String dupleCheck(String emailId); // email 중복확인
+	
+	public String sendMail(String email); // 인증메일 전송
 }

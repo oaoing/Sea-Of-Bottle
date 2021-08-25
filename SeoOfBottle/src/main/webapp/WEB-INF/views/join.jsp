@@ -9,7 +9,7 @@
 </head>
 <body>
 <form name="signUpForm" action="signUpInput" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-	ID: <input type="text" name="email" id="inputEmailForm"  maxlength="30"> <button type="button" onclick="emailAuthentication();">중복확인</button><br>
+	ID: <input type="text" name="email" id="email"  maxlength="30"> <button type="button" onclick="emailAuthentication();">중복확인</button><br>
 	인증번호: <input type="text" name="authCode" id="inputAuthCode"  maxlength="10" disabled="disabled">
 	<button onclick="authCodeCheck()" id="authCodeCheckBtn" type="button" disabled="disabled" class="btnChk">인증</button>
 	<button onclick="emailAuthentication()" id="eamilAuthBtn" type="button" class="btnChk">인증 메일 보내기</button><br>
@@ -25,25 +25,19 @@ function emailAuthentication(){
 	if (!emailValCheck()){
     	return false;
     }
-	$.ajax({
-		type: "GET",
-		usr: "confirmEmail?email=" + document.signUpForm.email.value,
-		data: {},
-		dataType: "text",
-		success: function(data){
+	$.get("http://localhost:8080/confirmEmail?email=" + document.getElementById("email").value,
+			function(data){
+			console.log(data);
 			if (data == "useable"){
 				console.log("중복확인 성공 - 중복 아님");
-				//requestAuthEamil();
-			}else{
+				requestAuthEamil();
+			}else if(data == "unuseable"){
 				console.log("중복확인 성공 - 중복");
-				console.log(data)
 				//중복 이메일 확인
 				//사용불가 메세지 띄우기
+			}else{
+				console.log("error 발생");
 			}
-		},
-		error: function(xhr, status, error){
-			
-		}
 	});
 }
 
@@ -68,23 +62,21 @@ function check(pattern, taget, message) {
 }
 
 function requestAuthEamil(){
-	$.ajax({
-		type: "GET",
-		usr: "requestAuthEmail?email=" + document.signUpForm.email.value,
-		data: {},
-		dataType: "text",
-		success: function(data){
-			if (data=="useable"){
+	$.get("http://localhost:8080/requestAuthEmail?email=" + document.getElementById("email").value,
+			function(data){
+			console.log(data);
+			if (data == "useable"){
+				console.log("중복확인 성공 - 중복 아님");
 				requestAuthEamil();
-			}else{
+			}else if(data == "unuseable"){
+				console.log("중복확인 성공 - 중복");
 				//중복 이메일 확인
 				//사용불가 메세지 띄우기
+			}else{
+				console.log("error 발생");
 			}
-		},
-		error: function(xhr, status, error){
-			
-		}
 	});
+	
 }
 
 </script>

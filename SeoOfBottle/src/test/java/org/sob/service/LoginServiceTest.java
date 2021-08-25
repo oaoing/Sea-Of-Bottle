@@ -57,4 +57,9 @@ public class LoginServiceTest {
 		System.out.println(check);
 	}
 	
+	@Test
+	public void testSendMail() {
+		service.sendMail("polkmn35@naver.com");
+	}
+	
 }

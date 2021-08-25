@@ -23,7 +23,25 @@
 		
 	<bean id="sqlSessionFactoy" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-	</bean>	
+	</bean>
+	
+	<bean id="mailSender" 
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com" /> <!-- gmail을 사용 -->
+        <property name="port" value="587" />
+        <property name="username" value="testemailaddressSOB@gmail.com" />
+        <property name="password" value="seaofbottle@1234" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+                <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+				<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+            </props>
+        </property>
+    </bean>
 	<mybatis-spring:scan base-package="org.sob.mapper"/>
 	<context:component-scan base-package="org.sob.service"></context:component-scan>
 	

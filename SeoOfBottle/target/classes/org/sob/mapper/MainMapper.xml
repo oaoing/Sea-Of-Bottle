@@ -14,30 +14,45 @@
 	  	insert into bottlemain (`from`, `to`, cnt, `groupId`, `contents`,`categoryId`, `boast`) values(#{from}, #{to},#{cnt},#{groupId},#{contents},#{categoryId},#{boast})
 	  </insert>
 	  
-	  <select id="read" resultType="org.sob.domain.MainVO"><!-- 내가 받은 편지 상세보기 -->
+	  <select id="read" resultType="org.sob.domain.MainVO"><!-- 편지 상세보기 -->
 	  	select * from bottlemain natural join category where groupId = #{groupId} order by cnt
 	  </select>
 	  
 	  <delete id="delete">
 	  	delete from bottlemain where groupId = #{groupId }
-	  
 	  </delete>
-	   <!-- 카테고리관련. -->
+	  
+	  <!-- 카테고리관련. -->
 	  <select id="getCategoryList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
 	  select * from category
 	  </select>
 	  
 	  <!-- 리플관련. -->
-	  <insert id="boastInsert"><!-- 새글 등록 -->
+	  <insert id="boastInsert"><!-- 새글 등록시에 boastdb에 등록 -->
 	  	insert into boast (`groupid`) values(#{groupId})
 	  </insert>
 	  
+	  <insert id="boastInsertReply"><!-- 리플 boastdb에 등록 -->
+	  	insert into boast (`groupid`,`reply`) values(#{groupId},#{reply})
+	  </insert>
 	  
-  <!-- 자랑게시판 기능 쿼리짜야함. -->	
+	  
+      <!-- 자랑게시판 관련. -->
+      
+      <!-- 전체 자랑게시판 목록 가져오기. -->		
 	  <select id="getBoastList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
-	  <![CDATA[select * from bottlemain where `to` = #{cno} or `from` = #{cno} group by groupId order by #{letterId};]]><!-- id부분 변경해야함. -->	
+	  <![CDATA[select * from bottlemain where boast = 'true' group by groupId order by letterId desc]]><!-- id부분 변경해야함. -->	
 	  </select>
-  
+      
+      <!-- 나의 자랑게시판 목록 가져오기. -->		
+	  <select id="getMyBoastList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
+	  <![CDATA[select * from bottlemain where `from` = #{cno} and boast = 'true' group by groupId order by letterId desc]]><!-- id부분 변경해야함. -->	
+	  </select>
+  	  
+  	  <!-- 리플 가져오기. -->
+  	  <select id="readReply" resultType="org.sob.domain.ReplyVO"><!-- 리플보기 -->
+	  	select * from boast where groupId = #{groupId } order by rno desc;
+	  </select>
   
   
     

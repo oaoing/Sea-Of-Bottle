@@ -3,6 +3,7 @@ package org.sob.mapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.sob.domain.MainVO;
+import org.sob.domain.ReplyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -41,7 +42,7 @@ public class MainMapperTest {
 	
 	@Test
 	public void testRead() {//유리병 하나 목록 받아오기
-		String groupId = "groupid";
+		String groupId = "groupid1";
 		mapper.read(groupId).forEach(main->log.info(main));
 	}
 	
@@ -51,8 +52,38 @@ public class MainMapperTest {
 		mapper.delete(groupId);
 	}
 	
+	@Test
+	public void testboastInsertReply() {
+		ReplyVO rvo = new ReplyVO();
+		rvo.setGroupId("testid");
+		rvo.setReply("hello");
+		mapper.boastInsertReply(rvo);
+		
+		
+	}
 	
+	@Test
+	public void testReadReply() {
+		String groupId = "testid";
+		mapper.readReply(groupId).forEach(main->log.info(main));
+		
+		
+	}
 	
+	@Test
+	public void testgetBoastList() {
+		
+		mapper.getBoastList().forEach(main->log.info(main));
+		
+		
+	}
+	
+	@Test
+	public void getMyBoastList() {
+		int cno = 1;
+		mapper.getMyBoastList(cno).forEach(main->log.info(main));
+		
+	}
 	
 	
 	

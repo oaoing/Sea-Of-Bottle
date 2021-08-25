@@ -23,7 +23,7 @@ public class LoginServiceTest {
 		
 		UserVO user = service.getUserIdToGoogle("117915959124919370969");
 		log.info(user.getCno());
-		log.info(user.isGoogle());
+		log.info(user.getGoogleid());
 		log.info(user.getNick());
 		
 	}
@@ -33,7 +33,7 @@ public class LoginServiceTest {
 		
 		UserVO user = service.getUserIdToEmail("fesfdf", "12341234");
 		log.info(user.getCno());
-		log.info(user.isGoogle());
+		log.info(user.getGoogleid());
 		log.info(user.getNick());
 		
 	}
@@ -41,9 +41,10 @@ public class LoginServiceTest {
 	@Test
 	public void testJoin() {	// 작동 확인 (O)
 		JoinVO join = new JoinVO();
-		join.setId("fesfdf");
+		join.setId("asdsagdsg");
 		join.setPw("12341234");
 		join.setNick("테스트");
+		join.setGoogleid(null);
 		service.joinUser(join);
 	}
 	
@@ -55,4 +56,5 @@ public class LoginServiceTest {
 		check = service.dupleCheck("oaoing2@gmail.com");
 		System.out.println(check);
 	}
+	
 }

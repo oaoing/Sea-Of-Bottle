@@ -32,11 +32,6 @@
 	  	insert into boast (`groupid`) values(#{groupId})
 	  </insert>
 	  
-	  <insert id="boastInsertReply"><!-- 리플 boastdb에 등록 -->
-	  	insert into boast (`groupid`,`reply`) values(#{groupId},#{reply})
-	  </insert>
-	  
-	  
       <!-- 자랑게시판 관련. -->
       
       <!-- 전체 자랑게시판 목록 가져오기. -->		
@@ -49,14 +44,6 @@
 	  <![CDATA[select * from bottlemain where `from` = #{cno} and boast = 'true' group by groupId order by letterId desc]]><!-- id부분 변경해야함. -->	
 	  </select>
   	  
-  	  <!-- 리플 가져오기. -->
-  	  <select id="readReply" resultType="org.sob.domain.ReplyVO"><!-- 리플보기 -->
-	  	select * from boast where groupId = #{groupId } order by rno desc;
-	  </select>
   
-  
-    
-	  
-	  
 	  
   </mapper>

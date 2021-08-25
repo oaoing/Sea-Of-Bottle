@@ -3,6 +3,7 @@ package org.sob.service;
 import java.util.List;
 
 import org.sob.domain.MainVO;
+import org.sob.domain.ReplyVO;
 import org.sob.mapper.MainMapper;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class MainServiceImpl implements MainService {
 	
 	@Override
 	public void register(MainVO mvo) {
-		log.info("유리병 바다에 던지기"+mvo);
+		log.info("유리병에 편지등록"+mvo);
 		if(mvo.getCnt()==1) {
 			mapper.boastInsert(mvo);
 		}
@@ -47,6 +48,22 @@ public class MainServiceImpl implements MainService {
 	public List<MainVO> getCategoryList() {
 		
 		return mapper.getCategoryList();
+	}
+
+	
+
+	
+
+	@Override
+	public List<MainVO> getBoastList() {
+		
+		return mapper.getBoastList();
+	}
+
+	@Override
+	public List<MainVO> getMyBoastList(int cno) {
+		
+		return mapper.getMyBoastList(cno);
 	}
 
 }

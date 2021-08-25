@@ -53,24 +53,6 @@ public class MainMapperTest {
 	}
 	
 	@Test
-	public void testboastInsertReply() {
-		ReplyVO rvo = new ReplyVO();
-		rvo.setGroupId("testid");
-		rvo.setReply("hello");
-		mapper.boastInsertReply(rvo);
-		
-		
-	}
-	
-	@Test
-	public void testReadReply() {
-		String groupId = "testid";
-		mapper.readReply(groupId).forEach(main->log.info(main));
-		
-		
-	}
-	
-	@Test
 	public void testgetBoastList() {
 		
 		mapper.getBoastList().forEach(main->log.info(main));

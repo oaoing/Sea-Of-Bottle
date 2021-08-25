@@ -3,6 +3,7 @@ package org.sob.service;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.sob.domain.MainVO;
+import org.sob.domain.ReplyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -57,9 +58,21 @@ public class MainServiceTest {
 	}
 	
 	
+		
 	
 	
+	@Test
+	public void testgetBoastList() {
+		service.getBoastList();
+		
+	}
 	
+	@Test
+	public void testgetMyBoastList() {
+		int cno = 2;
+		service.getMyBoastList(cno);
+		
+	}
 	
 	
 	

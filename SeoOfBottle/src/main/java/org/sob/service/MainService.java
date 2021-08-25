@@ -3,16 +3,30 @@ package org.sob.service;
 import java.util.List;
 
 import org.sob.domain.MainVO;
+import org.sob.domain.ReplyVO;
 
 public interface MainService {
-	//1.글등록
+	//글등록
 	public void register(MainVO main);
-	//2.글 읽기
+	//글 읽기
 	public List<MainVO> get(String groupId);
-	//4.글 삭제
+	//글 삭제
 	public boolean remove(String groupId);
-	//5.목록 읽기
+	//내목록 읽기
 	public List<MainVO> getList(int cno);
-	
+	//카테고리 가져오기
 	public List<MainVO> getCategoryList();
+	//자랑게시판 전체목록
+	public List<MainVO> getBoastList();
+	//나의 자랑 목록
+	public List<MainVO> getMyBoastList(int cno);
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

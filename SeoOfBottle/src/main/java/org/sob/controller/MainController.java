@@ -70,6 +70,20 @@ public class MainController {
 		return "redirect:/sob/main";
 	}
 	
+	//자랑게시판
+	@GetMapping("/boast")
+	public void boast(Model model,@SessionAttribute("uvo") UserVO uvo) {//자랑하기 페이지
+		log.info("자랑게시판 요청");
+		model.addAttribute("boastList",service.getBoastList());
+		
+	}
+	
+	@GetMapping("/myboast")
+	public void myboast(Model model,@SessionAttribute("uvo") UserVO uvo) {//자랑하기 페이지
+		log.info("유리병 보기 요청");
+		model.addAttribute("myList",service.getMyBoastList(uvo.getCno()));
+	}
+	
 	
 	
 	

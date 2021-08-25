@@ -49,16 +49,16 @@ public class LoginServiceTest {
 	}
 	
 	@Test
-	public void testDuple() {
-		String check = service.dupleCheck("polkmn1024@gmail.com");
+	public void testDuple() {		// 작동 확인 (O)
+		String check = service.dupleCheck("polkmn1024@gmail.com");	// 중복 이메일
 		System.out.println(check);
 		
-		check = service.dupleCheck("oaoing2@gmail.com");
+		check = service.dupleCheck("oaoing2@gmail.com");	// 중복아닌 이메일
 		System.out.println(check);
 	}
 	
 	@Test
-	public void testSendMail() {
+	public void testSendMail() {	// 작동 확인 (O)
 		service.sendMail("polkmn35@naver.com");
 	}
 	

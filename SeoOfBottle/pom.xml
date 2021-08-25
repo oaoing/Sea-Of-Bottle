@@ -14,19 +14,6 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
-	<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-		<dependency>
-		    <groupId>com.google.code.gson</groupId>
-		    <artifactId>gson</artifactId>
-		    <version>2.8.2</version>
-		</dependency>
-	<!-- JWT --> 
-	<dependency> 
-		<groupId>io.jsonwebtoken</groupId> 
-		<artifactId>jjwt</artifactId> 
-		<version>0.9.1</version> 
-	</dependency>
-
 	<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
 	<!-- javax.mail-api와 javaee-api 같이 사용해야함** javax.mail-api만 사용시 createMimeMessage NoFound 에러발생 -->
 		<dependency>

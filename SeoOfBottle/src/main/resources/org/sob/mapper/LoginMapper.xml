@@ -7,11 +7,11 @@
   <mapper namespace="org.sob.mapper.LoginMapper">
   
     <select id="getUserIdToGoogle" resultType="org.sob.domain.UserVO">
-    select cno, nick, true "google" from customer where #{googleId}=googleid
+    select cno, nick, googleid from customer where #{googleId}=googleid
     </select> 
     
     <select id="getUserIdToEmail" resultType="org.sob.domain.UserVO">
-    select cno, nick, false "google" from customer where #{email}=id AND #{pw}=pw
+    select cno, nick, googleid from customer where #{email}=id AND #{pw}=pw
     </select>  
     
     <insert id="joinUser">

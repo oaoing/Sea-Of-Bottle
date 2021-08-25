@@ -22,9 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-/**
- * Handles requests for the application home page.
- */
 @Log4j
 @Controller
 @AllArgsConstructor
@@ -32,9 +29,6 @@ public class LoginController {
 	
 	private LoginService service;
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
 		return "index";
@@ -84,14 +78,18 @@ public class LoginController {
 	@RequestMapping(value = "/signUpInput", method = RequestMethod.POST)
 	public String signUpInput(HttpServletRequest httpServletRequest) {
 		JoinVO join = new JoinVO();
-		join.setId((String) httpServletRequest.getAttribute("email"));
-		join.setPw((String) httpServletRequest.getAttribute("pw"));
-		join.setNick((String) httpServletRequest.getAttribute("nick"));
-		join.setGoogleid((String) httpServletRequest.getAttribute("googleId"));
+		join.setId(httpServletRequest.getParameter("email"));
+		join.setPw(httpServletRequest.getParameter("pw"));
+		join.setNick(httpServletRequest.getParameter("nick"));
+		join.setGoogleid(httpServletRequest.getParameter("googleId"));
+
 		service.joinUser(join);
-		return "redirect:/login";
+		
+		return "redirect:/";
 	}
 	
+	
+	// REST API
 	@GetMapping(value = "/confirmEmail", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public ResponseEntity<String> confirmEmail(@RequestParam(value = "email") String email) {
 		log.info("----------중복 확인");
@@ -99,12 +97,24 @@ public class LoginController {
 	}
 
 	@GetMapping(value = "/requestAuthEmail", produces = {MediaType.TEXT_PLAIN_VALUE})
-	public ResponseEntity<String> requestAuthEmail(@RequestParam(value = "email") String email){
-		log.info("----------인증 메일 전송 시작");
-		String authCode = service.sendMail(email);
+	public ResponseEntity<String> requestAuthEmail(@RequestParam(value = "email") String email,
+			HttpServletRequest request){
+		try {
+			log.info("----------인증 메일 전송 시작");
+			String authCode = service.sendMail(email);
+//			HttpSession session = request.getSession();
+//	        session.setAttribute("authCode", authCode);
+//	        // 유지시간 2분
+//	        session.setMaxInactiveInterval(60*2);
+
+	        log.info("----------인증 메일 전송 완료");
+			return new ResponseEntity<String>(authCode, HttpStatus.OK);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>("failed", HttpStatus.OK);
+		}
 		
-		
-		return new ResponseEntity<String>(authCode, HttpStatus.OK);
 	}
 	
 }

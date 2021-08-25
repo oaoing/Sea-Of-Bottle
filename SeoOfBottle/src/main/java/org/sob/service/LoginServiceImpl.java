@@ -54,6 +54,7 @@ public class LoginServiceImpl implements LoginService {
 		
 		authCode = temp.toString();
 		
+		// 이메일 전송
 		 try {
 	            // 이메일 객체
 	            MimeMessage msg = mailSender.createMimeMessage();

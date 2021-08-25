@@ -19,7 +19,7 @@ public class MainServiceImpl implements MainService {
 	public void register(MainVO mvo) {
 		log.info("유리병 바다에 던지기"+mvo);
 		if(mvo.getBoast().equals("true")) {
-			mapper.boastInsert()
+			mapper.boastInsert(mvo);
 		}
 		mapper.insert(mvo);
 

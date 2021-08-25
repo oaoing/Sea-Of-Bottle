@@ -3,6 +3,7 @@ package org.sob.mapper;
 import java.util.List;
 
 import org.sob.domain.MainVO;
+import org.sob.domain.ReplyVO;
 
 public interface MainMapper {
 	public List<MainVO> getList(int cno); //받은 모든 유리병 목록 가져오기
@@ -10,7 +11,10 @@ public interface MainMapper {
 	public List<MainVO> read(String groupId);//편지번호로 글 읽어오기
 	public int delete(String groupId);
 	public List<MainVO> getCategoryList();//유리병 번호로 글 삭제하기
+	public void boastInsert(MainVO mvo);//리플db업로드//튜플생성
 	//받은 모든 유리병 페이징 처리해서 가져오는 인터페이스 추가 예정
+	
+	
 }
 
 

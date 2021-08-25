@@ -29,7 +29,7 @@
 	  
 	  <!-- 리플관련. -->
 	  <insert id="boastInsert"><!-- 새글 등록 -->
-	  	insert into boast (`groupid`) values(#{groupid})
+	  	insert into boast (`groupid`) values(#{groupId})
 	  </insert>
 	  
 	  

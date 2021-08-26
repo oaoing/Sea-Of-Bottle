@@ -40,17 +40,26 @@ public class LoginController {
 		UserVO user = null;
 		String email = httpServletRequest.getParameter("email");
 		if (httpServletRequest.getParameter("google")!=null) {
-			String googleId = httpServletRequest.getParameter("googleId");
-			user = service.getUserIdToGoogle(googleId);
+			String googleid = httpServletRequest.getParameter("googleid");
+			user = service.getUserIdToGoogle(googleid);
 			if(user == null) {
 				log.info("로그인 실패");
 				model.addAttribute("email", email);
-				model.addAttribute("googleId", googleId);
-				model.addAttribute("dupleCheck", service.dupleCheck(email));
+				
+				String[] dupleCheck = service.dupleCheck(email).split("/");
+				model.addAttribute("googleid", googleid);
+				model.addAttribute("dupleCheck", dupleCheck[0]);
+				if(dupleCheck.length > 1) {
+					model.addAttribute("nick", dupleCheck[1]);
+				}
+				
 				return "joinGoogle";
 			}
 		}else {
-			user = service.getUserIdToEmail(email, httpServletRequest.getParameter("pw"));
+			String pw = httpServletRequest.getParameter("pw");
+			if(pw.length() >= 8) {
+				user = service.getUserIdToEmail(email, pw);
+			}
 			if(user == null) {
 				log.info("로그인 실패");
 				model.addAttribute("error", "아이디 또는 비밀번호를 잘못 입력하셨습니다.");
@@ -81,10 +90,31 @@ public class LoginController {
 		join.setId(httpServletRequest.getParameter("email"));
 		join.setPw(httpServletRequest.getParameter("pw"));
 		join.setNick(httpServletRequest.getParameter("nick"));
-		join.setGoogleid(httpServletRequest.getParameter("googleId"));
-
-		service.joinUser(join);
+		join.setGoogleid(httpServletRequest.getParameter("googleid"));
 		
+		service.joinUser(join);
+		join = null;
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/modifyUser", method = RequestMethod.POST)
+	public String modifyUser(HttpServletRequest httpServletRequest) {
+		log.info("-----------수정 시작");
+		JoinVO join = new JoinVO();
+		join.setId(httpServletRequest.getParameter("email"));
+		join.setPw(httpServletRequest.getParameter("pw"));
+		join.setNick(httpServletRequest.getParameter("nick"));
+		join.setGoogleid(httpServletRequest.getParameter("googleid"));
+		
+		if(join.getPw().equals("0")) {
+			log.info("email 유저가 google 로그인 등록");
+			service.modifyForEmailUser(join);
+		}else {
+			log.info("google 유저가 email 로그인 등록");
+			service.modifyForGoogleUser(join);
+		}
+		join = null;
+		log.info("------------수정 완료");
 		return "redirect:/";
 	}
 	

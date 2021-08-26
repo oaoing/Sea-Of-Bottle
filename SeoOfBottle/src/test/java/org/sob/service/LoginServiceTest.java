@@ -62,4 +62,13 @@ public class LoginServiceTest {
 		service.sendMail("polkmn35@naver.com");
 	}
 	
+	@Test
+	public void testModify() {
+		JoinVO join = new JoinVO();
+		join.setGoogleid("117915959124919370969");
+		join.setId("polkmn1024@gmail.com");
+		join.setNick("jsy");
+		join.setPw("12341234");
+		service.modifyForEmailUser(join);
+	}
 }

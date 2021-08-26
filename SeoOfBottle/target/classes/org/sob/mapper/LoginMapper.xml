@@ -18,8 +18,16 @@
     	insert into customer (nick, id, pw, googleid) values(#{nick}, #{id}, #{pw}, #{googleid})
     </insert>
     
-    <select id="dupleCheck" resultType="String">
-    	select id from customer where #{emailId}=id
+    <select id="dupleCheck" resultType="org.sob.domain.UserVO">
+    	select customerno, nick, googleid from customer where #{emailId}=id
     </select>
+    
+    <update id="modifyForEmailUser">
+    update customer set googleid=#{googleid} where #{id}=id
+    </update>
+    
+    <update id="modifyForGoogleUser">
+    update customer set pw=#{pw} where #{id}=id
+    </update>
 	  
   </mapper>

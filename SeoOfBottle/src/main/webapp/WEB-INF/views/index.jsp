@@ -4,9 +4,10 @@
 <html>
 <head>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 <meta name ="google-signin-client_id" content="854655733822-odgivq9t2i7nj64vo28sot38ugttg42c.apps.googleusercontent.com">
 <script>
-	function sendPost(googleId, email){
+	function sendPost(googleid, email){
 		var form = document.createElement('form');
 		form.setAttribute('method', 'post');
 		form.setAttribute('action', '/login');
@@ -14,8 +15,8 @@
 		
 		var hiddenField = document.createElement('input');
 		hiddenField.setAttribute('type', 'hidden');
-		hiddenField.setAttribute('name', 'googleId');
-		hiddenField.setAttribute('value', googleId);
+		hiddenField.setAttribute('name', 'googleid');
+		hiddenField.setAttribute('value', googleid);
 		form.append(hiddenField);
 		
 		var hiddenField = document.createElement('input');
@@ -55,7 +56,7 @@
 <form action="login" method="post" id="loginForm">
 	ID: <input type="text" name="email" id="email"><br>
 	PW: <input type="password" name="pw" id="pw"><br>
-	<input type='submit' value="로그인">
+	<input type='submit' name="loginBtn" value="로그인">
 </form>
 <br>
 <div class="g-signin2" data-onsuccess="onSignIn"></div>
@@ -66,7 +67,7 @@
 		var form = document.getElementById("loginForm");
 		var newNode = document.createElement("p");
 		newNode.appendChild(document.createTextNode( "${error}" ));
-		form.insertBefore(newNode, form.pw);
+		form.insertBefore(newNode, form.loginBtn);
 	}
 
 </script>

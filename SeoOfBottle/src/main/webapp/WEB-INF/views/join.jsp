@@ -14,7 +14,7 @@
 	인증번호: <input type="text" name="authCode" id="inputAuthCode"  maxlength="10" disabled="disabled">
 	<button onclick="authCodeCheck()" id="authCodeCheckBtn" type="button" disabled="disabled" class="btnChk">인증</button><p id="count"></p><br>
 	<input type="hidden" name="authPass" id="authPass" value="false"><br>
-	PW: <input type="password" name="pw" id="pw" onKeyUp="pwValCheck();"> <p id="checkNotice"></p><br>
+	PW: <input type="password" name="pw" id="pw"><br>
 	Nick Name: <input type="text" name="nick" id="nick"><br>
 	<input type="hidden" name="googleid" id="googleid" value="">
 	<input type="submit" value="회원 가입"> <button type="button" onclick='location.replace("/")'>돌아가기</button>
@@ -35,21 +35,12 @@ function emailAuthentication(){
 				console.log(data)
 				sessionStorage.clear();
 				requestAuthEamil();
-			}else if(data == "unuseable/plain"){
+			}else if(data == "unuseable"){
 				console.log(data);
 				//중복 이메일 확인
 				//사용불가 메세지 띄우기
 			}else{
-				if(confirm("구글 계정으로 생성된 이메일 입니다.\n연동하시겠습니까?")==true){
-					document.getElementById("email").disabled = true;
-					document.getElementById("nick").disabled = true;
-					var info = data.split("/");
-					document.getElementById("nick").value = info[0];
-					document.getElementById("googleid").value = info[1];
-					sessionStorage.clear();
-					requestAuthEamil();
-					
-				}
+				console.log("error 발생");
 			}
 	});
 }
@@ -104,8 +95,8 @@ function authCodeCheck(){
 		alert("인증이 완료되었습니다.");
 		document.getElementById("authPass").value = true;
 		console.log("${authCode}");
-		document.getElementById("email").disabled = true; 
-		document.getElementById("emailAuthBtn").disabled = true;
+		document.getElementById("email").readOnly = true; 
+		document.getElementById("emailAuthBtn").readOnly = true;
 		document.getElementById("authCodeCheckBtn").disabled = true;
 		document.getElementById("inputAuthCode").disabled = true;
 		document.getElementById("count").textContent = ""; 
@@ -144,15 +135,6 @@ function countDownTimer(id) {
 	timer = setInterval(showRemaining, 1000); 
 }
 
-function pwValCheck(){
-	// 비밀번호가 8~16자, 영어 숫자 포함
-	var pwPattern= /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,16}$/;
-	var pw = document.getElementById("pw").value;
-	if(!check(pwPattern, pw, "비밀번호는 영어, 숫자를 포함한 8~16자를 입력해주세요")) {
-		return false;
-	}
-    return true;
-}
 
 
 </script>

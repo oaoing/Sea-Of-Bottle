@@ -13,6 +13,4 @@ public interface LoginService {
 	public String dupleCheck(String emailId); // email 중복확인
 	
 	public String sendMail(String email); // 인증메일 전송
-
-	public void modifyUser(JoinVO join); // 유저 수정
 }

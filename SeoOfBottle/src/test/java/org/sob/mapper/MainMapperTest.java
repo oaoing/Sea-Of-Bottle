@@ -27,13 +27,13 @@ public class MainMapperTest {
 	@Test
 	public void testInsert() {//등록 
 		MainVO mvo = new MainVO();
-		mvo.setCategoryId(1);
+		mvo.setCategoryid(1);
 		mvo.setBoast("false");
 		mvo.setCnt(1);
 		mvo.setContents("내용내용내용");
 		mvo.setFrom(1);
 		mvo.setTo(2);
-		mvo.setGroupId("newgroup");
+		mvo.setLabelid("newgroup");
 		
 		mapper.insert(mvo);
 		

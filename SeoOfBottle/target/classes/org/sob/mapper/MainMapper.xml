@@ -7,7 +7,7 @@
   <mapper namespace="org.sob.mapper.MainMapper">
   <!-- 기본기능 -->
 	  <select id="getList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
-	  <![CDATA[select * from (select * from bottlemain natural join category where `to` = #{cno} or `from` = #{cno}) a where groupid in (select groupid from bottlemain where `to` = #{cno} or `from` = #{cno}) group by a.groupid order by letterid desc]]><!-- id부분 변경해야함. -->	
+	  <![CDATA[select l.labelid,b.categoryid,l.letterid,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and (`from` = #{customerNo} or `receiver` = #{customerNo}) and cnt=1 group by letterid order by labelid]]>	
 	  </select>
 	  
 	  <insert id="insert"><!-- 새글 등록 -->

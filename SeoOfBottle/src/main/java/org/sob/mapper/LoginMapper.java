@@ -8,6 +8,5 @@ public interface LoginMapper {
 	public UserVO getUserIdToGoogle(String googleId); // googleID로 userId 불러오기
 	public UserVO getUserIdToEmail(@Param("email") String email, @Param("pw")String pw); // 시스템 로그인
 	public void joinUser(JoinVO join); // 회원 가입
-	public UserVO dupleCheck(String emailId); // email 중복 체크
-	public void modifyUser(JoinVO join);
+	public String dupleCheck(String emailId); // email 중복 체크
 }

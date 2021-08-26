@@ -23,11 +23,11 @@ public class MainServiceTest {
 		MainVO mvo = new MainVO();
 		mvo.setContents("새로 작성하는 내용1");
 		mvo.setBoast("false");
-		mvo.setCategoryId(1);
+		mvo.setCategoryid(1);
 		mvo.setCnt(1);
 		mvo.setFrom(1);
 		mvo.setTo(2);
-		mvo.setGroupId("그룹아이디");
+		mvo.setLabelid("그룹아이디");
 		
 		service.register(mvo);
 		
@@ -56,10 +56,6 @@ public class MainServiceTest {
 		
 		
 	}
-	
-	
-		
-	
 	
 	@Test
 	public void testgetBoastList() {

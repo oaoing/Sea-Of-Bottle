@@ -26,25 +26,18 @@
 </head>
 <body>
 <form id="signUpForm" action="signUpInput" method="post">
-	ID: <input type="text" name="email" value='${email }' readonly><br>
+	ID: <input type="text" name="email" value="${email }" readonly><br>
 	<input type="hidden" name="pw" value="0">
-	<input type="hidden" name="googleId" value='${user.googleid }'>
-	<input type="hidden" name="customerno" value='${user.customerno}' >
-	Nick Name: <input type="text" name="nick" id="nick"><br>
+	<input type="hidden" name="googleId" value=${googleId }>
+	Nick Name: <input type="text" name="nick"><br>
 	<input type="submit" value="회원 가입"> <button type="button" onclick='signOut();'>돌아가기</button>
 </form>
 
 <script>
 if ('${dupleCheck}' == "useable"){
-	// 닉네임 입력받기
+	// 닉네임 입력받는 화면 구성
 }else{
-	if(confirm("회원 가입된 이메일 입니다.\n연동하시겠습니까?")==true){
-		document.getElementById("nick").value = "${user.nick}";
-		document.getElementById("nick").disabled = true;
-		document.getElementById("signUpForm").action = "modifyUser";
-	}else{
-		signOut();
-	}
+	// 이미 생성된 이메일이라고 안내하고 연동 여부 확인 구성
 }
 
 

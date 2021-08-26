@@ -7,23 +7,19 @@
   <mapper namespace="org.sob.mapper.LoginMapper">
   
     <select id="getUserIdToGoogle" resultType="org.sob.domain.UserVO">
-    select cno, nick, googleid from customer where #{googleId}=googleid
+    select customerno, nick, googleid from customer where #{googleId}=googleid
     </select> 
     
     <select id="getUserIdToEmail" resultType="org.sob.domain.UserVO">
-    select cno, nick, googleid from customer where #{email}=id AND #{pw}=pw
+    select customerno, nick, googleid from customer where #{email}=id AND #{pw}=pw
     </select>  
     
     <insert id="joinUser">
     	insert into customer (nick, id, pw, googleid) values(#{nick}, #{id}, #{pw}, #{googleid})
     </insert>
     
-    <select id="dupleCheck" resultType="org.sob.domain.UserVO">
-    	select cno, nick, googleid from customer where #{emailId}=id
+    <select id="dupleCheck" resultType="String">
+    	select id from customer where #{emailId}=id
     </select>
-    
-    <update id="modifyUser">
-    	update customer set googleid = #{googleid} where customerno = #{customerno}
-    </update>
 	  
   </mapper>

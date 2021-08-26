@@ -45,22 +45,15 @@ public class LoginController {
 			if(user == null) {
 				log.info("로그인 실패");
 				model.addAttribute("email", email);
-				model.addAttribute("user", user);
+				model.addAttribute("googleId", googleId);
 				model.addAttribute("dupleCheck", service.dupleCheck(email));
 				return "joinGoogle";
 			}
 		}else {
-			String pw = httpServletRequest.getParameter("pw");
-			if (!pw.equals("0")) {
-				user = service.getUserIdToEmail(email, pw);
-				if(user == null) {
-					log.info("로그인 실패");
-					model.addAttribute("error", "아이디 또는 비밀번호를 잘못 입력하셨습니다.");
-					return "index";
-				}
-			}else {
-				log.info("구글 로그인 필요");
-				model.addAttribute("error", "구글 계정입니다. 구글 로그인을 이용해주세요");
+			user = service.getUserIdToEmail(email, httpServletRequest.getParameter("pw"));
+			if(user == null) {
+				log.info("로그인 실패");
+				model.addAttribute("error", "아이디 또는 비밀번호를 잘못 입력하셨습니다.");
 				return "index";
 			}
 		}
@@ -88,22 +81,10 @@ public class LoginController {
 		join.setId(httpServletRequest.getParameter("email"));
 		join.setPw(httpServletRequest.getParameter("pw"));
 		join.setNick(httpServletRequest.getParameter("nick"));
-		join.setGoogleid(httpServletRequest.getParameter("googleid"));
+		join.setGoogleid(httpServletRequest.getParameter("googleId"));
 
 		service.joinUser(join);
-		join = null;
-		return "redirect:/";
-	}
-	
-	@RequestMapping(value = "/modifyUser", method = RequestMethod.POST)
-	public String modifyUser(HttpServletRequest httpServletRequest) {
-		JoinVO join = new JoinVO();
-		join.setId(httpServletRequest.getParameter("customerno"));
-		join.setNick(httpServletRequest.getParameter("nick"));
-		join.setGoogleid(httpServletRequest.getParameter("googleid"));
-
-		service.modifyUser(join);
-		join = null;
+		
 		return "redirect:/";
 	}
 	

@@ -116,17 +116,10 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public String dupleCheck(String emailId) {
 		log.info("------- 중복 체크 중 -----------");
-		UserVO user = mapper.dupleCheck(emailId);
-		if (user != null) {
-			return (user.getGoogleid() != null)?user.getNick() + "/" + user.getGoogleid():"unuseable/plain";
+		if (mapper.dupleCheck(emailId) != null) {
+			return "unuseable";
 		}else {
 			return "useable";
 		}
 	}
-	
-	@Override
-	public void modifyUser(JoinVO join) {
-		mapper.modifyUser(join);
-	}
-	
 }

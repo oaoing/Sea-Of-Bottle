@@ -24,9 +24,9 @@
 			<c:forEach items="${list}" var="test">
 
 				<tr>
-					<td>${test.groupId }</td>
+					<td>${test.labelid }</td>
 					<td>${test.category }</td>
-					<td><a href="get?groupId=${test.groupId }">${test.contents }</a></td>
+					<td><a href="get?groupId=${test.labelid }">${test.contents }</a></td>
 					<td>${test.boast }</td>
 
 				</tr>

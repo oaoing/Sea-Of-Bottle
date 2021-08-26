@@ -13,7 +13,7 @@ public interface MainService {
 	//글 삭제
 	public boolean remove(String groupId);
 	//내목록 읽기
-	public List<MainVO> getList(int cno);
+	public List<MainVO> getList(int customerNo);
 	//카테고리 가져오기
 	public List<MainVO> getCategoryList();
 	//자랑게시판 전체목록

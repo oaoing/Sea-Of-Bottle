@@ -6,37 +6,79 @@
   
   <mapper namespace="org.sob.mapper.MainMapper">
   <!-- 기본기능 -->
-	  <select id="getList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
+  	  <!-- 내가 포함된 유리병 목록 불러오기 -->	
+	  <select id="getList" resultType="org.sob.domain.MainVO">
 	  <![CDATA[select l.labelid,b.categoryid,l.letterid,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and (`from` = #{customerNo} or `receiver` = #{customerNo}) and cnt=1 group by letterid order by labelid]]>	
 	  </select>
 	  
-	  <insert id="insert"><!-- 새글 등록 -->
-	  	insert into bottlemain (`from`, `to`, cnt, `groupId`, `contents`,`categoryId`, `boast`) values(#{from}, #{to},#{cnt},#{groupId},#{contents},#{categoryId},#{boast})
+	  
+	  
+	  <!-- 새글 등록 -->
+	  <!-- bottle 등록 -->
+	  <insert id="bottleInsert">
+	  	insert into bottle (categoryid,`boast`,`from`) values (#{categoryid},#{boast},#{from})
+	  </insert>
+	  <!-- labelid 가져오기 -->
+	  <select id="selectLabelid" resultType="Integer">
+	  	select LAST_INSERT_ID()
+	  </select>
+	  <!-- letter 등록 -->
+	  <insert id="letterInsert">
+	  	insert into letter (cnt, `contents`, labelid) values (#{cnt},#{contents}, #{labelid})
+	  </insert>
+	  <!-- letter 등록 -->
+	  <insert id="receivertableInsert">
+	  	insert into receivertable (receiver,labelid) values (#{to}, #{labelid})
 	  </insert>
 	  
-	  <select id="read" resultType="org.sob.domain.MainVO"><!-- 편지 상세보기 -->
-	  	select * from bottlemain natural join category where groupId = #{groupId} order by cnt
+	  <!-- 추가 글 등록 예정-->
+	  
+	  
+	  
+	  <!-- 편지 상세보기 -->
+	  <select id="read" resultType="org.sob.domain.MainVO">
+	  	select l.labelid as labelid,c.category as category,l.letterid as letterid,l.cnt as cnt,l.`contents` as "contents" from bottle b , category c, letter l, receivertable r where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and l.labelid = #{labelid} group by letterid order by cnt;
 	  </select>
 	  
-	  <delete id="delete">
-	  	delete from bottlemain where groupId = #{groupId }
+	  
+	  
+	  <!-- 편지삭제 -->
+	  <delete id="deleteBottle">
+	  	delete from bottle where labelid = #{labelid }
 	  </delete>
+	  <delete id="deleteLetter">
+	  	delete from letter where labelid = #{labelid }
+	  </delete>
+	  <delete id="deleteReceivertable">
+	  	delete from receivertable where labelid = #{labelid }
+	  </delete>
+	  <delete id="deleteBoast">
+	  	delete from boast where labelid = #{labelid }
+	  </delete>
+	  
+	  
 	  
 	  <!-- 카테고리관련. -->
 	  <select id="getCategoryList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
 	  select * from category
 	  </select>
 	  
+	  
+	  
+	  
 	  <!-- 리플관련. -->
 	  <insert id="boastInsert"><!-- 새글 등록시에 boastdb에 등록 -->
-	  	insert into boast (`groupid`) values(#{groupId})
+	  	insert into boast (`labelid`) values(#{labelid})
 	  </insert>
+	  
+	  
+	  
 	  
       <!-- 자랑게시판 관련. -->
       
       <!-- 전체 자랑게시판 목록 가져오기. -->		
 	  <select id="getBoastList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
-	  <![CDATA[select * from bottlemain where boast = 'true' group by groupId order by letterId desc]]><!-- id부분 변경해야함. -->	
+	  select l.labelid,b.categoryid,l.letterid,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=1 group by letterid order by labelid;
 	  </select>
       
       <!-- 나의 자랑게시판 목록 가져오기. -->		

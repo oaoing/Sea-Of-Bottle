@@ -13,14 +13,13 @@
 to<input type="text" name="to">
 contents<input type="text" name="contents">
 from<input type="text" name="from">
-groupid<input type="text" name="groupId">
-cnt<input type="text" name="cnt">
-category<select form="re" name="categoryId">
+cnt<input type="number" name="cnt" value="1" placeholder="1" readonly>
+category<select form="re" name="categoryid">
 <c:forEach items="${categoryList}" var="temp">
-<option value="${temp.categoryId }" >${temp.category }</option>
+<option value="${temp.categoryid }" >${temp.category }</option>
 </c:forEach>
 </select>
-boast<input type="text" name="boast">
+boast<input type="number" name="boast">
 <input type="submit" value="등록">
 
 </form>

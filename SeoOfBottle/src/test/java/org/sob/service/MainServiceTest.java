@@ -19,19 +19,19 @@ public class MainServiceTest {
 	private MainService service;
 	
 	@Test
-	public void testRegister() {//등록
+	public void testregister() {//상세
 		MainVO mvo = new MainVO();
-		mvo.setContents("새로 작성하는 내용1");
-		mvo.setBoast("false");
+		mvo.setBoast(1);
 		mvo.setCategoryid(1);
 		mvo.setCnt(1);
-		mvo.setFrom(1);
-		mvo.setTo(2);
-		mvo.setLabelid("그룹아이디");
+		mvo.setContents("gkgkgkg");
+		mvo.setFrom(2);
+		mvo.setTo(3);
 		
-		service.register(mvo);
+		service.register(mvo);;
 		
 	}
+	
 	
 	@Test
 	public void testGet() {//상세

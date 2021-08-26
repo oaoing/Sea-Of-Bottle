@@ -2,6 +2,8 @@ package org.sob.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.sob.domain.MainVO;
 import org.sob.domain.ReplyVO;
 import org.sob.mapper.MainMapper;
@@ -16,26 +18,35 @@ import lombok.extern.log4j.Log4j;
 public class MainServiceImpl implements MainService {
 	private MainMapper mapper;
 	
+	
 	@Override
-	public void register(MainVO mvo) {
+	@Transactional
+	public void register(MainVO mvo) {//랜덤 로직 필요
 		log.info("유리병에 편지등록"+mvo);
-		if(mvo.getCnt()==1) {
-			mapper.boastInsert(mvo);
-		}
-		mapper.insert(mvo);
+		mapper.bottleInsert(mvo);
+		mvo.setLabelid(mapper.selectLabelid());
+		mapper.letterInsert(mvo);
+		mapper.receivertableInsert(mvo);
+		mapper.boastInsert(mvo);
 
 	}
 
 	@Override
-	public List<MainVO> get(String groupId) {
-		log.info("편지읽기"+groupId);
-		return mapper.read(groupId);
+	public List<MainVO> get(String labelid) {
+		log.info("편지읽기"+labelid);
+		return mapper.read(labelid);
 	}
-
+	
+	@Transactional
 	@Override
-	public boolean remove(String groupId) {
-		log.info("유리병버리기"+groupId);
-		return mapper.delete(groupId)==1;
+	public boolean remove(String labelid) {
+		log.info("유리병버리기"+labelid);
+		
+		mapper.deleteLetter(labelid);
+		mapper.deleteReceivertable(labelid);
+		mapper.deleteBoast(labelid);
+		
+		return mapper.deleteBottle(labelid)==1;
 	}
 
 	@Override
@@ -61,9 +72,9 @@ public class MainServiceImpl implements MainService {
 	}
 
 	@Override
-	public List<MainVO> getMyBoastList(int cno) {
+	public List<MainVO> getMyBoastList(int customerNo) {
 		
-		return mapper.getMyBoastList(cno);
+		return mapper.getMyBoastList(customerNo);
 	}
 
 }

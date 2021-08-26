@@ -24,7 +24,7 @@
 			<c:forEach items="${latter}" var="test1">
 
 				<tr>
-					<td>${test1.groupId }</td>
+					<td>${test1.labelid }</td>
 					<td>${test1.contents }</td>
 					<td>${test1.category }</td>
 					<td>${test1.cnt }</td>
@@ -34,7 +34,7 @@
 		</tbody>
 	</table>
 <form action="/sob/remove" method="post">
-<input type="hidden" name="groupId" value="${latter[0].groupId}">
+<input type="hidden" name="labelid" value="${latter[0].labelid}">
 
 <input type="submit" value="삭제">
 

@@ -7,12 +7,12 @@ public class MainVO {
 	private int from;
 	private int to;//보낼사람
 	private int cnt;
-	private String labelid;
+	private int labelid;
 	private String contents;
 	private int letterid;
 	private int categoryid;
 	private String category;
-	private String boast;//자랑하기 게시판으로 보낼지 
+	private int boast;//자랑하기 게시판으로 보낼지 
 	
 		
 }

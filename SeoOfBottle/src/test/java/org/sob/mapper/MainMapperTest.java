@@ -24,21 +24,6 @@ public class MainMapperTest {
 		
 	}
 	
-	@Test
-	public void testInsert() {//등록 
-		MainVO mvo = new MainVO();
-		mvo.setCategoryid(1);
-		mvo.setBoast("false");
-		mvo.setCnt(1);
-		mvo.setContents("내용내용내용");
-		mvo.setFrom(1);
-		mvo.setTo(2);
-		mvo.setLabelid("newgroup");
-		
-		mapper.insert(mvo);
-		
-		
-	}
 	
 	@Test
 	public void testRead() {//유리병 하나 목록 받아오기
@@ -46,11 +31,7 @@ public class MainMapperTest {
 		mapper.read(groupId).forEach(main->log.info(main));
 	}
 	
-	@Test
-	public void testDelete() {
-		String groupId = "groupid2";
-		mapper.delete(groupId);
-	}
+	
 	
 	@Test
 	public void testgetBoastList() {

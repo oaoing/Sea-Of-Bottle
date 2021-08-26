@@ -29,7 +29,7 @@ public class MainController {
 	public void list(Model model,@SessionAttribute("uvo") UserVO uvo) {//, String userid 테스트용
 		
 		log.info("목록페이지요청"+uvo);
-		model.addAttribute("list", service.getList(uvo.getCno()));
+		model.addAttribute("list", service.getList(uvo.getCustomerno()));
 		
 	}
 	
@@ -81,7 +81,7 @@ public class MainController {
 	@GetMapping("/myboast")
 	public void myboast(Model model,@SessionAttribute("uvo") UserVO uvo) {//자랑하기 페이지
 		log.info("유리병 보기 요청");
-		model.addAttribute("myList",service.getMyBoastList(uvo.getCno()));
+		model.addAttribute("myList",service.getMyBoastList(uvo.getCustomerno()));
 	}
 	
 	

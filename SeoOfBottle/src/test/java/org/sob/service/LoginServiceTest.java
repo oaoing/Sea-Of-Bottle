@@ -22,7 +22,7 @@ public class LoginServiceTest {
 	public void testGoogle() {	// 작동 확인 (O)
 		
 		UserVO user = service.getUserIdToGoogle("117915959124919370969");
-		log.info(user.getCno());
+		log.info(user.getCustomerno());
 		log.info(user.getGoogleid());
 		log.info(user.getNick());
 		
@@ -32,7 +32,7 @@ public class LoginServiceTest {
 	public void testLogin() {	// 작동 확인 (O)
 		
 		UserVO user = service.getUserIdToEmail("fesfdf", "12341234");
-		log.info(user.getCno());
+		log.info(user.getCustomerno());
 		log.info(user.getGoogleid());
 		log.info(user.getNick());
 		

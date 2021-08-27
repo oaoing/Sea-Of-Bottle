@@ -8,10 +8,20 @@ import org.sob.domain.ReplyVO;
 public interface MainService {
 	//글등록
 	public void register(MainVO mvo);
+	//추가 글등록
+	public void registerAdd(MainVO mvo);
+	
+	
 	//글 읽기
 	public List<MainVO> get(String labelid);
-	//글 삭제
+	//내 목록에서 지우기 첫 글쓴이 용
 	public boolean remove(String labelid);
+	//내 목록에서 지우기 받은 사람용
+	public boolean remove2(MainVO mvo);
+	
+	//자랑하기 선택
+	public void updateBoast(MainVO mvo);
+	
 	//내목록 읽기
 	public List<MainVO> getList(int customerNo);
 	//카테고리 가져오기

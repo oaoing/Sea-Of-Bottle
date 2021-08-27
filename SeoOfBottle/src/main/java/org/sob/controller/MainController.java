@@ -1,5 +1,7 @@
 package org.sob.controller;
 
+import java.util.List;
+
 import org.sob.domain.MainVO;
 import org.sob.domain.UserVO;
 import org.sob.service.MainService;
@@ -38,12 +40,19 @@ public class MainController {
 	public String register(@SessionAttribute("uvo") UserVO uvo, MainVO mvo) {
 		//편지 등록 후 list페이지로 돌아감
 		log.info("register페이지"+uvo+mvo);
-		service.register(mvo); 
+		if(mvo.getLabelid()==0) {//처음생성일때와 추가글일때 나누는 기능
+			service.register(mvo); 
+		} else if(mvo.getCnt()==4 ){
+			service.updateBoast(mvo);
+		} else {
+			service.registerAdd(mvo);
+		}
+		
 		
 		return "redirect:/sob/main";//리다이렉트로 보냄
 	}	
 	
-	@GetMapping("/register")//등록페이지 jsp 열기
+	@GetMapping("/register")//새글등록페이지 jsp 열기
 	public void register(Model model) {
 		model.addAttribute("categoryList",service.getCategoryList());
 		log.info("register페이지요청");
@@ -52,21 +61,31 @@ public class MainController {
 	
 	//상세
 	@GetMapping("/get")
-	public void get(String groupId, Model model,@SessionAttribute("uvo") UserVO uvo) {//테스트 완료
+	public void get(String groupId, Model model) {//테스트 완료
 		log.info("유리병 보기 요청"+groupId);
-		model.addAttribute("latter",service.get(groupId));
+		List<MainVO> mvoList = service.get(groupId);
+		MainVO mvo = new MainVO();
+		for(MainVO temp: mvoList ) {
+			mvo.setCnt(temp.getCnt()); 
+			mvo.setCategory(temp.getCategory());
+		}
 		
+		model.addAttribute("latter",mvoList);
+		model.addAttribute("mvo",mvo);
 		
 	}
 	
 	//버리기
 	@PostMapping("/remove")
-	public String remove(String labelid ,@SessionAttribute("uvo") UserVO uvo) {//UserVO 테스트완료
-		log.info("유리병버리기 요청"+labelid);
-		
+	public String remove(MainVO mvo ,@SessionAttribute("uvo") UserVO uvo) {//UserVO 테스트완료
+		log.info("유리병버리기 요청"+mvo.getLabelid());
 		log.info("유리병버리기 요청"+uvo);
-		service.remove(labelid);
-		
+		if(mvo.getFrom()==uvo.getCustomerno()) {
+			service.remove(""+mvo.getLabelid());
+		} else {
+			mvo.setFrom(uvo.getCustomerno());
+			service.remove2(mvo);//컨트롤러에서 서비스로 던지는 객체는 하나여야한다.
+		}
 		return "redirect:/sob/main";
 	}
 	

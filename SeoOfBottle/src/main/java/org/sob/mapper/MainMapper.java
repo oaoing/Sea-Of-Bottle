@@ -15,11 +15,11 @@ public interface MainMapper {
 	
 	
 	public List<MainVO> read(String labelid);//편지번호로 글 읽어오기
-	public int deleteBottle(String labelid);//유리병 번호로 bottle 삭제하기
-	public int deleteLetter(String labelid);//유리병 번호로 Letter 삭제하기
-	public int deleteReceivertable(String labelid);//유리병 번호로 Receivertable 삭제하기
-	public int deleteBoast(String labelid);//유리병 번호로 Receivertable 삭제하기
+	public int deleteBottle(String labelid);//첫 글쓴이가 목록에서 글 삭제 
+	public int deleteReceiver(MainVO mvo);//받은 사람이 목록에서 글 삭제
 	
+	
+	public void updateBoast(MainVO mvo);//마지막 편지 받은 사람이 자랑할지 말지 선택하는 매퍼
 	
 	
 	

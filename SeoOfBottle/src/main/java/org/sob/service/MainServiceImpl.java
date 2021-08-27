@@ -37,17 +37,16 @@ public class MainServiceImpl implements MainService {
 		return mapper.read(labelid);
 	}
 	
-	@Transactional
+	
 	@Override
 	public boolean remove(String labelid) {
-		log.info("유리병버리기"+labelid);
-		
-		mapper.deleteLetter(labelid);
-		mapper.deleteReceivertable(labelid);
-		mapper.deleteBoast(labelid);
-		
+		log.info("내목록에서 삭제"+labelid);
 		return mapper.deleteBottle(labelid)==1;
 	}
+	
+	
+	
+	
 
 	@Override
 	public List<MainVO> getList(int customerNo) {
@@ -75,6 +74,25 @@ public class MainServiceImpl implements MainService {
 	public List<MainVO> getMyBoastList(int customerNo) {
 		
 		return mapper.getMyBoastList(customerNo);
+	}
+
+	@Override
+	public boolean remove2(MainVO mvo) {
+		
+		return mapper.deleteReceiver(mvo)==1;
+	}
+
+	@Override
+	@Transactional
+	public void registerAdd(MainVO mvo) {
+		mapper.letterInsert(mvo);
+		mapper.receivertableInsert(mvo);
+	}
+
+	@Override
+	public void updateBoast(MainVO mvo) {
+		mapper.updateBoast(mvo);
+		
 	}
 
 }

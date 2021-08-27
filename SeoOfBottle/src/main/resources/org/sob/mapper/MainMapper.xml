@@ -11,12 +11,14 @@
 	  <![CDATA[select l.labelid,b.categoryid,l.letterid,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and (`from` = #{customerNo} or `receiver` = #{customerNo}) and cnt=1 group by letterid order by labelid]]>	
 	  </select>
 	  
+	  <!-- 카테고리로 검색해서  내가 포함된 유리병 목록 불러오기 예정 -->
+	  
 	  
 	  
 	  <!-- 새글 등록 -->
 	  <!-- bottle 등록 -->
 	  <insert id="bottleInsert">
-	  	insert into bottle (categoryid,`boast`,`from`) values (#{categoryid},#{boast},#{from})
+	  	insert into bottle (categoryid,`from`) values (#{categoryid},#{from})
 	  </insert>
 	  <!-- labelid 가져오기 -->
 	  <select id="selectLabelid" resultType="Integer">
@@ -28,34 +30,30 @@
 	  </insert>
 	  <!-- letter 등록 -->
 	  <insert id="receivertableInsert">
-	  	insert into receivertable (receiver,labelid) values (#{to}, #{labelid})
+	  	insert into receivertable (receiver, labelid) values (#{to}, #{labelid})
 	  </insert>
 	  
-	  <!-- 추가 글 등록 예정-->
-	  
-	  
+	  <!-- 마지막 사람이 자랑하기 기능  -->
+	  <update id="updateBoast">
+	  UPDATE bottle SET `boast`= 1 where labelid = #{labelid}
+	  </update>
+	 
 	  
 	  <!-- 편지 상세보기 -->
 	  <select id="read" resultType="org.sob.domain.MainVO">
-	  	select l.labelid as labelid,c.category as category,l.letterid as letterid,l.cnt as cnt,l.`contents` as "contents" from bottle b , category c, letter l, receivertable r where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and l.labelid = #{labelid} group by letterid order by cnt;
+	  	select `from`, l.labelid as labelid, c.category as category, c.categoryid as categoryid, l.letterid as letterid, l.cnt as cnt, l.`contents` as "contents"  from bottle b , category c, letter l, receivertable r where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and l.labelid = #{labelid} group by letterid order by cnt;
 	  </select>
 	  
 	  
 	  
-	  <!-- 편지삭제 -->
-	  <delete id="deleteBottle">
-	  	delete from bottle where labelid = #{labelid }
+	  <!-- 첫 글쓴이가 목록에서 글 삭제 -->
+	  <update id="deleteBottle">
+	  	UPDATE bottle SET `from`= 0 where labelid = #{labelid}
+	  </update>
+	  <!-- 받은 사람이 목록에서 글 삭제 -->
+	  <delete id="deleteReceiver">
+	  delete from receivertable where receiver = #{from} and labelid = #{labelid}
 	  </delete>
-	  <delete id="deleteLetter">
-	  	delete from letter where labelid = #{labelid }
-	  </delete>
-	  <delete id="deleteReceivertable">
-	  	delete from receivertable where labelid = #{labelid }
-	  </delete>
-	  <delete id="deleteBoast">
-	  	delete from boast where labelid = #{labelid }
-	  </delete>
-	  
 	  
 	  
 	  <!-- 카테고리관련. -->

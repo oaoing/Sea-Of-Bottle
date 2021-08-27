@@ -28,6 +28,8 @@ public interface MainService {
 	public List<MainVO> getCategoryList();
 	//자랑게시판 전체목록
 	public List<MainVO> getBoastList();
+	
+	
 	//나의 자랑 목록
 	public List<MainVO> getMyBoastList(int customerNo);
 	

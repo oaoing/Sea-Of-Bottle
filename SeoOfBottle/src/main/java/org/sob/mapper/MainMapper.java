@@ -29,6 +29,7 @@ public interface MainMapper {
 	
 	//자랑게시판 관련
 	public List<MainVO> getBoastList(); //자랑게시판 전체 목록 가져오기
+	
 	public List<MainVO> getMyBoastList(int customerNo); //나의 자랑게시판 목록 가져오기.
 	
 	

@@ -61,13 +61,12 @@ public class MainController {
 	
 	//상세
 	@GetMapping("/get")
-	public void get(String groupId, Model model) {//테스트 완료
-		log.info("유리병 보기 요청"+groupId);
-		List<MainVO> mvoList = service.get(groupId);
+	public void get(String labelid, Model model) {//테스트 완료
+		log.info("유리병 보기 요청"+labelid);
+		List<MainVO> mvoList = service.get(labelid);
 		MainVO mvo = new MainVO();
 		for(MainVO temp: mvoList ) {
 			mvo.setCnt(temp.getCnt()); 
-			mvo.setCategory(temp.getCategory());
 		}
 		
 		model.addAttribute("latter",mvoList);
@@ -97,13 +96,22 @@ public class MainController {
 		
 	}
 	
+	
 	@GetMapping("/myboast")
 	public void myboast(Model model,@SessionAttribute("uvo") UserVO uvo) {//자랑하기 페이지
-		log.info("유리병 보기 요청");
+		log.info("내 자랑 보기 요청");
 		model.addAttribute("myList",service.getMyBoastList(uvo.getCustomerno()));
 	}
 	
-	
+	//자랑상세
+	@GetMapping("/boastdetail")
+	public void boastdetail(String labelid, Model model) {//테스트 완료
+		log.info("자랑상세 보기 요청"+labelid);
+		List<MainVO> mvoList = service.get(labelid);
+		model.addAttribute("latter",mvoList);
+			
+			
+	}
 	
 	
 	

@@ -9,9 +9,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="/sob/register">등록창</a><br>
-	<a href="/sob/boast">자랑게시판</a><br>
-	
+	<a href="/sob/register">등록창</a>
+	<br>
+	<a href="/sob/boast">자랑게시판</a>
+	<br>
+	<form action="/sob/main2" id= "cate">
+		category<select form="cate" name="categoryid">
+			<c:forEach items="${categoryList}" var="temp">
+				<option value="${temp.categoryid }">${temp.category }</option>
+			</c:forEach>
+		</select>
+		<input type="submit" value="카테고리 검색">
+	</form>
+
 
 	<table border="1">
 		<thead>
@@ -36,7 +46,7 @@
 		</tbody>
 	</table>
 
-<br>
+	<br>
 
 </body>
 </html>

@@ -8,6 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<form action="/sob/myboast2" id= "boas">
+		category<select form="boas" name="categoryid">
+			<c:forEach items="${categoryList}" var="temp">
+				<option value="${temp.categoryid }">${temp.category }</option>
+			</c:forEach>
+		</select>
+		<input type="submit" value="카테고리 검색">
+	</form>
 
 <table border="1">
 		<thead>

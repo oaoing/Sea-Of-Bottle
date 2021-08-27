@@ -7,13 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-
-
 <body>
-	<a href="/sob/myboast">마이페이지</a>
 
-	<form action="/sob/boast2" id= "boa">
-		category<select form="boa" name="categoryid">
+<form action="/sob/myboast2" id= "boas">
+		category<select form="boas" name="categoryid">
 			<c:forEach items="${categoryList}" var="temp">
 				<option value="${temp.categoryid }">${temp.category }</option>
 			</c:forEach>
@@ -21,9 +18,7 @@
 		<input type="submit" value="카테고리 검색">
 	</form>
 
-
-
-	<table border="1">
+<table border="1">
 		<thead>
 			<tr>
 				<th>유리병 아이디</th>
@@ -32,7 +27,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${boastList}" var="test">
+			<c:forEach items="${myList}" var="test">
 
 				<tr>
 					<td>${test.labelid }</td>
@@ -45,7 +40,6 @@
 		</tbody>
 	</table>
 
-<br>
 
 
 </body>

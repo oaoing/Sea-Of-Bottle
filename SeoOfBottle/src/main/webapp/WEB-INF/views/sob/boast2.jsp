@@ -11,7 +11,7 @@
 
 <body>
 	<a href="/sob/myboast">마이페이지</a>
-
+	
 	<form action="/sob/boast2" id= "boa">
 		category<select form="boa" name="categoryid">
 			<c:forEach items="${categoryList}" var="temp">
@@ -20,8 +20,8 @@
 		</select>
 		<input type="submit" value="카테고리 검색">
 	</form>
-
-
+	
+	
 
 	<table border="1">
 		<thead>

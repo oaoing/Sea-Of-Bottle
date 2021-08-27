@@ -26,14 +26,26 @@ public class MainController {
 	
 	private MainService service;
 	
-	//목록 전제척으로 rttr기능 하는지 테스트완료.
+	//내 목록 불러오기
 	@GetMapping("/main")//자기자신.jsp 페이지 오픈 테스트 완료
-	public void list(Model model,@SessionAttribute("uvo") UserVO uvo) {//, String userid 테스트용
+	public void list(Model model,@SessionAttribute("uvo") UserVO uvo) {
 		
 		log.info("목록페이지요청"+uvo);
+		model.addAttribute("categoryList",service.getCategoryList());
 		model.addAttribute("list", service.getList(uvo.getCustomerno()));
 		
 	}
+	//카테고리로 검색해서 내 목록 불러오기
+	@GetMapping("/main2")//자기자신.jsp 페이지 오픈 테스트 완료
+	public void list2(Model model,@SessionAttribute("uvo") UserVO uvo, MainVO mvo) {//
+		log.info("목록페이지카테고리로요청"+uvo);
+		model.addAttribute("categoryList",service.getCategoryList());
+		mvo.setFrom(uvo.getCustomerno());
+		model.addAttribute("list", service.getListUseCategory(mvo));
+		
+	}
+	
+	
 	
 	//등록
 	@PostMapping("/register")//새유리병, 이어쓴 편지 등록 확인 필요 (돌아가는지)//새로쓴 편지는 테스트완료
@@ -92,16 +104,38 @@ public class MainController {
 	@GetMapping("/boast")
 	public void boast(Model model,@SessionAttribute("uvo") UserVO uvo) {//자랑하기 페이지
 		log.info("자랑게시판 요청");
+		model.addAttribute("categoryList",service.getCategoryList());
 		model.addAttribute("boastList",service.getBoastList());
 		
+	}
+	
+	@GetMapping("/boast2")
+	public void boast2(Model model,@SessionAttribute("uvo") UserVO uvo,String categoryid) {//자랑하기 페이지
+		log.info("자랑게시판 카테고리로 요청");
+		model.addAttribute("categoryList",service.getCategoryList());
+		int intCategoryid = Integer.parseInt(categoryid);
+		model.addAttribute("boastList",service.getBoastListUseCategory(intCategoryid));
 	}
 	
 	
 	@GetMapping("/myboast")
 	public void myboast(Model model,@SessionAttribute("uvo") UserVO uvo) {//자랑하기 페이지
 		log.info("내 자랑 보기 요청");
+		model.addAttribute("categoryList",service.getCategoryList());
 		model.addAttribute("myList",service.getMyBoastList(uvo.getCustomerno()));
 	}
+	
+	@GetMapping("/myboast2")
+	public void myboast2(Model model,@SessionAttribute("uvo") UserVO uvo, MainVO mvo) {//자랑하기 페이지
+		log.info("내 자랑 보기 요청");
+		
+		model.addAttribute("categoryList",service.getCategoryList());
+		mvo.setFrom(uvo.getCustomerno());
+		model.addAttribute("myList",service.getMyBoastListUseCategory(mvo));
+	}
+	
+	
+	
 	
 	//자랑상세
 	@GetMapping("/boastdetail")

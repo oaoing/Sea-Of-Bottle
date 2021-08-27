@@ -12,7 +12,9 @@
 	  </select>
 	  
 	  <!-- 카테고리로 검색해서  내가 포함된 유리병 목록 불러오기 예정 -->
-	  
+	  <select id="getListUseCategory" resultType="org.sob.domain.MainVO">
+	  <![CDATA[select l.labelid, b.categoryid, c.category, l.letterid, l.cnt, l.`contents` from bottle b , category c, letter l, receivertable r where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and (`from` = #{from} or `receiver` = #{from}) and b.categoryid=#{categoryid} and cnt=1 group by letterid order by labelid]]>	
+	  </select>
 	  
 	  
 	  <!-- 새글 등록 -->
@@ -71,6 +73,11 @@
 	  <select id="getBoastList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
 	  select l.labelid,c.`category`,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=1 group by letterid order by labelid desc
 	  </select>
+	  
+	  <!-- 전체 자랑게시판 카테고리로 목록 가져오기. -->		
+	  <select id="getBoastListUseCategory" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
+	  select l.labelid,c.`category`,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=1 and b.categoryid=#{categoryid} group by letterid order by labelid desc
+	  </select>
       
       
       
@@ -78,6 +85,19 @@
 	  <select id="getMyBoastList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
 	  select l.labelid,c.`category`,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=3 and `receiver`=#{customerno} group by letterid order by labelid desc;	
 	  </select>
+	  
+	  <!-- 나의 자랑게시판 목록 가져오기. -->		
+	  <select id="getMyBoastListUseCategory" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
+	  select l.labelid,c.`category`,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=3 and `receiver`=#{from} and b.categoryid=#{categoryid} group by letterid order by labelid desc;	
+	  </select>
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
   	  
   
 	  

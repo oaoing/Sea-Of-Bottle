@@ -95,4 +95,22 @@ public class MainServiceImpl implements MainService {
 		
 	}
 
+	@Override
+	public List<MainVO> getListUseCategory(MainVO mvo) {
+		
+		return mapper.getListUseCategory(mvo);
+	}
+
+	@Override
+	public List<MainVO> getBoastListUseCategory(int categoryid) {
+		
+		return mapper.getBoastListUseCategory(categoryid);
+	}
+
+	@Override
+	public List<MainVO> getMyBoastListUseCategory(MainVO mvo) {
+		
+		return mapper.getMyBoastListUseCategory(mvo);
+	}
+
 }

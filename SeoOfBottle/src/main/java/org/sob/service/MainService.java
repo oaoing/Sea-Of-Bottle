@@ -24,14 +24,20 @@ public interface MainService {
 	
 	//내목록 읽기
 	public List<MainVO> getList(int customerNo);
+	//카테고리로 내목록읽기
+	public List<MainVO> getListUseCategory(MainVO mvo);
+	
 	//카테고리 가져오기
 	public List<MainVO> getCategoryList();
 	//자랑게시판 전체목록
 	public List<MainVO> getBoastList();
 	
+	public List<MainVO> getBoastListUseCategory(int categoryid);
 	
 	//나의 자랑 목록
 	public List<MainVO> getMyBoastList(int customerNo);
+	//나의 자랑 목록 카테고리로 가져오기
+	public List<MainVO> getMyBoastListUseCategory(MainVO mvo);
 	
 	
 	

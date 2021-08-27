@@ -5,23 +5,29 @@ import java.util.List;
 import org.sob.domain.ReplyVO;
 import org.sob.mapper.MainMapper;
 import org.sob.mapper.ReplyMapper;
+import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
+
+@AllArgsConstructor
+@Log4j
+@Service
 public class ReplyServiceImpl implements ReplyService {
 
 	private ReplyMapper mapper;
 	
 	@Override
-	public void boastInsertReply(ReplyVO rvo) {
+	public int boastInsertReply(ReplyVO rvo) {
 		
-		mapper.boastInsertReply(rvo);
+		return mapper.boastInsertReply(rvo);
 		
 	}
 
-	
 	@Override
-	public List<ReplyVO> readReply(String groupId) {
+	public List<ReplyVO> readReply(int labelid) {
 		
-		return mapper.readReply(groupId);
+		return mapper.readReply(labelid);
 	}
 
 }

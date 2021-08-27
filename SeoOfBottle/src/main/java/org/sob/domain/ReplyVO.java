@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class ReplyVO {
 	private int replyno;
-	private String labelid;
+	private int labelid;
 	private String reply;
 	private String indate;
 	

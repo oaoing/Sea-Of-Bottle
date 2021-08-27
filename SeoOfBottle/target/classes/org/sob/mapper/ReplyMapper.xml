@@ -8,13 +8,22 @@
   
 	  <!-- 리플관련. -->
 	  
-	  <insert id="boastInsertReply"><!-- 리플 boastdb에 등록 -->
-	  	insert into boast (`groupid`,`reply`) values(#{groupId},#{reply})
-	  </insert>
-  	  <!-- 리플 가져오기. -->
+	  <!-- 리플 가져오기. -->
   	  <select id="readReply" resultType="org.sob.domain.ReplyVO"><!-- 리플보기 -->
-	  	select * from boast where groupId = #{groupId } order by rno desc;
+	  	select * from boast where labelid = #{labelid } order by replyno desc;
 	  </select>
+	  
+	  <!-- 리플 boastdb에 등록 -->
+	  <insert id="boastInsertReply">
+	  	insert into boast (`labelid`,`reply`) values(#{labelid},#{reply})
+	  </insert>
+	  
+	  
+  	  
+  
+  
+  
+  
   
   
     

@@ -74,6 +74,12 @@ public class LoginController {
 		return "redirect:/sob/main";
 	}
 	
+	@RequestMapping(value = "/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
+	
 	@RequestMapping(value = "/join")
 	public String join(Model model) {
 		return "join";

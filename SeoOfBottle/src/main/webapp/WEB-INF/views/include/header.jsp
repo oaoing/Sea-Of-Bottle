@@ -7,16 +7,14 @@
     function signOut() {
     
     	if(!'${uvo.googleid}'){
-    		session.invalidate();
     		console.log('User signed out.');
     	}else{
     		var auth2 = gapi.auth2.getAuthInstance();
     	      auth2.signOut().then(function () {
     	        console.log('User signed out.');
     	      });
-    	     session.invalidate();
     	}
-      location.replace("/")
+      location.replace("/logout");
     }
 
     function onLoad() {
@@ -37,7 +35,10 @@
   <link rel="stylesheet" href="/resources/vendors/nouislider/nouislider.min.css">
 
   <link rel="stylesheet" href="/resources/css/style.css">
+  
 </head>
+
+
 <body>
   <!--================ Start Header Menu Area =================-->
 	<header class="header_area">
@@ -55,7 +56,14 @@
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
               <li class="nav-item"><a class="nav-link" href="main">Home</a></li>		
               <li class="nav-item"><a class="nav-link" href="boast">Boasting Board</a></li>
-              <li class="nav-item"><a class="nav-link" href="myboast">My Page</a></li>
+              <li class="nav-item submenu dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">My Page</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" href="myboast">My Boast</a></li>
+                  <li class="nav-item"><a class="nav-link" href="myreply">My Reply</a></li>
+                </ul>
+							</li>
             </ul>
 
             <ul class="nav-shop">

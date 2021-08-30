@@ -1,32 +1,92 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page session="false" %>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Join</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SOB</title>
+	<link rel="icon" href="/resources/img/Fevicon.png" type="image/png">
+  <link rel="stylesheet" href="/resources/vendors/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/resources/vendors/fontawesome/css/all.min.css">
+	<link rel="stylesheet" href="/resources/vendors/themify-icons/themify-icons.css">
+	<link rel="stylesheet" href="/resources/vendors/linericon/style.css">
+  <link rel="stylesheet" href="/resources/vendors/owl-carousel/owl.theme.default.min.css">
+  <link rel="stylesheet" href="/resources/vendors/owl-carousel/owl.carousel.min.css">
+  <link rel="stylesheet" href="/resources/vendors/nice-select/nice-select.css">
+  <link rel="stylesheet" href="/resources/vendors/nouislider/nouislider.min.css">
+
+  <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
-<!-- email select로 제한 걸기 -->
-<form name="signUpForm" action="signUpInput" method="post">
-	ID: <input type="text" name="email" id="email"  maxlength="30"><button onclick="emailAuthentication()" id="emailAuthBtn" type="button" class="btnChk">인증 메일 보내기</button><br>
-	인증번호: <input type="text" name="authCode" id="inputAuthCode"  maxlength="10" disabled="disabled">
-	<button onclick="authCodeCheck()" id="authCodeCheckBtn" type="button" disabled="disabled" class="btnChk">인증</button><p id="count"></p>
-	<input type="hidden" name="authPass" id="authPass" value="false"><br>
-	PW: <input type="password" name="pw" id="pw" onKeyUp="pwValCheck()"><p id="pwCheckNotice">비밀번호는 영어, 숫자를 포함한 8~16자를 입력해주세요.</p><br>
-	Nick Name: <input type="text" name="nick" id="nick" onKeyUp="nickValCheck()"><p id="nickCheckNotice">2자~10자 이내</p><br>
-	<input type="hidden" name="googleid" id="googleid" value=""><p id="formCheckNotice"></p>
-	<input type="button" onclick="formSubmit()" value="회원 가입"> <button type="button" onclick='location.replace("/")'>돌아가기</button>
-</form>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript">
+	
+ 
+  <!--================Login Box Area =================-->
+	<section class="login_box_area section-margin">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="login_box_img">
+						<div class="hover">
+							<h4>Already have an account?</h4>
+							<a class="button button-account" href="/">Login Now</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="login_form_inner register_form_inner">
+						<h3>Create an account</h3>
+						<form class="row login_form" id="register_form" name="signUpForm" action="signUpInput" method="post">
+							<input type="hidden" name="googleid" id="googleid" value="">
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
+								<button class="button button-register w-100" onclick="emailAuthentication()" id="emailAuthBtn" type="button">Address AuthCode Send</button>
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="inputAuthCode" name="authCode" onKeyUP="authCodeCheck()" placeholder="AuthCode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'AuthCode'" disabled="disabled">
+				            </div>
+				            <div class="col-md-12 form-group">
+								<input type="password" class="form-control" id="pw" name="pw" placeholder="Password" onKeyUp="pwValCheck()" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<span id="pwCheckMessage">영어, 숫자를 포함한 8~16자를 입력해주세요.</span>
+			                </div>
+			                <div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="nick" name="nick" placeholder="Nick Name (2 ~ 10자 이내)" onKeyUp="nickValCheck()" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nick Name (2 ~ 10자 이내)'">
+								<span id="nickCheckMessage"></span>
+							</div>	
+							<div class="col-md-12 form-group">
+								<span id="formCheckNotice"> </span>
+								<button type="button" onclick="formSubmit()" value="submit" class="button button-login w-100">Register</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Login Box Area =================-->
 
+
+
+  <script src="/resources/vendors/jquery/jquery-3.2.1.min.js"></script>
+  <script src="/resources/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="/resources/vendors/skrollr.min.js"></script>
+  <script src="/resources/vendors/owl-carousel/owl.carousel.min.js"></script>
+  <script src="/resources/vendors/nice-select/jquery.nice-select.min.js"></script>
+  <script src="/resources/vendors/jquery.ajaxchimp.min.js"></script>
+  <script src="/resources/vendors/mail-script.js"></script>
+  <script src="/resources/js/main.js"></script>
+  
+  <script type="text/javascript">
+    if ('${error}'){
+		var error = document.getElementById("errorMessage");
+		error.textContent = "${error}";
+	}
 var timer;
 var auth = false;
 var pwCheck = false;
 var nickCheck =false;
-const form = document.signUpForm;
 
 function emailAuthentication(){
 	if (!emailValCheck()){
@@ -37,7 +97,7 @@ function emailAuthentication(){
 			if (data == "useable"){
 				console.log(data);
 				sessionStorage.clear();
-				document.getElementById("count").textContent = "전송중";
+				document.getElementById("inputAuthCode").placeholder = "전송중";
 				requestAuthEamil();
 			}else if(data == "unuseable/"){
 				console.log(data);
@@ -53,7 +113,7 @@ function emailAuthentication(){
 					document.getElementById("googleid").value = info[1];
 					sessionStorage.clear();
 					requestAuthEamil();
-					form.action = "modifyUser";
+					document.getElementById("register_form").action = "modifyUser";
 				}
 			}
 	});
@@ -61,7 +121,7 @@ function emailAuthentication(){
 
 function emailValCheck(){
 	var emailPattern= /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-	var email = form.email;
+	var email = document.getElementById("email");
 	if(!check(emailPattern, email, "유효하지 않은 이메일 주소입니다.")) {
 		return false;
 	}
@@ -85,8 +145,7 @@ function requestAuthEamil(){
 				sessionStorage.setItem("authCode", data);
 				// 시간초 지나는 거 확인
 				document.getElementById("inputAuthCode").disabled = false;
-				document.getElementById("authCodeCheckBtn").disabled = false;
-				countDownTimer("count");
+				countDownTimer("inputAuthCode");
 			}else{
 				console.log("error 발생");
 			}
@@ -98,24 +157,15 @@ function authCodeCheck(){
 	
 	var inputedCode = document.getElementById("inputAuthCode").value;
 	
-	if (inputedCode == ""){
-		alert("인증번호가 올바르지 않습니다.");
-		document.getElementById("authPass").value = "false";
-	}
 	if(sessionStorage.getItem("authCode") == inputedCode){
-		alert("인증이 완료되었습니다.");
-		document.getElementById("authPass").value = true;
-		console.log("${authCode}");
+		inputedCode = "인증 완료";
 		document.getElementById("email").readOnly = true; 
-		document.getElementById("authCodeCheckBtn").disabled = true;
 		document.getElementById("inputAuthCode").disabled = true;
-		document.getElementById("count").textContent = ""; 
 		sessionStorage.clear();
 		clearInterval(timer);
 		auth = true;
 	} else {
-		alert("인증번호가 올바르지 않습니다.");
-		document.getElementById("authPass").value = false;
+		auth = false;
 	}
 
 }
@@ -128,9 +178,10 @@ function countDownTimer(id) {
 		var distDt = now - _vDate;
 		if (distDt > 2 * _minute) {	// 2분이 지나면 
 			clearInterval(timer); 	// interval 종료
-			document.getElementById(id).textContent = '인증 번호가 만료됐습니다.';	// 인증번호 만료 알림
+			document.getElementById(id).placeholder = '인증 번호가 만료됐습니다.';	// 인증번호 만료 알림
 			sessionStorage.clear();	// session 삭제
 			console.log(sessionStorage.length);	// 삭제 확인
+			document.getElementById("inputAuthCode").disabled = true;
 			return; 
 		} 
 		var minutes = 1 - Math.floor((distDt % (_minute*60)) / _minute); 
@@ -139,8 +190,8 @@ function countDownTimer(id) {
 			minutes = 1;
 			seconds = 0;
 		}
-		document.getElementById(id).textContent = '0' + minutes + ':'; 
-		document.getElementById(id).textContent += ((seconds<10)?'0':'') +  seconds; 
+		document.getElementById(id).placeholder = '0' + minutes + ':'; 
+		document.getElementById(id).placeholder += ((seconds<10)?'0':'') +  seconds; 
 	} 
 	timer = setInterval(showRemaining, 1000); 
 }
@@ -150,36 +201,38 @@ function pwValCheck(){
 	var pwPattern= /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,16}$/;
 	var pw = document.getElementById("pw").value;
 	if( !pwPattern.test(pw)) {
-		document.getElementById("pwCheckNotice").textContent = "비밀번호는 영어, 숫자를 포함한 8~16자를 입력해주세요.";
+		document.getElementById("pwCheckMessage").textContent = "영어, 숫자를 포함한 8~16자를 입력해주세요.";
+		pwCheck = false;
 	}else{
 		pwCheck = true;
-		document.getElementById("pwCheckNotice").textContent = "사용 가능한 비밀번호 입니다.";
+		document.getElementById("pwCheckMessage").textContent = "사용 가능한 비밀번호 입니다.";
 	}
 }
 
 function nickValCheck(){
 	// 2~10자 이내
-	var pwPattern= /^.{2,10}/;
-	var pw = document.getElementById("nick").value;
-	if( pwPattern.test(pw)) {
-		nickCheck=true;
+	var nickPattern= /^.{2,10}/;
+	var nick = document.getElementById("nick").value;
+	if(!nickPattern.test(nick)) {
+		nickCheck = false;
+	}
+	else{
+		nickCheck = true;
 	}
 }
 
 function formSubmit(){
-	var email = form.email;
-	var pw = form.pw;
-	var nick = form.nick;
+	var email = document.getElementById("email");
 	if(!email.value){
-		document.getElementById("formCheckNotice").textContent = "아이디를 입력해주세요";
+		document.getElementById("formCheckNotice").textContent = "*아이디를 입력해주세요";
 		email.focus();
 	}else if(!auth){
-		document.getElementById("formCheckNotice").textContent = "이메일 인증을 진행해주세요.";
+		document.getElementById("formCheckNotice").textContent = "*이메일 인증을 진행해주세요.";
 	}else if(!pwCheck){
-		document.getElementById("formCheckNotice").textContent = "비밀번호를 입력해주세요.";
+		document.getElementById("formCheckNotice").textContent = "*비밀번호를 입력해주세요.";
 		pw.focus();
 	}else if(!nickCheck){
-		document.getElementById("formCheckNotice").textContent = "별명을 입력해주세요.";
+		document.getElementById("formCheckNotice").textContent = "*별명을 입력해주세요.";
 		nick.focus();
 	}else{
 		form.submit();
@@ -188,6 +241,5 @@ function formSubmit(){
 
 
 </script>
-
 </body>
 </html>

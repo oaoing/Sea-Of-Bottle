@@ -8,7 +8,7 @@
   <!-- 기본기능 -->
   	  <!-- 내가 포함된 유리병 목록 불러오기 -->	
 	  <select id="getList" resultType="org.sob.domain.MainVO">
-	  <![CDATA[select l.labelid, b.categoryid, c.category, l.letterid, l.cnt, l.`contents` from bottle b , category c, letter l, receivertable r where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and (`from` = #{customerNo} or `receiver` = #{customerNo}) and cnt=1 group by letterid order by labelid]]>	
+	  <![CDATA[select l.labelid, b.categoryid, c.category, l.letterid, l.cnt, l.`contents` from bottle b , category c, letter l, receivertable r where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and (`from` = #{customerNo} or `receiver` = #{customerNo}) and cnt=1 group by letterid order by labelid ]]>	
 	  </select>
 	  
 	  <!-- 카테고리로 검색해서  내가 포함된 유리병 목록 불러오기 예정 -->
@@ -67,7 +67,7 @@
 	  
 	  <!-- 리플튜플생성. -->
 	  <insert id="boastInsert"><!-- 새글 등록시에 boastdb에 등록 -->
-	  	insert into boast (`labelid`) values(#{labelid})
+	  	insert into boast (`labelid`,`customerno`) values(#{labelid},#{customerno})
 	  </insert>
 	  
 	  

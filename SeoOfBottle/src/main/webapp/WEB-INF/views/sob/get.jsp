@@ -51,7 +51,7 @@ category<select form="re" name="categoryid">
 </form>	
 </c:if>
 
-<c:if test="${mvo.cnt==3}">
+<c:if test="${mvo.cnt==3 && mvo.to==uvo.getCustomerno()}">
 <form action="/sob/register" id = "re" method="post">
 <input type="text" name="from" value="${latter[0].from}" hidden>
 <input type="text" name="labelid" value="${latter[0].labelid}" hidden>

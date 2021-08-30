@@ -49,7 +49,7 @@ public class MainServiceImpl implements MainService {
 		mvo.setLabelid(mapper.selectLabelid());
 		mapper.letterInsert(mvo);
 		mapper.receivertableInsert(mvo);
-		mapper.boastInsert(mvo);
+		mapper.boastInsert(mvo, myNo);
 
 	}
 

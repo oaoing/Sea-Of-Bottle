@@ -151,5 +151,16 @@ public class MainController {
 	
 	
 	
+	//페이지테스트용 추후 삭제
+	@GetMapping("/blog")
+	public void boastdetail() {
+		
+			
+			
+	}
+	
+	
+	
+	
 
 }

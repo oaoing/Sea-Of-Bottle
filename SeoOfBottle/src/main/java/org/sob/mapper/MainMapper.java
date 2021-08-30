@@ -28,7 +28,7 @@ public interface MainMapper {
 	
 	public List<MainVO> getCategoryList(); //카테고리 가져오기
 	//리플관련
-	public void boastInsert(MainVO mvo); //리플db 튜플생성
+	public void boastInsert(MainVO mvo, int customerno); //리플db 튜플생성
 	
 	//자랑게시판 관련
 	public List<MainVO> getBoastList(); //자랑게시판 전체 목록 가져오기

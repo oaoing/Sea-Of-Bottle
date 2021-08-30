@@ -83,15 +83,19 @@
       
       <!-- 나의 자랑게시판 목록 가져오기. -->		
 	  <select id="getMyBoastList" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
-	  select l.labelid,c.`category`,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=3 and `receiver`=#{customerno} group by letterid order by labelid desc;	
+	  select l.labelid,c.`category`,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=3 and `receiver`=#{customerno} group by letterid order by labelid desc	
 	  </select>
 	  
 	  <!-- 나의 자랑게시판 목록 가져오기. -->		
 	  <select id="getMyBoastListUseCategory" resultType="org.sob.domain.MainVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
-	  select l.labelid,c.`category`,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=3 and `receiver`=#{from} and b.categoryid=#{categoryid} group by letterid order by labelid desc;	
+	  select l.labelid,c.`category`,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=3 and `receiver`=#{from} and b.categoryid=#{categoryid} group by letterid order by labelid desc	
 	  </select>
 	  
 	  
+	  <!-- 고객번호 목록 가져오기. -->	
+	  <select id="getCustomerNo" resultType="org.sob.domain.UserVO"><!-- 내가 포함된 유리병 목록 불러오기 -->	
+	  select customerno from customer	
+	  </select>
 	  
 	  
 	  

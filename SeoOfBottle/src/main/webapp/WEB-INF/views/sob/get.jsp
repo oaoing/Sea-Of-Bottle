@@ -38,7 +38,7 @@
 추가등록 테스트
 <c:if test="${mvo.cnt<3}">
 <form action="/sob/register" id = "re" method="post">
-to<input type="text" name="to">
+
 contents<input type="text" name="contents">
 cnt<input type="number" name="cnt" value="${mvo.cnt+1}" placeholder="${mvo.cnt+1}" readonly><!-- 여기 수정후 아래로 -->
 category<select form="re" name="categoryid">

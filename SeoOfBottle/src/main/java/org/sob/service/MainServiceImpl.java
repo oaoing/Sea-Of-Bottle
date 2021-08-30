@@ -1,11 +1,14 @@
 package org.sob.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.transaction.Transactional;
 
 import org.sob.domain.MainVO;
 import org.sob.domain.ReplyVO;
+import org.sob.domain.UserVO;
 import org.sob.mapper.MainMapper;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +24,27 @@ public class MainServiceImpl implements MainService {
 	
 	@Override
 	@Transactional
-	public void register(MainVO mvo) {//랜덤 로직 필요
+	public void register(MainVO mvo) {//랜덤 로직 작성중
 		log.info("유리병에 편지등록"+mvo);
+		List<UserVO> uvoList = mapper.getCustomerNo();
+		List<Integer> intList = new ArrayList<>();
+		System.out.println("고객번호 리스트"+uvoList);
+		int myNo = mvo.getFrom();//내 번호
+		for(int i = 0; i<uvoList.size(); i++) {
+			int no = uvoList.get(i).getCustomerno();
+			if(myNo==no) {
+				continue;
+			} else {
+				intList.add(no);
+			}
+		}
+		System.out.println("본인을 제외한 랜덤풀"+intList);
+		Random rand = new Random();
+		
+		int result = intList.get(rand.nextInt(uvoList.size()));
+		System.out.println("나온랜덤값"+result);
+		mvo.setTo(result);
+		
 		mapper.bottleInsert(mvo);
 		mvo.setLabelid(mapper.selectLabelid());
 		mapper.letterInsert(mvo);
@@ -84,7 +106,26 @@ public class MainServiceImpl implements MainService {
 
 	@Override
 	@Transactional
-	public void registerAdd(MainVO mvo) {
+	public void registerAdd(MainVO mvo) {//추가글등록
+		List<UserVO> uvoList = mapper.getCustomerNo();
+		List<Integer> intList = new ArrayList<>();
+		System.out.println("고객번호 리스트"+uvoList);
+		int myNo = mvo.getFrom();//내 번호
+		for(int i = 0; i<uvoList.size(); i++) {
+			int no = uvoList.get(i).getCustomerno();
+			if(myNo==no) {
+				continue;
+			} else {
+				intList.add(no);
+			}
+		}
+		System.out.println("본인을 제외한 랜덤풀"+intList);
+		Random rand = new Random();
+		
+		int result = intList.get(rand.nextInt(uvoList.size()));
+		System.out.println("나온랜덤값"+result);
+		mvo.setTo(result);
+		
 		mapper.letterInsert(mvo);
 		mapper.receivertableInsert(mvo);
 	}

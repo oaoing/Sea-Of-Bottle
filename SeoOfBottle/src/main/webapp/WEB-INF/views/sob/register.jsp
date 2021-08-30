@@ -10,7 +10,6 @@
 <body>
 등록창 테스트
 <form action="/sob/register" id = "re" method="post">
-to<input type="text" name="to">
 contents<input type="text" name="contents">
 <input type="text" name="from" value="${uvo.customerno}" hidden>
 cnt<input type="number" name="cnt" value="1" placeholder="1" readonly>

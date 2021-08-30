@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.sob.domain.MainVO;
 import org.sob.domain.ReplyVO;
+import org.sob.domain.UserVO;
 
 public interface MainMapper {
 	public List<MainVO> getList(int customerNo); //내가 받은 모든 유리병 목록 가져오기
@@ -37,6 +38,8 @@ public interface MainMapper {
 	public List<MainVO> getMyBoastList(int customerNo); //나의 자랑게시판 목록 가져오기.
 	
 	public List<MainVO> getMyBoastListUseCategory(MainVO mvo); //나의 자랑게시판 목록 카테고리로 가져오기.
+	//고객번호가져오기
+	public List<UserVO> getCustomerNo();
 	
 	
 	//받은 모든 유리병 페이징 처리해서 가져오는 인터페이스 추가 예정

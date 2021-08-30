@@ -3,11 +3,19 @@
 	<meta name ="google-signin-client_id" content="854655733822-odgivq9t2i7nj64vo28sot38ugttg42c.apps.googleusercontent.com">
    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
      <script>
+     
     function signOut() {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        console.log('User signed out.');
-      });
+    
+    	if(!'${uvo.googleid}'){
+    		session.invalidate();
+    		console.log('User signed out.');
+    	}else{
+    		var auth2 = gapi.auth2.getAuthInstance();
+    	      auth2.signOut().then(function () {
+    	        console.log('User signed out.');
+    	      });
+    	     session.invalidate();
+    	}
       location.replace("/")
     }
 
@@ -16,6 +24,7 @@
         gapi.auth2.init();
       });
     }
+    
   </script>
 	<link rel="icon" href="/resources/img/Fevicon.png" type="image/png">
   <link rel="stylesheet" href="/resources/vendors/bootstrap/bootstrap.min.css">
@@ -35,7 +44,7 @@
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand logo_h" href="index.html"><img src="/resources/img/logo.png" alt=""></a>
+          <a class="navbar-brand logo_h" href="main"><img src="/resources/img/logo.png" alt=""></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>

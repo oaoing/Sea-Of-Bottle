@@ -41,7 +41,7 @@ public class MainServiceImpl implements MainService {
 		System.out.println("본인을 제외한 랜덤풀"+intList);
 		Random rand = new Random();
 		
-		int result = intList.get(rand.nextInt(uvoList.size()));
+		int result = intList.get(rand.nextInt(uvoList.size()-1));
 		System.out.println("나온랜덤값"+result);
 		mvo.setTo(result);
 		
@@ -82,10 +82,6 @@ public class MainServiceImpl implements MainService {
 		return mapper.getCategoryList();
 	}
 
-	
-
-	
-
 	@Override
 	public List<MainVO> getBoastList() {
 		
@@ -122,7 +118,7 @@ public class MainServiceImpl implements MainService {
 		System.out.println("본인을 제외한 랜덤풀"+intList);
 		Random rand = new Random();
 		
-		int result = intList.get(rand.nextInt(uvoList.size()));
+		int result = intList.get(rand.nextInt(uvoList.size()-1));
 		System.out.println("나온랜덤값"+result);
 		mvo.setTo(result);
 		
@@ -152,6 +148,12 @@ public class MainServiceImpl implements MainService {
 	public List<MainVO> getMyBoastListUseCategory(MainVO mvo) {
 		
 		return mapper.getMyBoastListUseCategory(mvo);
+	}
+
+	@Override
+	public int readLast(String labelid) {
+		
+		return mapper.readLast(labelid);
 	}
 
 }

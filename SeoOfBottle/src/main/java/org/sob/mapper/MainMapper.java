@@ -41,6 +41,9 @@ public interface MainMapper {
 	//고객번호가져오기
 	public List<UserVO> getCustomerNo();
 	
+	//마지막으로 받은사람 찾기
+	public int readLast(String labelid);
+	
 	
 	//받은 모든 유리병 페이징 처리해서 가져오는 인터페이스 추가 예정
 	

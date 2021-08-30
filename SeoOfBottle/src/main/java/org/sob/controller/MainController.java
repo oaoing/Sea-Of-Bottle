@@ -80,6 +80,8 @@ public class MainController {
 		for(MainVO temp: mvoList ) {
 			mvo.setCnt(temp.getCnt()); 
 		}
+		int lastread = service.readLast(labelid);
+		mvo.setTo(lastread);
 		
 		model.addAttribute("latter",mvoList);
 		model.addAttribute("mvo",mvo);

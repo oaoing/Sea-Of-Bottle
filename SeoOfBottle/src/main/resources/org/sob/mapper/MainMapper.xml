@@ -42,8 +42,14 @@
 	 
 	  <!-- 편지 상세보기 -->
 	  <select id="read" resultType="org.sob.domain.MainVO">
-	  	select `from`, l.labelid as labelid, c.category as category, c.categoryid as categoryid, l.letterid as letterid, l.cnt as cnt, l.`contents` as "contents"  from bottle b , category c, letter l, receivertable r where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and l.labelid = #{labelid} group by letterid order by cnt;
+	  	select `from`, l.labelid as labelid, c.category as category, c.categoryid as categoryid, l.letterid as letterid, l.cnt as cnt, l.`contents` as "contents"  from bottle b , category c, letter l, receivertable r where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and l.labelid = #{labelid} group by letterid order by cnt
 	  </select>
+	  
+	  <!-- 편지 상세보기용 마지막 받은 사람 가져오는 쿼리 -->
+	  <select id="readLast" resultType="Integer">
+	  select receiver from receivertable where labelid = #{labelid} order by receiverno desc limit 1
+	  </select>
+	  
 	  
 	  <!-- 첫 글쓴이가 목록에서 글 삭제 -->
 	  <update id="deleteBottle">

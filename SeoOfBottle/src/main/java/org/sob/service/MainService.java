@@ -39,7 +39,8 @@ public interface MainService {
 	//나의 자랑 목록 카테고리로 가져오기
 	public List<MainVO> getMyBoastListUseCategory(MainVO mvo);
 	
-	
+	//마지막 받는사람 찾기
+	public int readLast(String labelid);
 	
 	
 	

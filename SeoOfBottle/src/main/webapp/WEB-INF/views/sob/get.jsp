@@ -36,7 +36,7 @@
 <br>
 <!-- 추가 글 작성 -->	
 추가등록 테스트
-<c:if test="${mvo.cnt<3}">
+<c:if test="${mvo.cnt<3 && mvo.to==uvo.getCustomerno()}">
 <form action="/sob/register" id = "re" method="post">
 
 contents<input type="text" name="contents">
@@ -62,7 +62,7 @@ category<select form="re" name="categoryid">
 	
 	
 	
-<!-- 삭제 수정 예정 -->	
+<!-- 삭제  -->	
 <form action="/sob/remove" method="post">
 <input type="text" name="from" value="${latter[0].from}" hidden>
 <input type="hidden" name="labelid" value="${latter[0].labelid}">

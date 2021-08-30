@@ -2,6 +2,7 @@ package org.sob.service;
 
 import java.util.List;
 
+import org.sob.domain.Criteria;
 import org.sob.domain.MainVO;
 import org.sob.domain.ReplyVO;
 
@@ -23,7 +24,8 @@ public interface MainService {
 	public void updateBoast(MainVO mvo);
 	
 	//내목록 읽기
-	public List<MainVO> getList(int customerNo);
+	public List<MainVO> getList(Criteria cri);
+	public int getTotal(Criteria cri);
 	//카테고리로 내목록읽기
 	public List<MainVO> getListUseCategory(MainVO mvo);
 	

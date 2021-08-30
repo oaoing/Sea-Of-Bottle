@@ -2,7 +2,9 @@ package org.sob.controller;
 
 import java.util.List;
 
+import org.sob.domain.Criteria;
 import org.sob.domain.MainVO;
+import org.sob.domain.PageDTO;
 import org.sob.domain.UserVO;
 import org.sob.service.MainService;
 import org.springframework.stereotype.Controller;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -28,11 +29,15 @@ public class MainController {
 	
 	//내 목록 불러오기
 	@GetMapping("/main")//자기자신.jsp 페이지 오픈 테스트 완료
-	public void list(Model model,@SessionAttribute("uvo") UserVO uvo) {
+	public void list(Model model,@SessionAttribute("uvo") UserVO uvo, Criteria cri) {
 		
-		log.info("목록페이지요청"+uvo);
+		log.info("목록페이지요청"+cri);
+		cri.setCustomerno(uvo.getCustomerno());
+		log.info("목록페이지요청"+cri);
 		model.addAttribute("categoryList",service.getCategoryList());
-		model.addAttribute("list", service.getList(uvo.getCustomerno()));
+		model.addAttribute("pageMaker",new PageDTO(cri,service.getTotal(cri)));
+		log.info("목록페이지요청"+new PageDTO(cri,service.getTotal(cri)));
+		model.addAttribute("list", service.getList(cri));
 		
 	}
 	//카테고리로 검색해서 내 목록 불러오기

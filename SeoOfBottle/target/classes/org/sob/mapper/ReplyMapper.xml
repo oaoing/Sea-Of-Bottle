@@ -15,10 +15,16 @@
 	  
 	  <!-- 리플 boastdb에 등록 -->
 	  <insert id="boastInsertReply">
-	  	insert into boast (`labelid`,`reply`) values(#{labelid},#{reply})
+	  	insert into boast (`labelid`,`reply`,`customerno`) values(#{labelid},#{reply},#{customerno})
 	  </insert>
 	  
+	  <select id="readMyReply" resultType="org.sob.domain.ReplyVO">
+	  	select * from boast where customerno = #{customerno} order by indate desc;
+	  </select>
 	  
+	  <delete id="deleteReply">
+	  	delete from boast where replyno=#{replyno}
+	  </delete>
   	  
   
   

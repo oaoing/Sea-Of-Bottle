@@ -20,7 +20,7 @@ public class MainMapperTest {
 	@Test
 	public void testGetList() {//내가 받은 유리병 목록 출력
 		int userId = 1;
-		mapper.getList(userId).forEach(main->log.info(main));
+		
 		
 	}
 	

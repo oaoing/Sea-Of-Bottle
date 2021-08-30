@@ -6,6 +6,7 @@ import java.util.Random;
 
 import javax.transaction.Transactional;
 
+import org.sob.domain.Criteria;
 import org.sob.domain.MainVO;
 import org.sob.domain.ReplyVO;
 import org.sob.domain.UserVO;
@@ -71,9 +72,15 @@ public class MainServiceImpl implements MainService {
 	
 
 	@Override
-	public List<MainVO> getList(int customerNo) {
-		log.info("밀려들어온 유리병들 목록");
-		return mapper.getList(customerNo);
+	public List<MainVO> getList(Criteria cri) {
+		log.info("밀려들어온 유리병들 목록"+cri);
+		int original = cri.getPageNum();
+		int page = (original-1)*10;
+		cri.setPageNum(page);
+		List<MainVO> mvo = mapper.getList(cri);
+		cri.setPageNum(original);
+		
+		return mvo;
 	}
 
 	@Override
@@ -154,6 +161,12 @@ public class MainServiceImpl implements MainService {
 	public int readLast(String labelid) {
 		
 		return mapper.readLast(labelid);
+	}
+
+	@Override
+	public int getTotal(Criteria cri) {
+		
+		return mapper.getListTotal(cri);
 	}
 
 }

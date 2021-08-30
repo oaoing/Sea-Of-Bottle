@@ -51,7 +51,7 @@ public class MainServiceTest {
 	@Test
 	public void testGetList() {//전체리스트
 		
-		service.getList(1).forEach(mvo->log.info(mvo));
+		
 		
 		
 		

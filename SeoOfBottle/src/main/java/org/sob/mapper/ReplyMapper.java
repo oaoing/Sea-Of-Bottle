@@ -12,4 +12,8 @@ public interface ReplyMapper {
 	//리플 페이징처리 할 예정
 	public int boastInsertReply(ReplyVO rvo);//리플 업로드
 	
+	
+	public List<ReplyVO> readMyReply(int labelid); //리플가져오기
+	
+	public int deleteReply(int replyno); //리플 삭제
 }

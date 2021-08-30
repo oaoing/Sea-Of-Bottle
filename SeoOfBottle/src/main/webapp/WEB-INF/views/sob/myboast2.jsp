@@ -5,42 +5,133 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>SOB</title>
+<%@ include file="../include/header.jsp"%>
 
-<form action="/sob/myboast2" id= "boas">
-		category<select form="boas" name="categoryid">
-			<c:forEach items="${categoryList}" var="temp">
-				<option value="${temp.categoryid }">${temp.category }</option>
-			</c:forEach>
-		</select>
-		<input type="submit" value="카테고리 검색">
-	</form>
+<!-- ================ start banner area ================= -->	
+	<section class="blog-banner-area" id="blog">
+		<div class="container h-100">
+			<div class="blog-banner">
+				<div class="text-center">
+					<h1>My Boast</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">My Page</a></li>
+              <li class="breadcrumb-item active" aria-current="page">My Boast</li>
+            </ol>
+          </nav>
+				</div>
+			</div>
+    </div>
+	</section>
+	<!-- ================ end banner area ================= -->
 
-<table border="1">
-		<thead>
-			<tr>
-				<th>유리병 아이디</th>
-				<th>카테고리</th>
-				<th>내용</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${myList}" var="test">
+<!--================Blog Area =================-->
+	<section class="blog_area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<div class="blog_left_sidebar">
 
-				<tr>
-					<td>${test.labelid }</td>
-					<td>${test.category }</td>
-					<td><a href="boastdetail?labelid=${test.labelid }">${test.contents }</a></td>
-					
+						<c:forEach items="${myList}" var="test">
+							<article class="row blog_item">
+								<div class="col-md-3">
+									<div class="blog_info text-right">
 
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+										<div class="post_tag">
+											<c:forEach items="${categoryList}" var="temp" varStatus="i">
+												<c:set var="testcategory" value="${test.categoryid}" />
+												<c:set var="tempcategory" value="${temp.categoryid}" />
+												<c:if test="${testcategory eq tempcategory}">
+													<c:if test="${!i.last}">
+														<a class="active"
+															href="/sob/main2?categoryid=${temp.categoryid }">${temp.category },</a>
+													</c:if>
+													<c:if test="${i.last}">
+														<a class="active"
+															href="/sob/main2?categoryid=${temp.categoryid }">${temp.category }</a>
+													</c:if>
+												</c:if>
+												<c:if test="${testcategory ne tempcategory}">
+													<c:if test="${!i.last}">
+														<a href="/sob/main2?categoryid=${temp.categoryid }">${temp.category },</a>
+													</c:if>
+													<c:if test="${i.last}">
+														<a href="/sob/main2?categoryid=${temp.categoryid }">${temp.category }</a>
+													</c:if>
+												</c:if>
+											</c:forEach>
+										</div>
+
+									</div>
+								</div>
+								<div class="col-md-9">
+									<div class="blog_post">
+										<div class="blog_details">
+											<p>${test.contents}</p>
+											<a class="button button-blog"
+												href="boastdetail?labelid=${test.labelid }">View More</a>
+										</div>
+									</div>
+								</div>
+							</article>
+						</c:forEach>
+
+						<nav class="blog-pagination justify-content-center d-flex">
+							<ul class="pagination">
+
+								<li class="page-item"><a href="#" class="page-link"
+									aria-label="Previous"> <span aria-hidden="true"> <span
+											class="lnr lnr-chevron-left"></span>
+									</span>
+								</a></li>
+
+								<li class="page-item"><a href="#" class="page-link">01</a>
+								</li>
+								<li class="page-item active"><a href="#" class="page-link">02</a>
+								</li>
+								<li class="page-item"><a href="#" class="page-link">03</a>
+								</li>
+								<li class="page-item"><a href="#" class="page-link">04</a>
+								</li>
+								<li class="page-item"><a href="#" class="page-link">09</a>
+								</li>
+
+								<li class="page-item"><a href="#" class="page-link"
+									aria-label="Next"> <span aria-hidden="true"> <span
+											class="lnr lnr-chevron-right"></span>
+									</span>
+								</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="blog_right_sidebar">
+						<aside class="single_sidebar_widget post_category_widget">
+							<h4 class="widget_title">Catgories</h4>
+							<ul class="list cat-list">
+								<c:forEach items="${categoryList}" var="temp">
+								<li><a href="myboast2?categoryid=${temp.categoryid }" class="d-flex justify-content-between">
+										<p>${temp.category }</p>
+								</a></li>
+								</c:forEach>
+							</ul>
+							<div class="br"></div>
+						</aside>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================Blog Area =================-->
 
 
+<%@ include file="../include/footer.jsp"%>
+	<!-- 풋터를 가져오는 지시어 -->
 
 </body>
 </html>

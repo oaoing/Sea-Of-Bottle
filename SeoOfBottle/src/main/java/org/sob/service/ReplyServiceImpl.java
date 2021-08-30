@@ -29,5 +29,14 @@ public class ReplyServiceImpl implements ReplyService {
 		
 		return mapper.readReply(labelid);
 	}
-
+	
+	@Override
+	public List<ReplyVO> readMyReply(int customerno) {
+		return mapper.readMyReply(customerno);
+	}
+	
+	@Override
+	public int deleteReply(int replyno) {
+		return mapper.deleteReply(replyno);
+	}
 }

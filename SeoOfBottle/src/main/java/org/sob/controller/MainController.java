@@ -149,6 +149,14 @@ public class MainController {
 			
 	}
 	
+	// 내 댓글만 보기
+	@GetMapping("/myreply")
+	public void myreply(@SessionAttribute("uvo") UserVO uvo, Model model) {
+		log.info("자랑상세 보기 요청: "+uvo.getCustomerno());
+		
+			
+	}
+	
 	
 	
 	//페이지테스트용 추후 삭제

@@ -7,6 +7,7 @@ import org.sob.service.ReplyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,19 +58,17 @@ public class ReplyController {//작성중
 	}
 	
 	
+	@GetMapping("/my/{customerno}")	// 작동 확인 O
+	public List<ReplyVO> getListMyReply(@PathVariable("customerno") int customerno){
+		log.info("개인 댓글 불러오는 컨트롤러");
+		return service.readMyReply(customerno);
+		
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@DeleteMapping(value="/del/{replyno}", produces= {MediaType.TEXT_PLAIN_VALUE})
+	public String deleteReply(@PathVariable("replyno") int replyno){
+		log.info("댓글 삭제");
+		return service.deleteReply(replyno) == 1? "success":"error";
+	}
 	
 }

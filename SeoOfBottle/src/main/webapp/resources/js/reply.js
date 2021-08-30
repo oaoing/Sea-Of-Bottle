@@ -42,6 +42,21 @@ var replyService = (function() {
 		});
 	}
 	
+	function getMyList(param, callback, error) {
+		var bno = param.customerno;
+		console.log(bno);
+		$.getJSON("/replies/my/" + bno + ".json",
+				function(data) {
+					if (callback) {
+						callback(data);
+					}
+				}).fail(function(xhr, status, err) {
+			if (error) {
+				error();
+			}
+		});
+	}
+	
 	function displayTime(timeValue){
 		var dateObj = new Date(timeValue);
 		var year=dateObj.getFullYear();//네자리수 연도
@@ -56,11 +71,29 @@ var replyService = (function() {
 		
 	}
 	
+	function remove(replyno, callback, error){
+		$.ajax({
+			type: 'delete',
+			url: '/replies/del/' + replyno,
+			success: function(deleteResult, status, xhr){
+				if(callback){
+					callback(deleteResult);
+				}
+			},
+			error: function(xhr, status, err){
+				if(error){
+					error(err);
+				}
+			}
+		});
+	}
 	
 	
 	return {
 		add : add,
 		getList : getList,
-		displayTime : displayTime
+		displayTime : displayTime,
+		getMyList : getMyList,
+		remove : remove
 	};
 })();

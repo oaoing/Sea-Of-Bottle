@@ -8,5 +8,5 @@ public class ReplyVO {
 	private int labelid;
 	private String reply;
 	private String indate;
-	
+	private int customerno;
 }

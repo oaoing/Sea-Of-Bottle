@@ -50,19 +50,19 @@
 											<c:if test="${testcategory eq tempcategory}">
 												<c:if test="${!i.last}">
 													<a class="active"
-														href="/sob/main2?categoryid=${temp.categoryid }">${temp.category },</a>
+														href="/sob/boast2?categoryid=${temp.categoryid }">${temp.category },</a>
 												</c:if>
 												<c:if test="${i.last}">
 													<a class="active"
-														href="/sob/main2?categoryid=${temp.categoryid }">${temp.category }</a>
+														href="/sob/boast2?categoryid=${temp.categoryid }">${temp.category }</a>
 												</c:if>
 											</c:if>
 											<c:if test="${testcategory ne tempcategory}">
 												<c:if test="${!i.last}">
-													<a href="/sob/main2?categoryid=${temp.categoryid }">${temp.category },</a>
+													<a href="/sob/boast2?categoryid=${temp.categoryid }">${temp.category },</a>
 												</c:if>
 												<c:if test="${i.last}">
-													<a href="/sob/main2?categoryid=${temp.categoryid }">${temp.category }</a>
+													<a href="/sob/boast2?categoryid=${temp.categoryid }">${temp.category }</a>
 												</c:if>
 											</c:if>
 										</c:forEach>
@@ -80,7 +80,7 @@
 									<div class="blog_details">
 										<p>${test.contents}</p>
 										<a class="button button-blog"
-											href="get?labelid=${test.labelid }">View More</a>
+											href="boastdetail?labelid=${test.labelid }">View More</a>
 									</div>
 								</div>
 							</div>
@@ -122,7 +122,7 @@
 						<h4 class="widget_title">Catgories</h4>
 						<ul class="list cat-list">
 							<c:forEach items="${categoryList}" var="temp">
-								<li><a href="main2?categoryid=${temp.categoryid }"
+								<li><a href="boast2?categoryid=${temp.categoryid }"
 									class="d-flex justify-content-between">
 										<p>${temp.category }</p>
 								</a></li>

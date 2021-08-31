@@ -33,7 +33,9 @@
 		<div class="row">
 			<div class="col-lg-8">
 				<div class="blog_left_sidebar">
-
+					<div class="billing_details">
+					<br>
+					<h3>Receive List</h3></div>
 					<c:forEach items="${list}" var="test">
 						<article class="row blog_item">
 							<div class="col-md-3">

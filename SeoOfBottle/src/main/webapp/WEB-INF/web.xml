@@ -57,5 +57,10 @@
 </jsp-config>
 
 	<!-- 한글설정 END -->
+	
+	<error-page>
+	    <error-code>400</error-code>
+	    <location>/WEB-INF/views/error/error400.jsp</location>
+	</error-page>
 
 </web-app>

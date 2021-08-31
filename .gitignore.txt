@@ -1,0 +1,5 @@
+*.class
+
+pom.properties
+
+MANIFEST.MF

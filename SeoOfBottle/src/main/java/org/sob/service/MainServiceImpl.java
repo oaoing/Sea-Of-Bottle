@@ -82,6 +82,19 @@ public class MainServiceImpl implements MainService {
 		
 		return mvo;
 	}
+	
+	@Override
+	public List<MainVO> getListUseCategory(Criteria cri) {
+		log.info("밀려들어온 유리병들 목록2"+cri);
+		int original = cri.getPageNum();
+		int page = (original-1)*10;
+		cri.setPageNum(page);
+		List<MainVO> mvo = mapper.getListUseCategory(cri);
+		cri.setPageNum(original);
+		
+		return mvo;
+		
+	}
 
 	@Override
 	public List<MainVO> getCategoryList() {
@@ -139,11 +152,7 @@ public class MainServiceImpl implements MainService {
 		
 	}
 
-	@Override
-	public List<MainVO> getListUseCategory(MainVO mvo) {
-		
-		return mapper.getListUseCategory(mvo);
-	}
+	
 
 	@Override
 	public List<MainVO> getBoastListUseCategory(int categoryid) {
@@ -167,6 +176,12 @@ public class MainServiceImpl implements MainService {
 	public int getTotal(Criteria cri) {
 		
 		return mapper.getListTotal(cri);
+	}
+
+	@Override
+	public int getListUseCategoryTotal(Criteria cri) {
+		
+		return mapper.getListUseCategoryTotal(cri);
 	}
 
 }

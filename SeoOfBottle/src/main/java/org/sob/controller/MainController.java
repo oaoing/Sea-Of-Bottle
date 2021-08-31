@@ -42,12 +42,14 @@ public class MainController {
 	}
 	//카테고리로 검색해서 내 목록 불러오기
 	@GetMapping("/main2")//자기자신.jsp 페이지 오픈 테스트 완료
-	public void list2(Model model,@SessionAttribute("uvo") UserVO uvo, MainVO mvo) {//
+	public void list2(Model model,@SessionAttribute("uvo") UserVO uvo, Criteria cri) {//
 		log.info("목록페이지카테고리로요청"+uvo);
+		cri.setCustomerno(uvo.getCustomerno());
 		model.addAttribute("categoryList",service.getCategoryList());
-		mvo.setFrom(uvo.getCustomerno());
-		model.addAttribute("list", service.getListUseCategory(mvo));
-		
+		model.addAttribute("pageMaker",new PageDTO(cri,service.getListUseCategoryTotal(cri)));
+		log.info("목록페이지요청"+new PageDTO(cri,service.getListUseCategoryTotal(cri)));
+		model.addAttribute("list2", service.getListUseCategory(cri));
+		log.info("목록페이지요청"+service.getListUseCategory(cri));
 	}
 	
 	
@@ -154,15 +156,7 @@ public class MainController {
 			
 	}
 	
-	// 내 댓글만 보기
-	@GetMapping("/myreply")
-	public void myreply(@SessionAttribute("uvo") UserVO uvo, Model model) {
-		log.info("자랑상세 보기 요청: "+uvo.getCustomerno());
-		
-			
-	}
-	
-	
+
 	
 	//페이지테스트용 추후 삭제
 	@GetMapping("/blog")

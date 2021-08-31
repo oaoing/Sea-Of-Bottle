@@ -11,8 +11,8 @@ public interface MainMapper {
 	public List<MainVO> getList(Criteria cri); //내가 받은 모든 유리병 목록 가져오기
 	public int getListTotal(Criteria cri);//내가 포함된 유리병 목록 불러오기용 total
 	
-	public List<MainVO> getListUseCategory(MainVO mvo); //내가 받은 모든 유리병 목록 카테고리로 가져오기
-	
+	public List<MainVO> getListUseCategory(Criteria cri); //내가 받은 모든 유리병 목록 카테고리로 가져오기
+	public int getListUseCategoryTotal(Criteria cri);//내가 포함된 유리병 목록 불러오기용 total
 	
 	public void bottleInsert(MainVO mvo);//bottle등록
 	public Integer selectLabelid();//labelid가져오기

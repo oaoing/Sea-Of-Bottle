@@ -27,8 +27,8 @@ public interface MainService {
 	public List<MainVO> getList(Criteria cri);
 	public int getTotal(Criteria cri);
 	//카테고리로 내목록읽기
-	public List<MainVO> getListUseCategory(MainVO mvo);
-	
+	public List<MainVO> getListUseCategory(Criteria cri);
+	public int getListUseCategoryTotal(Criteria cri);
 	//카테고리 가져오기
 	public List<MainVO> getCategoryList();
 	//자랑게시판 전체목록

@@ -19,11 +19,11 @@
 	<div class="container h-100">
 		<div class="blog-banner">
 			<div class="text-center">
-				<h1>Our Blog</h1>
+				<h1>Boasting Board</h1>
 				<nav aria-label="breadcrumb" class="banner-breadcrumb">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="#">Home</a></li>
-						<li class="breadcrumb-item active" aria-current="page">Blog</li>
+						<li class="breadcrumb-item"><a href="main">Home</a></li>
+						<li class="breadcrumb-item active" aria-current="page">Boasting Board</li>
 					</ol>
 				</nav>
 			</div>

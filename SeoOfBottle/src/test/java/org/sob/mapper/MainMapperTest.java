@@ -44,7 +44,7 @@ public class MainMapperTest {
 	@Test
 	public void getMyBoastList() {
 		int cno = 1;
-		mapper.getMyBoastList(cno).forEach(main->log.info(main));
+//		mapper.getMyBoastList(cno).forEach(main->log.info(main));
 		
 	}
 	

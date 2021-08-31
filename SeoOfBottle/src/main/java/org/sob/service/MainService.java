@@ -37,7 +37,9 @@ public interface MainService {
 	public List<MainVO> getBoastListUseCategory(int categoryid);
 	
 	//나의 자랑 목록
-	public List<MainVO> getMyBoastList(int customerNo);
+	public List<MainVO> getMyBoastList(Criteria cri);
+	public int getMyBoastListTotal(Criteria cri);
+	
 	//나의 자랑 목록 카테고리로 가져오기
 	public List<MainVO> getMyBoastListUseCategory(MainVO mvo);
 	

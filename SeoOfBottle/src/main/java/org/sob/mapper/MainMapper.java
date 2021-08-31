@@ -38,7 +38,8 @@ public interface MainMapper {
 	
 	public List<MainVO> getBoastListUseCategory(int categoryid); //자랑게시판 전체 목록 카테고리로 가져오기
 	
-	public List<MainVO> getMyBoastList(int customerNo); //나의 자랑게시판 목록 가져오기.
+	public List<MainVO> getMyBoastList(Criteria cri); //나의 자랑게시판 목록 가져오기.
+	public int getMyBoastListTotal(Criteria cri);//나의 자랑게시판 목록 가져오기용 total.
 	
 	public List<MainVO> getMyBoastListUseCategory(MainVO mvo); //나의 자랑게시판 목록 카테고리로 가져오기.
 	//고객번호가져오기

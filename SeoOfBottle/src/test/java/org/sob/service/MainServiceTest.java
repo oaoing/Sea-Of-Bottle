@@ -66,7 +66,7 @@ public class MainServiceTest {
 	@Test
 	public void testgetMyBoastList() {
 		int cno = 2;
-		service.getMyBoastList(cno);
+//		service.getMyBoastList(cno);s
 		
 	}
 	

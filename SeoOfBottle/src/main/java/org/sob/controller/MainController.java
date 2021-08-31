@@ -128,7 +128,7 @@ public class MainController {
 	
 	
 	@GetMapping("/myboast")
-	public void myboast(Model model,@SessionAttribute("uvo") UserVO uvo, Criteria cri) {//자랑하기 페이지
+	public void myboast(Model model,@SessionAttribute("uvo") UserVO uvo, Criteria cri, String replyPage) {//자랑하기 페이지
 		log.info("내 자랑 보기 요청");
 		
 		cri.setCustomerno(uvo.getCustomerno());
@@ -137,6 +137,7 @@ public class MainController {
 		model.addAttribute("pageMaker",new PageDTO(cri,service.getMyBoastListTotal(cri)));
 		log.info("목록페이지요청"+new PageDTO(cri,service.getMyBoastListTotal(cri)));//수정예정
 		model.addAttribute("myList", service.getMyBoastList(cri));
+		model.addAttribute("replyPage", (replyPage==null)?1:replyPage);
 	}
 	
 	@GetMapping("/myboast2")

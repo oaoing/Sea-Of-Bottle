@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.sob.domain.Criteria;
 import org.sob.domain.MainVO;
+import org.sob.domain.ReplyCountVO;
 import org.sob.domain.ReplyVO;
 import org.sob.mapper.MainMapper;
 import org.sob.mapper.ReplyMapper;
@@ -33,14 +34,16 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 	
 	@Override
-	public List<ReplyVO> readMyReply(Criteria cri) {
+	public ReplyCountVO readMyReply(Criteria cri) {
 		log.info("내가쓴 댓글 목록"+cri);
 		int original = cri.getPageNum();
 		int page = (original-1)*10;
 		cri.setPageNum(page);
-		List<ReplyVO> rvo = mapper.readMyReply(cri);
+		ReplyCountVO rcri = new ReplyCountVO();
+		rcri.setRvo(mapper.readMyReply(cri));
+		rcri.setTotalCount(mapper.readMyReplyTotal(cri));
 		
-		return rvo;
+		return rcri;
 	}
 	
 	@Override

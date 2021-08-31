@@ -50,7 +50,10 @@ public class MainServiceImpl implements MainService {
 		mvo.setLabelid(mapper.selectLabelid());
 		mapper.letterInsert(mvo);
 		mapper.receivertableInsert(mvo);
-		mapper.boastInsert(mvo, myNo);
+		ReplyVO rvo = new ReplyVO();
+		rvo.setLabelid(mvo.getLabelid());
+		rvo.setCustomerno(myNo);
+		mapper.boastInsert(rvo);
 
 	}
 

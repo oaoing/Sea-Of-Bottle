@@ -119,6 +119,10 @@
 			</div>
 			<div class="col-lg-4">
 				<div class="blog_right_sidebar">
+					<aside class="single_sidebar_widget search_widget">
+							<button class="button button-login w-100" onclick='location.replace("/sob/register");'>New Letter</button>
+						<div class="br"></div>
+					</aside>
 					<aside class="single_sidebar_widget post_category_widget">
 						<h4 class="widget_title">Catgories</h4>
 						<ul class="list cat-list">

@@ -1,9 +1,12 @@
 package org.sob.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Locale;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.sob.domain.JoinVO;
@@ -75,8 +78,22 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, HttpServletResponse response) {
 		session.invalidate();
+		response.setContentType("text/html; charset=UTF-8");
+
+		try {
+			PrintWriter out;
+			out = response.getWriter();
+			out.println("<script>alert('로그아웃 되었습니다.');</script>");
+			out.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		 
+		
+
 		return "redirect:/";
 	}
 	

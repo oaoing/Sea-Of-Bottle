@@ -47,65 +47,103 @@
             </div>
           </div>
 		</c:forEach>
-  
+		<div class="col-md-4 col-lg-3 mb-4 mb-md-0"></div>
+  		<div class="col-md-8 col-lg-9">
+  		<div class="form-group text-center text-md-right mt-3">
+	  		<form action="/sob/remove" method="post">
+			<input type="text" name="from" value="${latter[0].from}" hidden>
+			<input type="hidden" name="labelid" value="${latter[0].labelid}">
+			
+			<input type="submit" value="삭제" class="button button--active button-contactForm">
+			</form>
+  		</div>
+  		</div>
         </div>
       </div>
     </section>
     <!-- ================ Blog section end ================= -->  
-	
-<table border="1">
-		<thead>
-			<tr>
-				<th>유리병 아이디</th>
-				<th>내용</th>
-				<th>카테고리</th>
-				<th>이동횟수</th>
+	<!--================Product Description Area =================-->
+	<section class="product_description_area">
+		<div class="container">
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+					 aria-selected="false">Comments</a>
+				</li>
+			</ul>
+			<div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade show active" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="comment_list">
+								<div class="review_item">
+									<div class="media">
+										<div class="d-flex">
+											<img src="/resources/img/product/review-3.png" alt="">
+										</div>
+										<div class="media-body">
+											
+											<h5>12th Feb, 2018 at 05:56 pm</h5>
+											
+										</div>
+									</div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+										commodo fgffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff</p>
+								</div>
+								<div class="review_item">
+									<div class="media">
+										<div class="d-flex">
+											<img src="/resources/img/product/review-3.png" alt="">
+										</div>
+										<div class="media-body">
+		
+											<h5>12th Feb, 2018 at 05:56 pm</h5>
+										</div>
+									</div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+										commodo</p>
+								</div>
+								<div class="review_item">
+									<div class="media">
+										<div class="d-flex">
+											<img src="/resources/img/product/review-3.png" alt="">
+										</div>
+										<div class="media-body">
+											<h4>Blake Ruiz</h4>
+											<h5>12th Feb, 2018 at 05:56 pm</h5>
+											<a class="reply_btn" href="#">Reply</a>
+										</div>
+									</div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
+										dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+										commodo</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="review_box">
+								<h4>Post a comment</h4>
+								<form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+									<div class="col-md-12">
+										<div class="form-group">
+											<textarea class="form-control" id="reply" placeholder="댓글을 입력하세요" rows="3"></textarea>
+										</div>
+									</div>
+									<div class="col-md-12 text-right">
+										<button type="button" value="submit" class="btn primary-btn" id="replyRegisterBtn">Submit</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Product Description Area =================-->
 
-
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${latter}" var="test1">
-
-				<tr>
-					<td>${test1.labelid }</td>
-					<td>${test1.contents }</td>
-					<td>${test1.category }</td>
-					<td>${test1.cnt }</td>
-
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-<br>
-<!-- 삭제  -->	
-<form action="/sob/remove" method="post">
-<input type="text" name="from" value="${latter[0].from}" hidden>
-<input type="hidden" name="labelid" value="${latter[0].labelid}">
-
-<input type="submit" value="삭제">
-</form>
-
-
-<%-- 댓글 시작 --%>
-<h3>댓글창</h3>
-<input type="text" id="reply" placeholder="댓글을 입력하세요"> 
-<button type="button" id="replyRegisterBtn">댓글등록</button>
-<br> <br>
-<div>
-<table border=1>
-	<tr>
-		<th width=200>번호</th>
-		<th width=120>내용</th>
-		<th width=100>작성일</th>
-	</tr>
-
-<tbody class="replyList">
-
-</tbody>
-
-</table>
-</div>
 <%-- 댓글 끝--%>
 	
 <%@ include file="../include/footer.jsp"%>
@@ -118,12 +156,12 @@
 				var str = '';
 				for (var i = 0, len = data.length || 0; i < len; i++) {
 				console.log(data[i]);
-				str += '<tr><td>'+ data[i].replyno+ '</td><td>'+ data[i].reply
-						+ '</td><td>'+ replyService.displayTime(data[i].indate)
-						+ '</td>';
+				str += "<div class='review_item'><div class='media'><div class='media-body'><h4>"
+				+ data[i].reply + "</h4><h5>"
+				+ replyService.displayTime(data[i].indate) + "</h5></div></div></div>";
 				}
 				
-				$(".replyList").html(str);
+				$(".comment_list").html(str);
 			})
 		}
 		showList();

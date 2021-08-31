@@ -2,6 +2,8 @@ package org.sob.controller;
 
 import java.util.List;
 
+import org.sob.domain.Criteria;
+import org.sob.domain.PageDTO;
 import org.sob.domain.ReplyVO;
 import org.sob.service.ReplyService;
 import org.springframework.http.HttpStatus;
@@ -58,10 +60,13 @@ public class ReplyController {//작성중
 	}
 	
 	
-	@GetMapping("/my/{customerno}")	// 작동 확인 O
-	public List<ReplyVO> getListMyReply(@PathVariable("customerno") int customerno){
+	@GetMapping("/my/{customerno}/{page}")	// 작동 확인 O
+	public List<ReplyVO> getListMyReply(@PathVariable("customerno") int customerno,@PathVariable("page") int page){
 		log.info("개인 댓글 불러오는 컨트롤러");
-		return service.readMyReply(customerno);
+		Criteria cri = new Criteria();
+		cri.setCustomerno(customerno);
+		cri.setPageNum(page);
+		return service.readMyReply(cri);
 		
 	}
 	

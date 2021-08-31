@@ -44,8 +44,9 @@ var replyService = (function() {
 	
 	function getMyList(param, callback, error) {
 		var bno = param.customerno;
+		var page = param.page || 1;
 		console.log(bno);
-		$.getJSON("/replies/my/" + bno + ".json",
+		$.getJSON("/replies/my/" + bno + "/" + page + ".json",
 				function(data) {
 					if (callback) {
 						callback(data);

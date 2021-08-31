@@ -8,20 +8,30 @@
   
 	  <!-- 리플관련. -->
 	  
-	  <!-- 리플 가져오기. -->
-  	  <select id="readReply" resultType="org.sob.domain.ReplyVO"><!-- 리플보기 -->
+	  <!-- 병 별로 리플 가져오기. -->
+  	  <select id="readReply" resultType="org.sob.domain.ReplyVO">
 	  	select * from boast where labelid = #{labelid } order by replyno desc;
 	  </select>
+	  
 	  
 	  <!-- 리플 boastdb에 등록 -->
 	  <insert id="boastInsertReply">
 	  	insert into boast (`labelid`,`reply`,`customerno`) values(#{labelid},#{reply},#{customerno})
 	  </insert>
 	  
+	  <!-- 내가쓴 리플 가져오기. -->
 	  <select id="readMyReply" resultType="org.sob.domain.ReplyVO">
-	  	select * from boast where customerno = #{customerno} order by indate desc;
+	  	select * from boast where customerno = #{customerno} order by indate desc limit #{pageNum}, 10
 	  </select>
 	  
+	   <!-- 내가쓴 리플 가져오기용 total. -->
+	  <select id="readMyReplyTotal" resultType="Integer">
+	  	select count(*) from boast where customerno = #{customerno} order by indate desc
+	  </select>
+	  
+	  
+	  
+	  <!-- 리플 삭제. -->
 	  <delete id="deleteReply">
 	  	delete from boast where replyno=#{replyno}
 	  </delete>

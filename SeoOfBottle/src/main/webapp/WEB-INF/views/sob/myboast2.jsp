@@ -68,7 +68,7 @@
 										</c:forEach>
 									</div>
 									<ul class="blog_meta list">
-										<li>병 번호 : ${test.labelid }<i class="lnr lnr-user"></i>
+										<li><i class="fas fa-wine-bottle"></i>  ${test.labelid }
 										</li>
 									</ul>
 

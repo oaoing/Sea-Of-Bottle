@@ -2,73 +2,94 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!-- jstl -->
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<!-- jstl날짜 -->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<table border="1">
-		<thead>
-			<tr>
-				<th>유리병 아이디</th>
-				<th>내용</th>
-				<th>카테고리</th>
-				<th>이동횟수</th>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Aroma Shop - Blog</title>
+<%@ include file="../include/header.jsp"%>
+<!-- 헤더를 가져오는 지시어 -->
 
 
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${latter}" var="test1">
+<!-- ================ start banner area ================= -->
+<section class="blog-banner-area" id="blog">
+	<div class="container h-100">
+		<div class="blog-banner">
+			<div class="text-center">
+				<h1>Home</h1>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- ================ end banner area ================= -->
+	<!-- ================ Blog section start ================= -->  
+    <section class="blog">
+      <div class="container">
 
-				<tr>
-					<td>${test1.labelid }</td>
-					<td>${test1.contents }</td>
-					<td>${test1.category }</td>
-					<td>${test1.cnt }</td>
-
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-<br>
-<!-- 추가 글 작성 -->	
-추가등록 테스트
-<c:if test="${mvo.cnt<3 && mvo.to==uvo.getCustomerno()}">
-<form action="/sob/register" id = "re" method="post">
-
-contents<input type="text" name="contents">
-cnt<input type="number" name="cnt" value="${mvo.cnt+1}" placeholder="${mvo.cnt+1}" readonly><!-- 여기 수정후 아래로 -->
-category<select form="re" name="categoryid">
-<option value="${latter[0].categoryid }" >${latter[0].category }</option>
-</select>
-
-<input type="text" name="from" value="${uvo.customerno}" hidden>
-<input type="text" name="labelid" value="${latter[0].labelid}" hidden>
-<input type="submit" value="등록">
-</form>	
-</c:if>
-
-<c:if test="${mvo.cnt==3 && mvo.to==uvo.getCustomerno()}">
-<form action="/sob/register" id = "re" method="post">
-<input type="text" name="from" value="${latter[0].from}" hidden>
-<input type="text" name="labelid" value="${latter[0].labelid}" hidden>
-<input type="number" name="cnt" value="${mvo.cnt+1}" placeholder="${mvo.cnt+1}" hidden><!-- 여기 수정후 아래로 -->
-<input type="submit" value="자랑하기">
-</form>
-</c:if>
+        <div class="row">
+        <c:forEach items="${latter}" var="test1">
+          <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+            <div class="card card-blog">
+              
+              <div class="card-body">
+                <div class="confirmation-card">
+                <h4 class="card-blog__title">${test1.cnt }</h4>
+				<p>${test1.contents }</p>
+				</div>
+              </div>
+            </div>
+          </div>
+		</c:forEach>
+		<c:if test="${mvo.cnt<3 && mvo.to==uvo.getCustomerno()}">
+		<div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+            <div class="card card-blog">
+              <div class="card-body">
+              <form class="row tracking_form" action="/sob/register" id = "re" method="post" novalidate="novalidate">
+              <div class="col-md-12 form-group">
+              <textarea rows="6" class="form-control" placeholder="Contents" name="contents"></textarea></div>
+              <input type="hidden" name="cnt" value="${mvo.cnt+1}">
+              <input type="hidden" name="categoryid" value="${latter[0].categoryid }">
+              <input type="text" name="from" value="${uvo.customerno}" hidden>
+			  <input type="text" name="labelid" value="${latter[0].labelid}" hidden>
+              <div class="col-md-12 form-group text-right">
+                      <button type="submit" value="submit" class="button button-tracking">Track Order</button>
+                  </div>
+              </form>
+				</div>
+			</div>
+		</div>
+		</c:if>
+        </div>
+		<div class="checkout_btn_inner d-flex align-items-end">
+					<c:if test="${mvo.cnt==3 && mvo.to==uvo.getCustomerno()}">
+					
+						<form action="/sob/register" id = "re" method="post">
+							<input type="text" name="from" value="${latter[0].from}" hidden>
+							<input type="text" name="labelid" value="${latter[0].labelid}" hidden>
+							<input type="number" name="cnt" value="${mvo.cnt+1}" placeholder="${mvo.cnt+1}" hidden><!-- 여기 수정후 아래로 -->
+							<input type="submit" class="button button-login" value="자랑">
+							</form>
+							
+							</c:if>
+							
+							<form action="/sob/remove" method="post">
+					<input type="text" name="from" value="${latter[0].from}" hidden>
+					<input type="hidden" name="labelid" value="${latter[0].labelid}">
+					
+					<input type="submit" value="삭제" class="gray_btn ml-2">
+					</form>
+        </div>
+  		</div>
+    </section>
+    <!-- ================ Blog section end ================= -->
+   
 	
-	
-	
-<!-- 삭제  -->	
-<form action="/sob/remove" method="post">
-<input type="text" name="from" value="${latter[0].from}" hidden>
-<input type="hidden" name="labelid" value="${latter[0].labelid}">
 
-<input type="submit" value="삭제">
-
-</form>
+<%@ include file="../include/footer.jsp"%>
+<!-- 풋터를 가져오는 지시어 -->
 </body>
 </html>

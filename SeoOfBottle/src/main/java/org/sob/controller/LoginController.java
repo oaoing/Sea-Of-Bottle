@@ -78,23 +78,22 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/logout")
-	public String logout(HttpSession session, HttpServletResponse response) {
+	public void logout(HttpSession session, HttpServletResponse response, HttpServletRequest request) {
 		session.invalidate();
-		response.setContentType("text/html; charset=UTF-8");
-
 		try {
+			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out;
 			out = response.getWriter();
-			out.println("<script>alert('로그아웃 되었습니다.');</script>");
+			if(!request.isRequestedSessionIdValid()) {
+				out.println("<script>alert('로그아웃이 완료됐습니다.'); location.replace('/');</script>");
+			}else {
+				out.println("<script>alert('로그아웃을 실패했습니다.'); location.replace('/sob/main');</script>");
+			}
 			out.flush();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 
 		
-
-		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/join")

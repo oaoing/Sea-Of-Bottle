@@ -36,7 +36,9 @@
 		<div class="row">
 			<div class="col-lg-8">
 				<div class="blog_left_sidebar">
-
+					<div class="billing_details">
+					<br>
+					<h3>My Boast</h3></div>
 					<c:forEach items="${myList}" var="test">
 						<article class="row blog_item">
 							<div class="col-md-3">
@@ -118,6 +120,9 @@
 							</c:if>
 						</ul>
 					</nav>
+					<br>
+					<div class="billing_details">
+					<h3>My Reply</h3></div>
 					<div class="comments-area"></div>
 					<nav class="blog-pagination justify-content-center d-flex">
 						<ul class="pagination" id="replyPage">

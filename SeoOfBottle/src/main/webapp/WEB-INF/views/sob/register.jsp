@@ -26,21 +26,39 @@
 	</div>
 </section>
 <!-- ================ end banner area ================= -->
-등록창 테스트
-<form action="/sob/register" id = "re" method="post">
-contents<input type="text" name="contents">
-<input type="text" name="from" value="${uvo.customerno}" hidden>
-cnt<input type="number" name="cnt" value="1" placeholder="1" readonly>
-category<select form="re" name="categoryid">
-<c:forEach items="${categoryList}" var="temp">
-<option value="${temp.categoryid }" >${temp.category }</option>
-</c:forEach>
-</select>
-<input type="submit" value="등록">
-
-</form>
 
 
+<!--================Checkout Area =================-->
+  <section class="checkout_area section-margin--small">
+    <div class="container">
+        <div class="billing_details">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3>New Letter</h3>
+                    <form class="row contact_form" action="/sob/register" id="re" method="post" novalidate="novalidate">
+                    	<input type="text" name="from" value="${uvo.customerno}" hidden>
+                    	<input type="number" name="cnt" value="1" placeholder="1" hidden>
+                        <div class="col-md-12 form-group p_star">
+                            <select class="country_select" form="re" name="categoryid">
+                            <c:forEach items="${categoryList}" var="temp">
+								<option value="${temp.categoryid }" >${temp.category }</option>
+							</c:forEach>
+                            </select>
+                        </div>
+                        <div class="col-md-12 form-group mb-10">
+                            <textarea class="form-control" name="contents" rows="1" placeholder="Content"></textarea>
+                        </div>
+                        <div class="col-md-12 form-group mb-0">
+                        	<button class="button button-coupon" type="submit" value="등록">등록</button>
+                        </div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+  </section>
+  <!--================End Checkout Area =================-->
 
 
 <%@ include file="../include/footer.jsp"%>

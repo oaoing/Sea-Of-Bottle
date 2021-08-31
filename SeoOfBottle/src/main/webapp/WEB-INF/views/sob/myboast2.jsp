@@ -36,7 +36,8 @@
 		<div class="row">
 			<div class="col-lg-8">
 				<div class="blog_left_sidebar">
-
+					<div class="billing_details"><br>
+					<h3>My Boast</h3></div>
 					<c:forEach items="${myList}" var="test">
 						<article class="row blog_item">
 							<div class="col-md-3">
@@ -108,28 +109,13 @@
 							</a></li>
 						</ul>
 					</nav>
+					<div class="billing_details">
+					<h3>My Reply</h3></div>
 					<div class="comments-area"></div>
 					<nav class="blog-pagination justify-content-center d-flex">
-						<ul class="pagination">
+						<ul class="pagination" id="replyPage">
 
-							<li class="page-item"><a href="#" class="page-link"
-								aria-label="Previous"> <span aria-hidden="true"> <span
-										class="lnr lnr-chevron-left"></span>
-								</span>
-							</a></li>
-
-							<li class="page-item"><a href="#" class="page-link">01</a></li>
-							<li class="page-item active"><a href="#" class="page-link">02</a>
-							</li>
-							<li class="page-item"><a href="#" class="page-link">03</a></li>
-							<li class="page-item"><a href="#" class="page-link">04</a></li>
-							<li class="page-item"><a href="#" class="page-link">09</a></li>
-
-							<li class="page-item"><a href="#" class="page-link"
-								aria-label="Next"> <span aria-hidden="true"> <span
-										class="lnr lnr-chevron-right"></span>
-								</span>
-							</a></li>
+							
 						</ul>
 					</nav>
 				</div>
@@ -169,37 +155,70 @@
 							console.log("reply 삭제");
 							replyService.remove(replyno, function(result) {
 								alert(result);
-								showMyList();
+								var pageNum = (!'${num}')?1:'${num}';
+								location.replace('/sob/myboast?pageNum=' + pageNum + '&amount=${pageMaker.cri.amount}');
 							});
+						}
+						
+						makeReplyPage = function(totalCount){
+							var endPage = Math.ceil(${replyPage}/10)*10;
+							var startPage = endPage - 9;
+							var realEnd = Math.ceil(totalCount/10);
+							if (realEnd < endPage){
+								endPage = realEnd;
+							}
+							var prev = startPage > 1;
+							var next = endPage < realEnd;
+							
+							var str = '';
+							var pageNum = (!'${num}')?1:'${num}';
+							(startPage == 1)?str+='':str+='<li class="page-item"><a href="myboast?pageNum=' + pageNum + '&amount=${pageMaker.cri.amount}&replyPage='
+									+ ${replyPage} - 1 + '" class="page-link" aria-label="Previous">'
+                            							+ '<span aria-hidden="true"><span class="lnr lnr-chevron-left"></span></span></a></li>'; 
+                            for(var i=0 ; i < 10; i++){
+                            	var p = startPage + i;
+                            	if (p > endPage) 
+                            		break;
+                            	if (p == ${replyPage}){
+                            		str += '<li class="page-item active"><a href="myboast?pageNum=' + pageNum + '&amount=${pageMaker.cri.amount}&replyPage='
+                            			+ p + '" class="page-link">' + p + '</a></li>';
+                            	}else{
+                            		str += '<li class="page-item"><a href="myboast?pageNum=' + pageNum + '&amount=${pageMaker.cri.amount}&replyPage='
+                            			+ p + '" class="page-link">' + p + '</a></li>';
+                            	}
+                            	
+                            }
+                            
+                            (endPage < realEnd)?str+='<li class="page-item"><a href="myboast?pageNum=' + pageNum + '&amount=${pageMaker.cri.amount}&replyPage='
+									+ ${replyPage} + 1 + '" class="page-link" aria-label="Next">'
+    								+ '<span aria-hidden="true"><span class="lnr lnr-chevron-left"></span></span></a></li>':str+='';
+                            $("#replyPage").html(str);
 						}
 
 						function showMyList() {
-							replyService
-									.getMyList(
-											{
-												customerno : '${uvo.customerno}'
-											},
-											function(data) {
+							replyService.getMyList({customerno : '${uvo.customerno}', page : '${replyPage}'},function(data) {
 												var str = '';
-												for (var i = 0, len = data.length || 0; i < len; i++) {
+												var replyList = data.rvo;
+												for (var i = 0, len = replyList.length || 0; i < len; i++) {
 													var head = "<div class='comment-list'><div class='single-comment justify-content-between d-flex'>"
 															+ "<div class='user justify-content-between d-flex'><div class='desc'>";
 													var body = "<h5><a href='boastdetail?labelid="
-															+ data[i].labelid
+															+ replyList[i].labelid
 															+ "'>"
-															+ data[i].reply
+															+ replyList[i].reply
 															+ "</a></h5>"
 															+ "<p class='date'>"
 															+ replyService
-																	.displayTime(data[i].indate)
+																	.displayTime(replyList[i].indate)
 															+ "</p>";
 													var foot = "</div></div><div class='reply-btn'>"
 															+ "<a href='javascript:removeReply("
-															+ data[i].replyno
+															+ replyList[i].replyno
 															+ ");' class='btn-reply text-uppercase'>delete</a></div></div></div>";
 													str += head + body + foot;
 												}
 												$(".comments-area").html(str);
+												makeReplyPage(data.totalCount);
 											})
 						}
 						showMyList();

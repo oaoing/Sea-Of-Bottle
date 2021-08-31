@@ -61,7 +61,7 @@
 									type="text" name="labelid" value="${latter[0].labelid}" hidden>
 								<div class="col-md-12 form-group text-right">
 									<button type="submit" value="submit"
-										class="button button-tracking">Track Order</button>
+										class="button button-tracking">등록</button>
 								</div>
 							</form>
 						</div>

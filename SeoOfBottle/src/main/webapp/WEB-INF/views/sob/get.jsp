@@ -78,6 +78,7 @@
 			<div class="form-group text-center col-md-1"></div>
 			<div class="form-group text-center col-md-1"></div>
 			<div class="form-group text-center col-md-1"></div>
+			
 			<div class="form-group text-center col-md-1">
 				<c:if test="${mvo.cnt==3 && mvo.to==uvo.getCustomerno()}">
 					<form action="/sob/register" id="re" method="post">

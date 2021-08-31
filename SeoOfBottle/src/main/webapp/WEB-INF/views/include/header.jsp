@@ -56,14 +56,7 @@
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
               <li class="nav-item"><a class="nav-link" href="main">Home</a></li>		
               <li class="nav-item"><a class="nav-link" href="boast">Boasting Board</a></li>
-              <li class="nav-item submenu dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">My Page</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="myboast">My Boast</a></li>
-                  <li class="nav-item"><a class="nav-link" href="myreply">My Reply</a></li>
-                </ul>
-							</li>
+              <li class="nav-item"><a class="nav-link" href="myboast">My Page</a></li> 
             </ul>
 
             <ul class="nav-shop">

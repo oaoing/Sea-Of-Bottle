@@ -47,23 +47,8 @@ public class MainController {
 			model.addAttribute("list", service.getListUseCategory(cri));
 			log.info("목록페이지요청"+service.getListUseCategory(cri));
 		}
-		
-		
 	}
-//	//카테고리로 검색해서 내 목록 불러오기
-//	@GetMapping("/main2")//자기자신.jsp 페이지 오픈 테스트 완료
-//	public void list2(Model model,@SessionAttribute("uvo") UserVO uvo, Criteria cri) {//
-//		log.info("목록페이지카테고리로요청"+uvo);
-//		cri.setCustomerno(uvo.getCustomerno());
-//		model.addAttribute("categoryList",service.getCategoryList());
-//		model.addAttribute("pageMaker",new PageDTO(cri,service.getListUseCategoryTotal(cri)));
-//		log.info("목록페이지요청"+new PageDTO(cri,service.getListUseCategoryTotal(cri)));
-//		model.addAttribute("list2", service.getListUseCategory(cri));
-//		log.info("목록페이지요청"+service.getListUseCategory(cri));
-//	}
-	
-	
-	
+
 	//등록
 	@PostMapping("/register")//새유리병, 이어쓴 편지 등록 확인 필요 (돌아가는지)//새로쓴 편지는 테스트완료
 	public String register(@SessionAttribute("uvo") UserVO uvo, MainVO mvo) {
@@ -139,16 +124,7 @@ public class MainController {
 		}
 		
 	}
-	
-//	@GetMapping("/boast2")
-//	public void boast2(Model model,@SessionAttribute("uvo") UserVO uvo,String categoryid) {//자랑하기 페이지
-//		log.info("자랑게시판 카테고리로 요청");
-//		model.addAttribute("categoryList",service.getCategoryList());
-//		int intCategoryid = Integer.parseInt(categoryid);
-//		model.addAttribute("boastList",service.getBoastListUseCategory(intCategoryid));
-//	}
-	
-	
+
 	@GetMapping("/myboast")
 	public void myboast(Model model,@SessionAttribute("uvo") UserVO uvo, Criteria cri, String replyPage) {//자랑하기 페이지
 		log.info("내 자랑 보기 요청");
@@ -174,41 +150,13 @@ public class MainController {
 		
 	}
 	
-//	@GetMapping("/myboast2")
-//	public void myboast2(Model model,@SessionAttribute("uvo") UserVO uvo, Criteria cri) {//자랑하기 페이지
-//		log.info("내 자랑 보기 요청");
-//		
-//		model.addAttribute("categoryList",service.getCategoryList());
-//		mvo.setFrom(uvo.getCustomerno());
-//		model.addAttribute("myList",service.getMyBoastListUseCategory(mvo));
-//	}
-	
-	
-	
-	
 	//자랑상세
 	@GetMapping("/boastdetail")
 	public void boastdetail(String labelid, Model model) {//테스트 완료
 		log.info("자랑상세 보기 요청"+labelid);
 		List<MainVO> mvoList = service.get(labelid);
 		model.addAttribute("latter",mvoList);
-			
-			
 	}
-	
-
-	
-	//페이지테스트용 추후 삭제
-	@GetMapping("/blog")
-	public void boastdetail() {
-		
-			
-			
-	}
-	
-	
-	
-	
 	
 
 }

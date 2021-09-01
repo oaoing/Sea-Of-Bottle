@@ -23,8 +23,23 @@
 	
 	<context:component-scan base-package="org.sob.controller" />
 	<context:component-scan base-package="org.sob.*" />
-	
+	<interceptors> 
+
+<beans:bean id="webContentInterceptor" class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+
+ <beans:property name="cacheSeconds" value="0"/>
+
+ <beans:property name="useExpiresHeader" value="true"/>
+
+ <beans:property name="useCacheControlHeader" value="true"/>
+
+ <beans:property name="useCacheControlNoStore" value="true"/>
+
+</beans:bean>
+
+</interceptors>
 
 	
 	
 </beans:beans>
+

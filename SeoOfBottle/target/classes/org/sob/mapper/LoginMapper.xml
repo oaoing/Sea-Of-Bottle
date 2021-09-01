@@ -29,5 +29,9 @@
     <update id="modifyForGoogleUser">
     update customer set pw=#{pw} where #{id}=id
     </update>
+    
+    <delete id="deleteUser">
+    	DELETE FROM `customer` WHERE  `customerno`=#{customerno}
+    </delete>
 	  
   </mapper>

@@ -34,12 +34,13 @@ public interface MainMapper {
 	public void boastInsert(ReplyVO rvo); //리플db 튜플생성
 	
 	//자랑게시판 관련
-	public List<MainVO> getBoastList(); //자랑게시판 전체 목록 가져오기
-	
-	public List<MainVO> getBoastListUseCategory(int categoryid); //자랑게시판 전체 목록 카테고리로 가져오기
+	public List<MainVO> getBoastList(Criteria cri); //자랑게시판 전체 목록 가져오기
+	public int getBoastListTotal(Criteria cri);
+	public List<MainVO> getBoastListUseCategory(Criteria cri); //자랑게시판 전체 목록 카테고리로 가져오기
+	public int getMyBoastListTotal(Criteria cri);
 	
 	public List<MainVO> getMyBoastList(Criteria cri); //나의 자랑게시판 목록 가져오기.
-	public int getMyBoastListTotal(Criteria cri);//나의 자랑게시판 목록 가져오기용 total.
+	public int getBoastListUseCategoryTotal(Criteria cri);//나의 자랑게시판 목록 가져오기용 total.
 	
 	public List<MainVO> getMyBoastListUseCategory(Criteria cri); //나의 자랑게시판 목록 카테고리로 가져오기.
 	public int getMyBoastListUseCategoryTotal(Criteria cri);//나의 자랑게시판 목록 카테고리로 가져오기.용 total.

@@ -36,7 +36,7 @@ public class MainMapperTest {
 	@Test
 	public void testgetBoastList() {
 		
-		mapper.getBoastList().forEach(main->log.info(main));
+//		mapper.getBoastList().forEach(main->log.info(main));
 		
 		
 	}

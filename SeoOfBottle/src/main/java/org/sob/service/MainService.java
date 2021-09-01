@@ -32,9 +32,10 @@ public interface MainService {
 	//카테고리 가져오기
 	public List<MainVO> getCategoryList();
 	//자랑게시판 전체목록
-	public List<MainVO> getBoastList();
-	
-	public List<MainVO> getBoastListUseCategory(int categoryid);
+	public List<MainVO> getBoastList(Criteria cri);
+	public int getBoastListTotal(Criteria cri);
+	public List<MainVO> getBoastListUseCategory(Criteria cri);
+	public int getBoastListUseCategoryTotal(Criteria cri);
 	
 	//나의 자랑 목록
 	public List<MainVO> getMyBoastList(Criteria cri);

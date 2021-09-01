@@ -106,9 +106,25 @@ public class MainServiceImpl implements MainService {
 	}
 
 	@Override
-	public List<MainVO> getBoastList() {
+	public List<MainVO> getBoastList(Criteria cri) {
+		int original = cri.getPageNum();
+		int page = (original-1)*10;
+		cri.setPageNum(page);
+		List<MainVO> mvo = mapper.getBoastList(cri);
+		cri.setPageNum(original);
 		
-		return mapper.getBoastList();
+		return mvo;
+	}
+	
+	@Override
+	public List<MainVO> getBoastListUseCategory(Criteria cri) {
+		int original = cri.getPageNum();
+		int page = (original-1)*10;
+		cri.setPageNum(page);
+		List<MainVO> mvo = mapper.getBoastListUseCategory(cri);
+		cri.setPageNum(original);
+		
+		return mvo;
 	}
 
 	@Override
@@ -161,15 +177,6 @@ public class MainServiceImpl implements MainService {
 		
 	}
 
-	
-
-	@Override
-	public List<MainVO> getBoastListUseCategory(int categoryid) {
-		
-		
-		return mapper.getBoastListUseCategory(categoryid);
-	}
-
 	@Override
 	public List<MainVO> getMyBoastListUseCategory(Criteria cri) {
 		int original = cri.getPageNum();
@@ -209,6 +216,18 @@ public class MainServiceImpl implements MainService {
 	public int getMyBoastListUseCategoryTotal(Criteria cri) {
 		
 		return mapper.getMyBoastListUseCategoryTotal(cri);
+	}
+
+	@Override
+	public int getBoastListTotal(Criteria cri) {
+		
+		return mapper.getBoastListTotal(cri);
+	}
+
+	@Override
+	public int getBoastListUseCategoryTotal(Criteria cri) {
+		
+		return mapper.getBoastListUseCategoryTotal(cri);
 	}
 
 }

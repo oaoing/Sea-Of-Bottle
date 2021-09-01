@@ -59,7 +59,7 @@ public class MainServiceTest {
 	
 	@Test
 	public void testgetBoastList() {
-		service.getBoastList();
+//		service.getBoastList();
 		
 	}
 	

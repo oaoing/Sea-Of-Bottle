@@ -16,10 +16,12 @@
 
 
 <!-- ================ start banner area ================= -->
-<section class="blog-banner-area" id="blog">
-	<div class="container h-100" style="background-image:url('/resources/img/banner-bg.png'); background-size:auto 100%; padding-right:0px; padding-left:0px;">
-	<div class="container h-100" style="background-image:url('/resources/img/banner-wave.png'); background-size:auto 100%; padding-right:0px; padding-left:0px;"></div>
+<section class="blog-banner-area" id="blog" style="background-image:url('/resources/img/banner-bg.png'); background-size:auto 100%;">
+	<div class="blog-banner">
+		<div class="text-center h-100"><img src="/resources/img/logo.png"></img></div>
 	</div>
+	<section class="blog-banner-area" id="blog" style="background-image:url('/resources/img/banner-wave.png'); background-size:auto 100%;"></div>
+	
 </section>
 <!-- ================ end banner area ================= -->
 

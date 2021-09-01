@@ -21,17 +21,17 @@
     .slide li:nth-child(1){background-image:url(/resources/img/banner-wave.png); background-size:auto 100%; animation-delay:0s}
     .slide li:nth-child(2){background-image:url(/resources/img/banner-wave.png); background-size:auto 100%; animation-delay:0s}
     @keyframes slide {
-      0% {margin-left:0;} /* 0 ~ 10  : 정지 */
-	  10% {margin-left:-10%;}
-	  20% {margin-left:-20%;}
-	  30% {margin-left:-30%;}
-	  40% {margin-left:-40%;}
+      0% {margin-left:-100%;} /* 0 ~ 10  : 정지 */
+	  10% {margin-left:-90%;}
+	  20% {margin-left:-80%;}
+	  30% {margin-left:-70%;}
+	  40% {margin-left:-60%;}
       50% {margin-left:-50%;}
-	  60% {margin-left:-60%;}
-	  70% {margin-left:-70%;}
-	  80% {margin-left:-80%;}
-	  90% {margin-left:-90%;}
-      100% {margin-left:-100%;}
+	  60% {margin-left:-40%;}
+	  70% {margin-left:-30%;}
+	  80% {margin-left:-20%;}
+	  90% {margin-left:-10%;}
+      100% {margin-left:0;}
     }
  
  .layer-set{

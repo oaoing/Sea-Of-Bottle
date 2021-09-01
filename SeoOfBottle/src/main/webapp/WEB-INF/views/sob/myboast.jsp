@@ -11,25 +11,6 @@
 <script src="/resources/js/reply.js"></script>
 <%@ include file="../include/header.jsp"%>
 
-<!-- ================ start banner area ================= -->
-<section class="blog-banner-area" id="blog">
-	<div class="container h-100">
-		<div class="blog-banner">
-			<div class="text-center">
-				<h1>My Page</h1>
-				<nav aria-label="breadcrumb" class="banner-breadcrumb">
-					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="main">Home</a></li>
-						<li class="breadcrumb-item active" aria-current="page">My
-							Page</li>
-					</ol>
-				</nav>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- ================ end banner area ================= -->
-
 <!--================Blog Area =================-->
 <section class="blog_area">
 	<div class="container">

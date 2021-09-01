@@ -4,13 +4,13 @@
 }
 
 .puff-in-top-2 {
-	-webkit-animation: puff-in-top 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) 1s both;
-	        animation: puff-in-top 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) 1s both;
+	-webkit-animation: puff-in-top 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) 0.3s both;
+	        animation: puff-in-top 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) 0.3s both;
 }
 
 .puff-in-top-3 {
-	-webkit-animation: puff-in-top 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) 2s both;
-	        animation: puff-in-top 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) 2s both;
+	-webkit-animation: puff-in-top 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) 0.6s both;
+	        animation: puff-in-top 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) 0.6s both;
 }
 
 *{margin:0;padding:0;}

@@ -14,12 +14,6 @@
 <%@ include file="../include/header.jsp"%>
 <!-- 헤더를 가져오는 지시어 -->
 
-
-<!-- ================ start banner area ================= -->
-<section class="blog-banner-area" id="blog" style="background-image:url('/resources/img/banner-bg.png'); background-size:auto 100%">
-	<div style="background-image:url('/resources/img/banner-wave.png'); background-size:auto 100%"; max-width:100;></div>
-</section>
-<!-- ================ end banner area ================= -->
 <!-- ================ Blog section start ================= -->
 <section class="blog">
 	<div class="container">

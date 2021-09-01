@@ -10,23 +10,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Aroma Shop - Blog</title>
+<title>SOB</title>
 <%@ include file="../include/header.jsp"%>
 <!-- 헤더를 가져오는 지시어 -->
-
-
-<!-- ================ start banner area ================= -->
-<section class="blog-banner-area" id="blog">
-	<div class="container h-100">
-		<div class="blog-banner">
-			<div class="text-center">
-				<h1>Home</h1>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- ================ end banner area ================= -->
-
 
 <!--================Checkout Area =================-->
   <section class="checkout_area section-margin--small">

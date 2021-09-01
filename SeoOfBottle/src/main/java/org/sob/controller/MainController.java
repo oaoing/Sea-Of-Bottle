@@ -121,20 +121,32 @@ public class MainController {
 	
 	//자랑게시판
 	@GetMapping("/boast")
-	public void boast(Model model,@SessionAttribute("uvo") UserVO uvo) {//자랑하기 페이지
+	public void boast(Model model,@SessionAttribute("uvo") UserVO uvo, Criteria cri) {//자랑하기 페이지
 		log.info("자랑게시판 요청");
-		model.addAttribute("categoryList",service.getCategoryList());
-		model.addAttribute("boastList",service.getBoastList());
+		if(cri.getCategoryid()==0) {
+			cri.setCustomerno(uvo.getCustomerno());
+			log.info("목록페이지요청"+cri);
+			model.addAttribute("categoryList",service.getCategoryList());
+			model.addAttribute("pageMaker",new PageDTO(cri,service.getBoastListTotal(cri)));
+			model.addAttribute("boastList", service.getBoastList(cri));
+		} else {
+			cri.setCustomerno(uvo.getCustomerno());
+			log.info("목록페이지요청"+cri);
+			model.addAttribute("categoryList",service.getCategoryList());
+			model.addAttribute("pageMaker",new PageDTO(cri,service.getBoastListUseCategoryTotal(cri)));
+			log.info("목록페이지요청"+new PageDTO(cri,service.getBoastListUseCategoryTotal(cri)));
+			model.addAttribute("boastList", service.getBoastListUseCategory(cri));
+		}
 		
 	}
 	
-	@GetMapping("/boast2")
-	public void boast2(Model model,@SessionAttribute("uvo") UserVO uvo,String categoryid) {//자랑하기 페이지
-		log.info("자랑게시판 카테고리로 요청");
-		model.addAttribute("categoryList",service.getCategoryList());
-		int intCategoryid = Integer.parseInt(categoryid);
-		model.addAttribute("boastList",service.getBoastListUseCategory(intCategoryid));
-	}
+//	@GetMapping("/boast2")
+//	public void boast2(Model model,@SessionAttribute("uvo") UserVO uvo,String categoryid) {//자랑하기 페이지
+//		log.info("자랑게시판 카테고리로 요청");
+//		model.addAttribute("categoryList",service.getCategoryList());
+//		int intCategoryid = Integer.parseInt(categoryid);
+//		model.addAttribute("boastList",service.getBoastListUseCategory(intCategoryid));
+//	}
 	
 	
 	@GetMapping("/myboast")

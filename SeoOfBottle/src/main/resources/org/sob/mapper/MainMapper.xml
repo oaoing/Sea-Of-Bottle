@@ -86,12 +86,20 @@
       
       <!-- 전체 자랑게시판 목록 가져오기. -->		
 	  <select id="getBoastList" resultType="org.sob.domain.MainVO">
-	  select l.labelid,c.`category`,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=1 group by letterid order by labelid desc
+	  select l.labelid,c.`category`,c.`categoryid` ,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=1 group by letterid order by labelid desc limit #{pageNum}, 10	
+	  </select>
+	  <!-- 전체 자랑게시판 목록 가져오기용 total. -->		
+	  <select id="getBoastListTotal" resultType="Integer">
+	  select count(*) from (select l.labelid,c.`category`,c.`categoryid` ,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=1 group by letterid order by labelid desc) k
 	  </select>
 	  
 	  <!-- 전체 자랑게시판 카테고리로 목록 가져오기. -->		
 	  <select id="getBoastListUseCategory" resultType="org.sob.domain.MainVO">	
-	  select l.labelid,c.`category`,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=1 and b.categoryid=#{categoryid} group by letterid order by labelid desc
+	  select l.labelid,c.`category`,c.`categoryid` ,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=1 and b.categoryid=#{categoryid} group by letterid order by labelid desc limit #{pageNum}, 10	
+	  </select>
+	  <!-- 전체 자랑게시판 카테고리로 목록 가져오기용 total. -->		
+	  <select id="getBoastListUseCategoryTotal" resultType="Integer">	
+	  select count(*) from (select l.labelid,c.`category`,c.`categoryid` ,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=1 and b.categoryid=#{categoryid} group by letterid order by labelid desc) k
 	  </select>
       
       

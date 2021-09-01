@@ -25,12 +25,13 @@
 	<div class="container">
 
 		<div class="row">
+			
 			<c:forEach items="${latter}" var="test1">
 				<div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
 					<div class="card card-blog">
 
 						<div class="card-body">
-							<div class="confirmation-card">
+							<div class="confirmation-card puff-in-top-${test1.cnt}">
 								<h4 class="card-blog__title">${test1.cnt }</h4>
 								<p>${test1.contents }</p>
 							</div>

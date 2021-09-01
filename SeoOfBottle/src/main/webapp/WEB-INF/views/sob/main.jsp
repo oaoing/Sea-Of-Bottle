@@ -16,16 +16,22 @@
 
 
 <!-- ================ start banner area ================= -->
-<section class="blog-banner-area layer-set" id="blog" style="background-image:url('/resources/img/banner-bg.png'); background-size:auto 100%;">
+<section class="blog-banner-area layer-set" id="blog"
+	style="background-image: url('/resources/img/banner-bg.png'); background-size: auto 100%;">
 	<div class="blog-banner">
-		<div class="text-center h-100 layer-set layer1 shake-vertical"><img src="/resources/img/bottle.png" style="height:103px; width:90px; margin-top:30px;"></img></div>
+		<div class="text-center h-100 layer-set layer1 shake-vertical">
+			<img src="/resources/img/bottle.png"
+				style="height: 103px; width: 90px; margin-top: 30px;"></img>
+		</div>
 	</div>
-	<div class="slide layer-set layer2"><ul>
-	<li><img src="/resources/img/banner-wave.png"></li>
-	<li><img src="/resources/img/banner-wave.png"></li>
-	</ul></div>
+	<div class="slide layer-set layer2">
+		<ul>
+			<li><img src="/resources/img/banner-wave.png"></li>
+			<li><img src="/resources/img/banner-wave.png"></li>
+		</ul>
+	</div>
 	<!-- <section class="blog-banner-area" id="blog" style="background-image:url('/resources/img/banner-wave.png'); background-size:auto 100%;"></div> -->
-	
+
 </section>
 <!-- ================ end banner area ================= -->
 
@@ -36,8 +42,9 @@
 			<div class="col-lg-8">
 				<div class="blog_left_sidebar">
 					<div class="billing_details">
-					<br>
-					<h3>Receive List</h3></div>
+						<br>
+						<h3>Receive List</h3>
+					</div>
 					<c:forEach items="${list}" var="test">
 						<article class="row blog_item">
 							<div class="col-md-3">
@@ -46,31 +53,30 @@
 										<c:forEach items="${categoryList}" var="temp" varStatus="i">
 											<c:set var="testcategory" value="${test.categoryid}" />
 											<c:set var="tempcategory" value="${temp.categoryid}" />
-											
-												<c:if test="${testcategory eq tempcategory}">
-													<c:if test="${!i.last}">
-														<a class="active"
-															href="/sob/main?categoryid=${temp.categoryid }">${temp.category },</a>
-													</c:if>
-													<c:if test="${i.last}">
-														<a class="active"
-															href="/sob/main?categoryid=${temp.categoryid }">${temp.category }</a>
-													</c:if>
+
+											<c:if test="${testcategory eq tempcategory}">
+												<c:if test="${!i.last}">
+													<a class="active"
+														href="/sob/main?categoryid=${temp.categoryid }">${temp.category },</a>
 												</c:if>
-												<c:if test="${testcategory ne tempcategory}">
-													<c:if test="${!i.last}">
-														<a href="/sob/main?categoryid=${temp.categoryid }">${temp.category },</a>
-													</c:if>
-													<c:if test="${i.last}">
-														<a href="/sob/main?categoryid=${temp.categoryid }">${temp.category }</a>
-													</c:if>
+												<c:if test="${i.last}">
+													<a class="active"
+														href="/sob/main?categoryid=${temp.categoryid }">${temp.category }</a>
 												</c:if>
-										
+											</c:if>
+											<c:if test="${testcategory ne tempcategory}">
+												<c:if test="${!i.last}">
+													<a href="/sob/main?categoryid=${temp.categoryid }">${temp.category },</a>
+												</c:if>
+												<c:if test="${i.last}">
+													<a href="/sob/main?categoryid=${temp.categoryid }">${temp.category }</a>
+												</c:if>
+											</c:if>
+
 										</c:forEach>
 									</div>
 									<ul class="blog_meta list">
-										<li><i class="fas fa-wine-bottle"></i>  ${test.labelid }
-										</li>
+										<li><i class="fas fa-wine-bottle"></i> ${test.labelid }</li>
 									</ul>
 
 
@@ -81,15 +87,17 @@
 									<div class="blog_details">
 										<p>${test.contents}</p>
 										<c:if test="${test.cnt == 3}">
-										<a class="button button-blog"
-											href="get?labelid=${test.labelid }" style="background:#E1FBD7; border:0;">View More</a>
+											<a class="button button-blog"
+												href="get?labelid=${test.labelid }"
+												style="background: #E1FBD7; border: 0;">View More</a>
 										</c:if>
-										
+
 										<c:if test="${test.cnt != 3}">
-										<a class="button button-blog"
-											href="get?labelid=${test.labelid }" style="background:#FFF7CC; border:0;">View More</a>
+											<a class="button button-blog"
+												href="get?labelid=${test.labelid }"
+												style="background: #FFF7CC; border: 0;">View More</a>
 										</c:if>
-										
+
 									</div>
 								</div>
 							</div>
@@ -134,7 +142,8 @@
 			<div class="col-lg-4">
 				<div class="blog_right_sidebar">
 					<aside class="single_sidebar_widget search_widget">
-							<button class="button button-login w-100" onclick='location.replace("/sob/register");'>New Letter</button>
+						<button class="button button-login w-100"
+							onclick='location.replace("/sob/register");'>New Letter</button>
 						<div class="br"></div>
 					</aside>
 					<aside class="single_sidebar_widget post_category_widget">

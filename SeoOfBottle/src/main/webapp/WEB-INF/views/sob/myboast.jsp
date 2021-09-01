@@ -51,19 +51,19 @@
 											<c:if test="${testcategory eq tempcategory}">
 												<c:if test="${!i.last}">
 													<a class="active"
-														href="/sob/myboast2?categoryid=${temp.categoryid }">${temp.category },</a>
+														href="/sob/myboast?categoryid=${temp.categoryid }">${temp.category },</a>
 												</c:if>
 												<c:if test="${i.last}">
 													<a class="active"
-														href="/sob/myboast2?categoryid=${temp.categoryid }">${temp.category }</a>
+														href="/sob/myboast?categoryid=${temp.categoryid }">${temp.category }</a>
 												</c:if>
 											</c:if>
 											<c:if test="${testcategory ne tempcategory}">
 												<c:if test="${!i.last}">
-													<a href="/sob/myboast2?categoryid=${temp.categoryid }">${temp.category },</a>
+													<a href="/sob/myboast?categoryid=${temp.categoryid }">${temp.category },</a>
 												</c:if>
 												<c:if test="${i.last}">
-													<a href="/sob/myboast2?categoryid=${temp.categoryid }">${temp.category }</a>
+													<a href="/sob/myboast?categoryid=${temp.categoryid }">${temp.category }</a>
 												</c:if>
 											</c:if>
 										</c:forEach>
@@ -138,7 +138,7 @@
 						<h4 class="widget_title">Catgories</h4>
 						<ul class="list cat-list">
 							<c:forEach items="${categoryList}" var="temp">
-								<li><a href="myboast2?categoryid=${temp.categoryid }"
+								<li><a href="myboast?categoryid=${temp.categoryid }"
 									class="d-flex justify-content-between">
 										<p>${temp.category }</p>
 								</a></li>

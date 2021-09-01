@@ -41,8 +41,8 @@ public interface MainService {
 	public int getMyBoastListTotal(Criteria cri);
 	
 	//나의 자랑 목록 카테고리로 가져오기
-	public List<MainVO> getMyBoastListUseCategory(MainVO mvo);
-	
+	public List<MainVO> getMyBoastListUseCategory(Criteria cri);
+	public int getMyBoastListUseCategoryTotal(Criteria cri);
 	//마지막 받는사람 찾기
 	public int readLast(String labelid);
 	

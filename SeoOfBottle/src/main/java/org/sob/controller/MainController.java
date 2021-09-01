@@ -30,27 +30,37 @@ public class MainController {
 	//내 목록 불러오기
 	@GetMapping("/main")//자기자신.jsp 페이지 오픈 테스트 완료
 	public void list(Model model,@SessionAttribute("uvo") UserVO uvo, Criteria cri) {
+		if(cri.getCategoryid()==0) {
+			log.info("목록페이지요청"+cri);
+			cri.setCustomerno(uvo.getCustomerno());
+			log.info("목록페이지요청"+cri);
+			model.addAttribute("categoryList",service.getCategoryList());
+			model.addAttribute("pageMaker",new PageDTO(cri,service.getTotal(cri)));
+			log.info("목록페이지요청"+new PageDTO(cri,service.getTotal(cri)));
+			model.addAttribute("list", service.getList(cri));
+		} else {
+			log.info("목록페이지카테고리로요청"+uvo);
+			cri.setCustomerno(uvo.getCustomerno());
+			model.addAttribute("categoryList",service.getCategoryList());
+			model.addAttribute("pageMaker",new PageDTO(cri,service.getListUseCategoryTotal(cri)));
+			log.info("목록페이지요청"+new PageDTO(cri,service.getListUseCategoryTotal(cri)));
+			model.addAttribute("list", service.getListUseCategory(cri));
+			log.info("목록페이지요청"+service.getListUseCategory(cri));
+		}
 		
-		log.info("목록페이지요청"+cri);
-		cri.setCustomerno(uvo.getCustomerno());
-		log.info("목록페이지요청"+cri);
-		model.addAttribute("categoryList",service.getCategoryList());
-		model.addAttribute("pageMaker",new PageDTO(cri,service.getTotal(cri)));
-		log.info("목록페이지요청"+new PageDTO(cri,service.getTotal(cri)));
-		model.addAttribute("list", service.getList(cri));
 		
 	}
-	//카테고리로 검색해서 내 목록 불러오기
-	@GetMapping("/main2")//자기자신.jsp 페이지 오픈 테스트 완료
-	public void list2(Model model,@SessionAttribute("uvo") UserVO uvo, Criteria cri) {//
-		log.info("목록페이지카테고리로요청"+uvo);
-		cri.setCustomerno(uvo.getCustomerno());
-		model.addAttribute("categoryList",service.getCategoryList());
-		model.addAttribute("pageMaker",new PageDTO(cri,service.getListUseCategoryTotal(cri)));
-		log.info("목록페이지요청"+new PageDTO(cri,service.getListUseCategoryTotal(cri)));
-		model.addAttribute("list2", service.getListUseCategory(cri));
-		log.info("목록페이지요청"+service.getListUseCategory(cri));
-	}
+//	//카테고리로 검색해서 내 목록 불러오기
+//	@GetMapping("/main2")//자기자신.jsp 페이지 오픈 테스트 완료
+//	public void list2(Model model,@SessionAttribute("uvo") UserVO uvo, Criteria cri) {//
+//		log.info("목록페이지카테고리로요청"+uvo);
+//		cri.setCustomerno(uvo.getCustomerno());
+//		model.addAttribute("categoryList",service.getCategoryList());
+//		model.addAttribute("pageMaker",new PageDTO(cri,service.getListUseCategoryTotal(cri)));
+//		log.info("목록페이지요청"+new PageDTO(cri,service.getListUseCategoryTotal(cri)));
+//		model.addAttribute("list2", service.getListUseCategory(cri));
+//		log.info("목록페이지요청"+service.getListUseCategory(cri));
+//	}
 	
 	
 	
@@ -130,24 +140,36 @@ public class MainController {
 	@GetMapping("/myboast")
 	public void myboast(Model model,@SessionAttribute("uvo") UserVO uvo, Criteria cri, String replyPage) {//자랑하기 페이지
 		log.info("내 자랑 보기 요청");
+		if(cri.getCategoryid()==0) {
+			cri.setCustomerno(uvo.getCustomerno());
+			log.info("목록페이지요청"+cri);
+			model.addAttribute("categoryList",service.getCategoryList());
+			model.addAttribute("pageMaker",new PageDTO(cri,service.getMyBoastListTotal(cri)));
+			log.info("목록페이지요청"+new PageDTO(cri,service.getMyBoastListTotal(cri)));//수정예정
+			model.addAttribute("myList", service.getMyBoastList(cri));
+			log.info("myList"+service.getMyBoastList(cri));
+			model.addAttribute("replyPage", (replyPage==null)?1:replyPage);
+		} else {
+			cri.setCustomerno(uvo.getCustomerno());
+			log.info("목록페이지요청"+cri);
+			model.addAttribute("categoryList",service.getCategoryList());
+			model.addAttribute("pageMaker",new PageDTO(cri,service.getMyBoastListUseCategoryTotal(cri)));
+			log.info("목록페이지요청"+new PageDTO(cri,service.getMyBoastListUseCategoryTotal(cri)));
+			model.addAttribute("myList", service.getMyBoastListUseCategory(cri));
+			log.info("myList"+service.getMyBoastListUseCategory(cri));
+			model.addAttribute("replyPage", (replyPage==null)?1:replyPage);
+		}
 		
-		cri.setCustomerno(uvo.getCustomerno());
-		log.info("목록페이지요청"+cri);
-		model.addAttribute("categoryList",service.getCategoryList());
-		model.addAttribute("pageMaker",new PageDTO(cri,service.getMyBoastListTotal(cri)));
-		log.info("목록페이지요청"+new PageDTO(cri,service.getMyBoastListTotal(cri)));//수정예정
-		model.addAttribute("myList", service.getMyBoastList(cri));
-		model.addAttribute("replyPage", (replyPage==null)?1:replyPage);
 	}
 	
-	@GetMapping("/myboast2")
-	public void myboast2(Model model,@SessionAttribute("uvo") UserVO uvo, MainVO mvo) {//자랑하기 페이지
-		log.info("내 자랑 보기 요청");
-		
-		model.addAttribute("categoryList",service.getCategoryList());
-		mvo.setFrom(uvo.getCustomerno());
-		model.addAttribute("myList",service.getMyBoastListUseCategory(mvo));
-	}
+//	@GetMapping("/myboast2")
+//	public void myboast2(Model model,@SessionAttribute("uvo") UserVO uvo, Criteria cri) {//자랑하기 페이지
+//		log.info("내 자랑 보기 요청");
+//		
+//		model.addAttribute("categoryList",service.getCategoryList());
+//		mvo.setFrom(uvo.getCustomerno());
+//		model.addAttribute("myList",service.getMyBoastListUseCategory(mvo));
+//	}
 	
 	
 	

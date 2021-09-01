@@ -108,10 +108,13 @@
 	  
 	  <!-- 나의 자랑게시판 목록 카테고리로 가져오기. -->		
 	  <select id="getMyBoastListUseCategory" resultType="org.sob.domain.MainVO">
-	  select l.labelid,c.`category`,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=3 and `receiver`=#{from} and b.categoryid=#{categoryid} group by letterid order by labelid desc	
+	  select l.labelid,c.`category`,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=3 and `receiver`=#{customerno} and b.categoryid=#{categoryid} group by letterid order by labelid desc limit #{pageNum}, 10
 	  </select>
 	  
-	  
+	  <!-- 나의 자랑게시판 목록 카테고리로 가져오기 total. -->
+	  <select id="getMyBoastListUseCategoryTotal" resultType="Integer">
+	  <![CDATA[select count(*) from (select l.labelid,c.`category`, c.`categoryid`,l.cnt,l.`contents` from bottle b , category c, letter l, receivertable r, boast bo where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and bo.labelid=b.labelid and `boast` = 1 and cnt=3 and `receiver`=#{customerno} and b.categoryid=#{categoryid} group by letterid order by labelid desc) k ]]>	
+	  </select>
 	  
 	  
 	  

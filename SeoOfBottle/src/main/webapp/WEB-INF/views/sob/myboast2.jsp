@@ -147,83 +147,80 @@
 <!-- 풋터를 가져오는 지시어 -->
 
 <script>
-	$(document)
-			.ready(
-					function() {
+$(document).ready(function() {
+	removeReply = function(replyno) {
+		console.log("reply 삭제");
+		replyService.remove(replyno, function(result) {
+			alert(result);
+			var pageNum = (!'${num}')?1:'${num}';
+			location.replace('/sob/myboast?pageNum=' + pageNum + '&amount=${pageMaker.cri.amount}');
+		});
+	}
+	
+	makeReplyPage = function(totalCount){
+		var endPage = Math.ceil(${replyPage}/10)*10;
+		var startPage = endPage - 9;
+		var realEnd = Math.ceil(totalCount/10);
+		if (realEnd < endPage){
+			endPage = realEnd;
+		}
+		var prev = startPage > 1;
+		var next = endPage < realEnd;
+		
+		var str = '';
+		var pageNum = (!'${num}')?1:'${num}';
+		(startPage == 1)?str+='':str+='<li class="page-item"><a href="myboast?pageNum=' + pageNum + '&amount=${pageMaker.cri.amount}&replyPage='
+				+ ${replyPage} - 1 + '" class="page-link" aria-label="Previous">'
+        							+ '<span aria-hidden="true"><span class="lnr lnr-chevron-left"></span></span></a></li>'; 
+        for(var i=0 ; i < 10; i++){
+        	var p = startPage + i;
+        	if (p > endPage) 
+        		break;
+        	if (p == ${replyPage}){
+        		str += '<li class="page-item active"><a href="myboast?pageNum=' + pageNum + '&amount=${pageMaker.cri.amount}&replyPage='
+        			+ p + '" class="page-link">' + p + '</a></li>';
+        	}else{
+        		str += '<li class="page-item"><a href="myboast?pageNum=' + pageNum + '&amount=${pageMaker.cri.amount}&replyPage='
+        			+ p + '" class="page-link">' + p + '</a></li>';
+        	}
+        	
+        }
+        
+        (endPage < realEnd)?str+='<li class="page-item"><a href="myboast?pageNum=' + pageNum + '&amount=${pageMaker.cri.amount}&replyPage='
+				+ ${replyPage} + 1 + '" class="page-link" aria-label="Next">'
+				+ '<span aria-hidden="true"><span class="lnr lnr-chevron-left"></span></span></a></li>':str+='';
+        $("#replyPage").html(str);
+	}
 
-						removeReply = function(replyno) {
-							console.log("reply 삭제");
-							replyService.remove(replyno, function(result) {
-								alert(result);
-								var pageNum = (!'${num}')?1:'${num}';
-								location.replace('/sob/myboast?pageNum=' + pageNum + '&amount=${pageMaker.cri.amount}');
-							});
-						}
-						
-						makeReplyPage = function(totalCount){
-							var endPage = Math.ceil(${replyPage}/10)*10;
-							var startPage = endPage - 9;
-							var realEnd = Math.ceil(totalCount/10);
-							if (realEnd < endPage){
-								endPage = realEnd;
-							}
-							var prev = startPage > 1;
-							var next = endPage < realEnd;
-							
+	function showMyList() {
+		replyService.getMyList({customerno : '${uvo.customerno}', page : '${replyPage}'},function(data) {
 							var str = '';
-							var pageNum = (!'${num}')?1:'${num}';
-							(startPage == 1)?str+='':str+='<li class="page-item"><a href="myboast?pageNum=' + pageNum + '&amount=${pageMaker.cri.amount}&replyPage='
-									+ ${replyPage} - 1 + '" class="page-link" aria-label="Previous">'
-                            							+ '<span aria-hidden="true"><span class="lnr lnr-chevron-left"></span></span></a></li>'; 
-                            for(var i=0 ; i < 10; i++){
-                            	var p = startPage + i;
-                            	if (p > endPage) 
-                            		break;
-                            	if (p == ${replyPage}){
-                            		str += '<li class="page-item active"><a href="myboast?pageNum=' + pageNum + '&amount=${pageMaker.cri.amount}&replyPage='
-                            			+ p + '" class="page-link">' + p + '</a></li>';
-                            	}else{
-                            		str += '<li class="page-item"><a href="myboast?pageNum=' + pageNum + '&amount=${pageMaker.cri.amount}&replyPage='
-                            			+ p + '" class="page-link">' + p + '</a></li>';
-                            	}
-                            	
-                            }
-                            
-                            (endPage < realEnd)?str+='<li class="page-item"><a href="myboast?pageNum=' + pageNum + '&amount=${pageMaker.cri.amount}&replyPage='
-									+ ${replyPage} + 1 + '" class="page-link" aria-label="Next">'
-    								+ '<span aria-hidden="true"><span class="lnr lnr-chevron-left"></span></span></a></li>':str+='';
-                            $("#replyPage").html(str);
-						}
+							var replyList = data.rvo;
+							for (var i = 0, len = replyList.length || 0; i < len; i++) {
+								var head = "<div class='comment-list'><div class='single-comment justify-content-between d-flex'>"
+										+ "<div class='user justify-content-between d-flex'><div class='desc'>";
+								var body = "<h5><a href='boastdetail?labelid="
+										+ replyList[i].labelid
+										+ "'>"
+										+ replyList[i].reply
+										+ "</a></h5>"
+										+ "<p class='date'>"
+										+ replyService
+												.displayTime(replyList[i].indate)
+										+ "</p>";
+								var foot = "</div></div><div class='reply-btn'>"
+										+ "<a href='javascript:removeReply("
+										+ replyList[i].replyno
+										+ ");' class='btn-reply text-uppercase'>delete</a></div></div></div>";
+								str += head + body + foot;
+							}
+							$(".comments-area").html(str);
+							makeReplyPage(data.totalCount);
+						})
+	}
+	showMyList();
 
-						function showMyList() {
-							replyService.getMyList({customerno : '${uvo.customerno}', page : '${replyPage}'},function(data) {
-												var str = '';
-												var replyList = data.rvo;
-												for (var i = 0, len = replyList.length || 0; i < len; i++) {
-													var head = "<div class='comment-list'><div class='single-comment justify-content-between d-flex'>"
-															+ "<div class='user justify-content-between d-flex'><div class='desc'>";
-													var body = "<h5><a href='boastdetail?labelid="
-															+ replyList[i].labelid
-															+ "'>"
-															+ replyList[i].reply
-															+ "</a></h5>"
-															+ "<p class='date'>"
-															+ replyService
-																	.displayTime(replyList[i].indate)
-															+ "</p>";
-													var foot = "</div></div><div class='reply-btn'>"
-															+ "<a href='javascript:removeReply("
-															+ replyList[i].replyno
-															+ ");' class='btn-reply text-uppercase'>delete</a></div></div></div>";
-													str += head + body + foot;
-												}
-												$(".comments-area").html(str);
-												makeReplyPage(data.totalCount);
-											})
-						}
-						showMyList();
-
-					});
+});
 </script>
 </body>
 </html>

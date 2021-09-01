@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Aroma Shop - Blog</title>
+<title>SOB</title>
 <%@ include file="../include/header.jsp"%>
 <!-- 헤더를 가져오는 지시어 -->
 
@@ -44,24 +44,26 @@
 										<c:forEach items="${categoryList}" var="temp" varStatus="i">
 											<c:set var="testcategory" value="${test.categoryid}" />
 											<c:set var="tempcategory" value="${temp.categoryid}" />
-											<c:if test="${testcategory eq tempcategory}">
-												<c:if test="${!i.last}">
-													<a class="active"
-														href="/sob/main?categoryid=${temp.categoryid }">${temp.category },</a>
+											
+												<c:if test="${testcategory eq tempcategory}">
+													<c:if test="${!i.last}">
+														<a class="active"
+															href="/sob/main?categoryid=${temp.categoryid }">${temp.category },</a>
+													</c:if>
+													<c:if test="${i.last}">
+														<a class="active"
+															href="/sob/main?categoryid=${temp.categoryid }">${temp.category }</a>
+													</c:if>
 												</c:if>
-												<c:if test="${i.last}">
-													<a class="active"
-														href="/sob/main?categoryid=${temp.categoryid }">${temp.category }</a>
+												<c:if test="${testcategory ne tempcategory}">
+													<c:if test="${!i.last}">
+														<a href="/sob/main?categoryid=${temp.categoryid }">${temp.category },</a>
+													</c:if>
+													<c:if test="${i.last}">
+														<a href="/sob/main?categoryid=${temp.categoryid }">${temp.category }</a>
+													</c:if>
 												</c:if>
-											</c:if>
-											<c:if test="${testcategory ne tempcategory}">
-												<c:if test="${!i.last}">
-													<a href="/sob/main?categoryid=${temp.categoryid }">${temp.category },</a>
-												</c:if>
-												<c:if test="${i.last}">
-													<a href="/sob/main?categoryid=${temp.categoryid }">${temp.category }</a>
-												</c:if>
-											</c:if>
+										
 										</c:forEach>
 									</div>
 									<ul class="blog_meta list">
@@ -76,8 +78,16 @@
 								<div class="blog_post">
 									<div class="blog_details">
 										<p>${test.contents}</p>
+										<c:if test="${test.cnt == 3}">
 										<a class="button button-blog"
-											href="get?labelid=${test.labelid }">View More</a>
+											href="get?labelid=${test.labelid }" style="background:#E1FBD7; border:0;">View More</a>
+										</c:if>
+										
+										<c:if test="${test.cnt != 3}">
+										<a class="button button-blog"
+											href="get?labelid=${test.labelid }" style="background:#FFF7CC; border:0;">View More</a>
+										</c:if>
+										
 									</div>
 								</div>
 							</div>

@@ -38,6 +38,7 @@ public class MainController {
 			model.addAttribute("pageMaker",new PageDTO(cri,service.getTotal(cri)));
 			log.info("목록페이지요청"+new PageDTO(cri,service.getTotal(cri)));
 			model.addAttribute("list", service.getList(cri));
+			log.info("list"+service.getList(cri));
 		} else {
 			log.info("목록페이지카테고리로요청"+uvo);
 			cri.setCustomerno(uvo.getCustomerno());

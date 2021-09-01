@@ -10,6 +10,10 @@
 	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 	<meta name ="google-signin-client_id" content="854655733822-odgivq9t2i7nj64vo28sot38ugttg42c.apps.googleusercontent.com">
 	<script>
+		if('${uvo}'){
+			window.history.forward();
+		}
+	
 		function sendPost(googleid, email){
 			var form = document.createElement('form');
 			form.setAttribute('method', 'post');
@@ -52,7 +56,7 @@
 				  sendPost(profile.getId(), profile.getEmail());
 				}
 			}
-		  
+
 	</script>
   <title>SOB</title>
 	<link rel="icon" href="/resources/img/Fevicon.png" type="image/png">
@@ -67,7 +71,7 @@
 
   <link rel="stylesheet" href="/resources/css/style.css">
 </head>
-<body  onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
+<body>
 	
   
   <!--================Login Box Area =================-->
@@ -126,11 +130,8 @@
 			document.getElementById("errorMessage").textContent = '${error}';
 		}
 	});
-	
-	function noBack(){
-		window.history.forward();
-	}
 
+	
 </script>
 
 </body>

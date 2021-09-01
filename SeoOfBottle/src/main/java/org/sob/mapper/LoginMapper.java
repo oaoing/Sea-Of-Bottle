@@ -11,4 +11,5 @@ public interface LoginMapper {
 	public UserVO dupleCheck(String emailId); // email 중복 체크
 	public void modifyForEmailUser(JoinVO join);
 	public void modifyForGoogleUser(JoinVO join);
+	public void deleteUser(int customerno);
 }

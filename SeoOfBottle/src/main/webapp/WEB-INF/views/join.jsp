@@ -95,27 +95,28 @@ function emailAuthentication(){
 	$.get("http://localhost:8080/confirmEmail?email=" + document.getElementById("email").value,
 			function(data){
 			if (data == "useable"){
-				console.log(data);
 				sessionStorage.clear();
 				document.getElementById("inputAuthCode").placeholder = "전송중";
 				requestAuthEamil();
 			}else if(data == "unuseable/"){
-				console.log(data);
 				//중복 이메일 확인
 				//사용불가 메세지 띄우기
 				alert("이미 사용중인 이메일입니다.");
+				location.replace("/");
 			}else{
-				if(confirm("구글 계정으로 생성된 이메일 입니다.\n연동하시겠습니까?")==true){
-					document.getElementById("email").readOnly = true;
-					document.getElementById("nick").readOnly = true;
-					var info = data.split("/");
-					document.getElementById("nick").value = info[0];
-					document.getElementById("googleid").value = info[1];
-					sessionStorage.clear();
-					requestAuthEamil();
-					document.getElementById("register_form").action = "modifyUser";
+					if(confirm("구글 계정으로 생성된 이메일 입니다.\n연동하시겠습니까?")==true){
+						document.getElementById("email").readOnly = true;
+						document.getElementById("nick").readOnly = true;
+						var info = data.split("/");
+						document.getElementById("nick").value = info[0];
+						document.getElementById("googleid").value = info[1];
+						sessionStorage.clear();
+						requestAuthEamil();
+						document.getElementById("register_form").action = "modifyUser";
+					}else{
+						location.replace('/');
+					}
 				}
-			}
 	});
 }
 
@@ -128,12 +129,12 @@ function emailValCheck(){
     return true;
 }
 
-function check(pattern, taget, message) {
-	if(pattern.test(taget.value)) {
+function check(pattern, target, message) {
+	if(pattern.test(target.value)) {
     	return true;
     }
     alert(message);
-    taget.focus();
+    target.focus();
     return false;
 }
 
@@ -158,12 +159,12 @@ function authCodeCheck(){
 	var inputedCode = document.getElementById("inputAuthCode").value;
 	
 	if(sessionStorage.getItem("authCode") == inputedCode){
-		inputedCode = "인증 완료";
 		document.getElementById("email").readOnly = true; 
 		document.getElementById("inputAuthCode").disabled = true;
 		sessionStorage.clear();
 		clearInterval(timer);
 		auth = true;
+		alert("인증이 완료됐습니다.");
 	} else {
 		auth = false;
 	}
@@ -223,6 +224,7 @@ function nickValCheck(){
 
 function formSubmit(){
 	var email = document.getElementById("email");
+	var form = document.getElementById("register_form");
 	if(!email.value){
 		document.getElementById("formCheckNotice").textContent = "*아이디를 입력해주세요";
 		email.focus();
@@ -235,6 +237,7 @@ function formSubmit(){
 		document.getElementById("formCheckNotice").textContent = "*별명을 입력해주세요.";
 		nick.focus();
 	}else{
+		alert("회원가입이 완료됐습니다.");
 		form.submit();
 	}
 }

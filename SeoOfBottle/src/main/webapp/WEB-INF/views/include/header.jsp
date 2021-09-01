@@ -4,7 +4,7 @@
    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
      <script>
      
-    function signOut() {
+    function signOut(link) {
     
     	if(!'${uvo.googleid}'){
     		console.log('User signed out.');
@@ -14,7 +14,7 @@
     	        console.log('User signed out.');
     	      });
     	}
-      location.replace("/logout");
+      location.replace(link);
     }
 
     function onLoad() {
@@ -61,7 +61,7 @@
 
             <ul class="nav-shop">
               <li class="nav-item">${uvo.nick }</li>
-              <li class="nav-item"><a class="button button-header" href="javascript:signOut();">Log Out</a></li>
+              <li class="nav-item"><a class="button button-header" href="javascript:signOut('/logout');">Log Out</a></li>
             </ul>
           </div>
         </div>

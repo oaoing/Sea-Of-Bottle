@@ -118,7 +118,7 @@ public class LoginServiceImpl implements LoginService {
 		log.info("------- 중복 체크 중 -----------");
 		UserVO user = mapper.dupleCheck(emailId);
 		if (user != null) {
-			return (user.getGoogleid().length() == 21)?user.getNick() + "/" + user.getGoogleid():"unuseable/" + user.getNick();
+			return (user.getGoogleid().length() == 21)?user.getNick() + "/" + user.getGoogleid():"unuseable/";
 		}else {
 			return "useable";
 		}
@@ -134,5 +134,10 @@ public class LoginServiceImpl implements LoginService {
 	public void modifyForGoogleUser(JoinVO join) {
 		mapper.modifyForGoogleUser(join);
 		
+	}
+	
+	@Override
+	public void deleteUser(int customerno) {
+		mapper.deleteUser(customerno);
 	}
 }

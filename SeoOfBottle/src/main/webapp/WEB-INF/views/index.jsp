@@ -67,7 +67,7 @@
 
   <link rel="stylesheet" href="/resources/css/style.css">
 </head>
-<body>
+<body  onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 	
   
   <!--================Login Box Area =================-->
@@ -126,7 +126,10 @@
 			document.getElementById("errorMessage").textContent = '${error}';
 		}
 	});
-		
+	
+	function noBack(){
+		window.history.forward();
+	}
 
 </script>
 

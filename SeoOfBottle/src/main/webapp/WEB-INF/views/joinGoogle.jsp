@@ -98,41 +98,14 @@
 		setTimeout(() => check(), 1000);
 	}
 
-	
+var nickCheck = false;
+var form = document.getElementById("register_form");
 
 function check(){
 	if(confirm("회원 가입된 이메일 입니다. \n연동하시겠습니까?")==true){
-		let f = document.createElement('form');
-		
-		let obj;
-		
-	    obj = document.createElement('input');
-	    obj.setAttribute('type', 'hidden');
-	    obj.setAttribute('name', 'email');
-	    obj.setAttribute('value', '${email }');
-	    f.appendChild(obj);
-		 
-	    obj = document.createElement('input');
-	    obj.setAttribute('type', 'hidden');
-	    obj.setAttribute('name', 'pw');
-	    obj.setAttribute('value', '0');
-	    f.appendChild(obj);
-	    obj = document.createElement('input');
-	    obj.setAttribute('type', 'hidden');
-	    obj.setAttribute('name', 'googleid');
-	    obj.setAttribute('value', '${googleid }');
-	    f.appendChild(obj);
-	    obj = document.createElement('input');
-	    obj.setAttribute('type', 'hidden');
-	    obj.setAttribute('name', 'nick');
-	    obj.setAttribute('value', '${nick }');
-	    f.appendChild(obj);
-	    
-	    f.setAttribute('method', 'post');
-	    f.setAttribute('action', 'modifyUser');
-	    document.body.appendChild(f);
-	    f.submit();
-	
+		form.action = "modifyUser";
+		alert("연동이 완료됐습니다.");
+		form.submit();
 	}else{
 		signOut();
 	}
@@ -140,10 +113,11 @@ function check(){
 
 function formSubmit(){
 	if(!nickCheck){
-		document.getElementById("formCheckNotice").textContent = "별명을 입력해주세요.";
+		document.getElementById("formCheckNotice").textContent = "*별명을 입력해주세요.";
 		nick.focus();
 	}else{
-		document.getElementById("register_form").submit();
+		alert("회원가입이 완료됐습니다.");
+		form.submit();
 	}
 }
 

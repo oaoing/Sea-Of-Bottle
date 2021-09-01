@@ -17,4 +17,6 @@ public interface LoginService {
 	public void modifyForEmailUser(JoinVO join);
 	
 	public void modifyForGoogleUser(JoinVO join);
+	
+	public void deleteUser(int customerno);
 }

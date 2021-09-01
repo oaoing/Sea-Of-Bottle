@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -104,6 +105,21 @@ public class LoginController {
 	@RequestMapping(value = "/joinGoogle")
 	public String joinGoogle(Model model) {
 		return "joinGoogle";
+	}
+	
+	@RequestMapping(value = "/delete")
+	public void delete(@SessionAttribute("uvo") UserVO uvo, HttpServletResponse response, HttpSession session) {
+		service.deleteUser(uvo.getCustomerno());
+		session.invalidate();
+		try {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out;
+			out = response.getWriter();
+			out.println("<script>alert('회원탈퇴가 완료됐습니다.'); location.replace('/');</script>");
+			out.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping(value = "/signUpInput", method = RequestMethod.POST)

@@ -16,11 +16,15 @@
 
 
 <!-- ================ start banner area ================= -->
-<section class="blog-banner-area" id="blog" style="background-image:url('/resources/img/banner-bg.png'); background-size:auto 100%;">
+<section class="blog-banner-area layer-set" id="blog" style="background-image:url('/resources/img/banner-bg.png'); background-size:auto 100%;">
 	<div class="blog-banner">
-		<div class="text-center h-100"><img src="/resources/img/logo.png"></img></div>
+		<div class="text-center h-100 layer-set layer1"><img src="/resources/img/bottle.png" style="height:103px; width:90px; margin-top:30px;"></img></div>
 	</div>
-	<section class="blog-banner-area" id="blog" style="background-image:url('/resources/img/banner-wave.png'); background-size:auto 100%;"></div>
+	<div class="slide layer-set layer2"><ul>
+	<li><img src="/resources/img/banner-wave.png"></li>
+	<li><img src="/resources/img/banner-wave.png"></li>
+	</ul></div>
+	<!-- <section class="blog-banner-area" id="blog" style="background-image:url('/resources/img/banner-wave.png'); background-size:auto 100%;"></div> -->
 	
 </section>
 <!-- ================ end banner area ================= -->

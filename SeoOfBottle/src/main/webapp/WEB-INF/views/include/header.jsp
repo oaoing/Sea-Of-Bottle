@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="/resources/vendors/owl-carousel/owl.carousel.min.css">
   <link rel="stylesheet" href="/resources/vendors/nice-select/nice-select.css">
   <link rel="stylesheet" href="/resources/vendors/nouislider/nouislider.min.css">
-
+  <link rel="stylesheet" href="/resources/css/animation.css">
   <link rel="stylesheet" href="/resources/css/style.css">
   
 </head>

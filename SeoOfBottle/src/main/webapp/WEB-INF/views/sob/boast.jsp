@@ -120,7 +120,10 @@
 						</ul>
 						<div class="br"></div>
 					</aside>
-
+					<aside class="single_sidebar_widget search_widget">
+						<button class="button button-login w-100" style="background:black; border:0;" onclick='location.href="https://github.com/oaoing/Sea-Of-Bottle"'>GitHub about SOB</button>
+						<div class="br"></div>
+					</aside>
 				</div>
 			</div>
 		</div>

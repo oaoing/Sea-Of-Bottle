@@ -17,7 +17,7 @@
 	  
 	  <!-- 카테고리로 검색해서  내가 포함된 유리병 목록 불러오기 예정 -->
 	  <select id="getListUseCategory" resultType="org.sob.domain.MainVO">
-	  <![CDATA[select l.labelid, b.categoryid, c.category, l.letterid, l.cnt, l.`contents` from bottle b , category c, letter l, receivertable r where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and (`from` = #{customerno} or `receiver` = #{customerno}) and b.categoryid=#{categoryid} and cnt=1 group by letterid order by labelid desc limit #{pageNum}, 10]]>	
+	  <![CDATA[select l.labelid, b.categoryid, c.category, l.letterid, l.cnt, l.`contents` from bottle b , category c, (select letterid, max(cnt) as cnt, `contents`, labelid from letter group by labelid) l, receivertable r where b.labelid=l.labelid and b.categoryid=c.categoryid and r.labelid=b.labelid and (`from` = #{customerno} or `receiver` = #{customerno}) and b.categoryid=#{categoryid} group by letterid order by labelid desc limit #{pageNum}, 10]]>	
 	  </select>
 	  
 	  <!-- 카테고리로 검색해서  내가 포함된 유리병 목록 불러오기용 total -->

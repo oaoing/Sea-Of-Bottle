@@ -55,7 +55,7 @@
 									type="text" name="labelid" value="${latter[0].labelid}" hidden>
 								<div class="col-md-12 form-group text-right">
 									<button type="submit" value="submit"
-										class="button button-tracking">등록</button>
+										class="button button-tracking" >등록</button>
 								</div>
 							</form>
 						</div>
@@ -81,7 +81,7 @@
 							hidden> <input type="number" name="cnt"
 							value="${mvo.cnt+1}" placeholder="${mvo.cnt+1}" hidden>
 						<!-- 여기 수정후 아래로 -->
-						<input type="submit" class="button button-login" value="자랑">
+						<input type="submit" class="button button-login" value="자랑" >
 					</form>
 				</c:if>
 			</div>
@@ -91,7 +91,7 @@
 					<input type="text" name="from" value="${latter[0].from}" hidden>
 					<input type="hidden" name="labelid" value="${latter[0].labelid}">
 
-					<input type="submit" value="삭제" class="button button-login">
+					<input type="submit" value="삭제" class="button button-login" style="background:#c5322d; border:0;">
 				</form>
 			</div>
 		</div>

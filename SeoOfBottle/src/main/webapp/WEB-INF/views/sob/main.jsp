@@ -17,12 +17,8 @@
 
 <!-- ================ start banner area ================= -->
 <section class="blog-banner-area" id="blog">
-	<div class="container h-100">
-		<div class="blog-banner">
-			<div class="text-center">
-				<h1>Home</h1>
-			</div>
-		</div>
+	<div class="container h-100" style="background-image:url('/resources/img/banner-bg.png'); background-size:auto 100%; padding-right:0px; padding-left:0px;">
+	<div class="container h-100" style="background-image:url('/resources/img/banner-wave.png'); background-size:auto 100%; padding-right:0px; padding-left:0px;"></div>
 	</div>
 </section>
 <!-- ================ end banner area ================= -->

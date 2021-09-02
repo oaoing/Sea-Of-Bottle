@@ -111,6 +111,7 @@ function emailAuthentication(){
 						document.getElementById("nick").value = info[0];
 						document.getElementById("googleid").value = info[1];
 						sessionStorage.clear();
+						document.getElementById("inputAuthCode").placeholder = "전송중";
 						requestAuthEamil();
 						document.getElementById("register_form").action = "modifyUser";
 					}else{

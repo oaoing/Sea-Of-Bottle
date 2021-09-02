@@ -18,8 +18,8 @@
     	insert into customer (nick, id, pw, googleid) values(#{nick}, #{id}, #{pw}, #{googleid})
     </insert>
     
-    <select id="dupleCheck" resultType="org.sob.domain.UserVO">
-    	select customerno, nick, googleid from customer where #{emailId}=id
+    <select id="dupleCheck" resultType="org.sob.domain.JoinVO">
+    	select id, pw, nick, googleid from customer where #{emailId}=id
     </select>
     
     <update id="modifyForEmailUser">

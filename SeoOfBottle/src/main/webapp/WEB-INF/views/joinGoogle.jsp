@@ -65,12 +65,12 @@
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="email" name="email" value="${email }" readonly>
 							</div>
-			                <div class="col-md-12 form-group">
+			                <div class="col-md-12 form-group text-left">
 								<input type="text" class="form-control" value="${nick }" id="nick" name="nick" placeholder="Nick Name (2 ~ 10자 이내)" onKeyUp="nickValCheck()" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nick Name (2 ~ 10자 이내)'">
-								<span id="nickCheckMessage"></span>
+								<span style="color:orange;">* 닉네임은 이후 변경이 불가합니다.</span>
 							</div>	
-							<div class="col-md-12 form-group">
-								<span id="formCheckNotice"> </span>
+							<div class="col-md-12 form-group text-left">
+								<span id="formCheckNotice" style="color:#c5322d;"> </span>
 								<button type="button" onclick="formSubmit()" value="submit" class="button button-login w-100">Register</button>
 							</div>
 						</form>

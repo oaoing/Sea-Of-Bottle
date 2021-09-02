@@ -35,6 +35,9 @@
                             <textarea class="form-control" name="contents" rows="1" placeholder="Content"></textarea>
                         </div>
                         <div class="col-md-12 form-group mb-0">
+                        <p style="color:#c5322d;">*편지 작성 후, 수정이 불가하고 내 목록에서 삭제되어 다른 편지 참가자들은 열람이 가능합니다.</p>
+                        </div>
+                        <div class="col-md-12 form-group mb-0">
                         	<button class="button button-coupon" type="submit" value="등록">등록</button>
                         </div>
                     </form>

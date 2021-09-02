@@ -50,16 +50,16 @@
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="inputAuthCode" name="authCode" onKeyUP="authCodeCheck()" placeholder="AuthCode" onfocus="this.placeholder = ''" onblur="this.placeholder = 'AuthCode'" disabled="disabled">
 				            </div>
-				            <div class="col-md-12 form-group">
+				            <div class="col-md-12 form-group text-left">
 								<input type="password" class="form-control" id="pw" name="pw" placeholder="Password" onKeyUp="pwValCheck()" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
-								<span id="pwCheckMessage">영어, 숫자를 포함한 8~16자를 입력해주세요.</span>
+								<span id="pwCheckMessage">* 영어, 숫자를 포함한 8~16자를 입력해주세요.</span>
 			                </div>
-			                <div class="col-md-12 form-group">
+			                <div class="col-md-12 form-group text-left">
 								<input type="text" class="form-control" id="nick" name="nick" placeholder="Nick Name (2 ~ 10자 이내)" onKeyUp="nickValCheck()" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nick Name (2 ~ 10자 이내)'">
-								<span id="nickCheckMessage"></span>
+								<span style="color:orange;">* 닉네임은 이후 변경이 불가합니다.</span>
 							</div>	
-							<div class="col-md-12 form-group">
-								<span id="formCheckNotice"> </span>
+							<div class="col-md-12 form-group text-left">
+								<span id="formCheckNotice" style="color:#c5322d;"> </span>
 								<button type="button" onclick="formSubmit()" value="submit" class="button button-login w-100">Register</button>
 							</div>
 						</form>
@@ -229,15 +229,15 @@ function formSubmit(){
 	var email = document.getElementById("email");
 	var form = document.getElementById("register_form");
 	if(!email.value){
-		document.getElementById("formCheckNotice").textContent = "*아이디를 입력해주세요";
+		document.getElementById("formCheckNotice").textContent = "* 아이디를 입력해주세요";
 		email.focus();
 	}else if(!auth){
-		document.getElementById("formCheckNotice").textContent = "*이메일 인증을 진행해주세요.";
+		document.getElementById("formCheckNotice").textContent = "* 이메일 인증을 진행해주세요.";
 	}else if(!pwCheck){
-		document.getElementById("formCheckNotice").textContent = "*비밀번호를 입력해주세요.";
+		document.getElementById("formCheckNotice").textContent = "* 비밀번호를 입력해주세요.";
 		pw.focus();
 	}else if(!nickCheck){
-		document.getElementById("formCheckNotice").textContent = "*별명을 입력해주세요.";
+		document.getElementById("formCheckNotice").textContent = "* 별명을 입력해주세요.";
 		nick.focus();
 	}else{
 		alert("회원가입이 완료됐습니다.");

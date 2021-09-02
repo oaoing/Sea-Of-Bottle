@@ -59,15 +59,9 @@
 			</c:if>
 		</div>
 		<div class="row">
-			<div class="form-group text-center col-md-1"></div>
-			<div class="form-group text-center col-md-1"></div>
-			<div class="form-group text-center col-md-1"></div>
-			<div class="form-group text-center col-md-1"></div>
-			<div class="form-group text-center col-md-1"></div>
-			<div class="form-group text-center col-md-1"></div>
-			<div class="form-group text-center col-md-1"></div>
-			<div class="form-group text-center col-md-1"></div>
 			
+			<div class="form-group col-md-8">
+			<p style="color:#c5322d;">*편지 작성 후, 수정이 불가하고 내 목록에서 삭제되어 다른 편지 참가자들은 열람이 가능합니다.</p></div>
 			<div class="form-group text-center col-md-1">
 				<c:if test="${mvo.cnt==3 && mvo.to==uvo.getCustomerno()}">
 					<form action="/sob/register" id="re" method="post">
@@ -76,19 +70,21 @@
 							hidden> <input type="number" name="cnt"
 							value="${mvo.cnt+1}" placeholder="${mvo.cnt+1}" hidden>
 						<!-- 여기 수정후 아래로 -->
-						<input type="submit" class="button button-login" value="자랑" >
+						<input type="button" class="button button-login" onclick="boastSubmit()" value="자랑" >
 					</form>
 				</c:if>
 			</div>
+			
 			<div class="form-group text-center col-md-1"></div>
 			<div class="form-group text-center col-md-1">
 				<form action="/sob/remove" method="post">
 					<input type="text" name="from" value="${latter[0].from}" hidden>
 					<input type="hidden" name="labelid" value="${latter[0].labelid}">
-
+					
 					<input type="submit" value="삭제" class="button button-login" style="background:#c5322d; border:0;">
 				</form>
 			</div>
+			
 		</div>
 		<br>
 
@@ -100,5 +96,15 @@
 
 <%@ include file="../include/footer.jsp"%>
 <!-- 풋터를 가져오는 지시어 -->
+
+<script>
+function boastSubmit(){
+	if(confirm("자랑 후에는 자랑 게시판에서 삭제가 불가능합니다.\n삭제하시겠습니까?")==true){
+		document.getElementById("re").submit();
+	}else{
+		
+	}
+}
+</script>
 </body>
 </html>

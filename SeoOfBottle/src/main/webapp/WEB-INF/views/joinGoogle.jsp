@@ -113,7 +113,7 @@ function check(){
 
 function formSubmit(){
 	if(!nickCheck){
-		document.getElementById("formCheckNotice").textContent = "*별명을 입력해주세요.";
+		document.getElementById("formCheckNotice").textContent = "* 별명을 입력해주세요.";
 		nick.focus();
 	}else{
 		alert("회원가입이 완료됐습니다.");

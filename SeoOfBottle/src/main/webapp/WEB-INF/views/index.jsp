@@ -7,10 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="https://apis.google.com/js/platform.js" async defer></script>
-	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
-	<meta name ="google-signin-client_id" content="854655733822-odgivq9t2i7nj64vo28sot38ugttg42c.apps.googleusercontent.com">
+	<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script><!-- 구글 로그인api 스크립트 -->
+	<meta name ="google-signin-client_id" content="854655733822-odgivq9t2i7nj64vo28sot38ugttg42c.apps.googleusercontent.com"><!-- 구글 로그인api 사용하기위한 아이디변수 -->
 	<script>
-		if('${uvo}'){
+		if('${uvo}'){//로그인 후 뒤로가기 막는 스크립트
 			window.history.forward();
 		}
 	

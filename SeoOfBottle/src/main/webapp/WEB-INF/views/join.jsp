@@ -82,10 +82,7 @@
   <script src="/resources/js/main.js"></script>
   
   <script type="text/javascript">
-    if ('${error}'){
-		var error = document.getElementById("errorMessage");
-		error.textContent = "${error}";
-	}
+    
 var timer;
 var auth = false;
 var pwCheck = false;
@@ -205,11 +202,11 @@ function pwValCheck(){
 	var pwPattern= /^(?=.*[a-zA-Z])(?=.*[0-9]).{8,16}$/;
 	var pw = document.getElementById("pw").value;
 	if( !pwPattern.test(pw)) {
-		document.getElementById("pwCheckMessage").textContent = "영어, 숫자를 포함한 8~16자를 입력해주세요.";
+		document.getElementById("pwCheckMessage").textContent = "* 영어, 숫자를 포함한 8~16자를 입력해주세요.";
 		pwCheck = false;
 	}else{
 		pwCheck = true;
-		document.getElementById("pwCheckMessage").textContent = "사용 가능한 비밀번호 입니다.";
+		document.getElementById("pwCheckMessage").textContent = "* 사용 가능한 비밀번호 입니다.";
 	}
 }
 

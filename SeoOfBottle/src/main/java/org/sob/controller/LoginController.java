@@ -170,10 +170,6 @@ public class LoginController {
 		try {
 			log.info("----------인증 메일 전송 시작");
 			String authCode = service.sendMail(email);
-//			HttpSession session = request.getSession();
-//	        session.setAttribute("authCode", authCode);
-//	        // 유지시간 2분
-//	        session.setMaxInactiveInterval(60*2);
 
 	        log.info("----------인증 메일 전송 완료");
 			return new ResponseEntity<String>(authCode, HttpStatus.OK);

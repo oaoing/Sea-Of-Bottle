@@ -29,18 +29,7 @@
 					</div>
 				</div>
 			</c:forEach>
-			<div class="col-md-4 col-lg-3 mb-4 mb-md-0"></div>
-			<div class="col-md-8 col-lg-9">
-				<div class="form-group text-center text-md-right mt-3">
-					<form action="/sob/remove" method="post">
-						<input type="text" name="from" value="${latter[0].from}" hidden>
-						<input type="hidden" name="labelid" value="${latter[0].labelid}">
-
-						<input type="submit" value="삭제" class="button button-login"
-							style="background: #c5322d; border: 0;">
-					</form>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 </section>

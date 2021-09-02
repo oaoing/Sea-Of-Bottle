@@ -10,7 +10,7 @@
 	  
 	  <!-- 병 별로 리플 가져오기. -->
   	  <select id="readReply" resultType="org.sob.domain.ReplyVO">
-	  	select * from boast where labelid = #{labelid } order by replyno desc;
+	  	select * from boast where labelid = #{labelid } and not reply is null order by replyno desc;
 	  </select>
 	  
 	  

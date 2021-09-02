@@ -95,7 +95,7 @@ function emailAuthentication(){
 	if (!emailValCheck()){
     	return false;
     }
-	$.get("http://localhost:8080/confirmEmail?email=" + document.getElementById("email").value,
+	$.get("/confirmEmail?email=" + document.getElementById("email").value,
 			function(data){
 			if (data == "useable"){
 				sessionStorage.clear();
@@ -142,7 +142,7 @@ function check(pattern, target, message) {
 }
 
 function requestAuthEamil(){
-	$.get("http://localhost:8080/requestAuthEmail?email=" + document.getElementById("email").value,
+	$.get("/requestAuthEmail?email=" + document.getElementById("email").value,
 			function(data){
 			if (data != "failed"){
 				console.log("인증코드 발송 성공");

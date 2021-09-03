@@ -59,7 +59,6 @@ public class MainServiceImpl implements MainService {
 		rvo.setLabelid(mvo.getLabelid());
 		rvo.setCustomerno(myNo);
 		mapper.boastInsert(rvo);
-
 	}
 
 	@Override

@@ -61,7 +61,7 @@
 		<div class="row">
 			
 			<div class="form-group col-md-8">
-			<p style="color:#c5322d;">*편지 작성 후, 수정이 불가하고 내 목록에서 삭제되어 다른 편지 참가자들은 열람이 가능합니다.</p></div>
+			<p style="color:#c5322d;">*편지 작성 후, 수정이 불가하고 삭제 시 내 목록에서만 삭제되어 다른 편지 참가자들은 열람이 가능합니다.</p></div>
 			<div class="form-group text-center col-md-1">
 				<c:if test="${mvo.cnt==3 && mvo.to==uvo.getCustomerno()}">
 					<form action="/sob/register" id="re" method="post">
@@ -99,7 +99,7 @@
 
 <script>
 function boastSubmit(){
-	if(confirm("자랑 후에는 자랑 게시판에서 삭제가 불가능합니다.\n삭제하시겠습니까?")==true){
+	if(confirm("자랑 후에는 자랑 게시판에서 삭제가 불가능합니다.\n자랑하시겠습니까?")==true){
 		document.getElementById("re").submit();
 	}else{
 		

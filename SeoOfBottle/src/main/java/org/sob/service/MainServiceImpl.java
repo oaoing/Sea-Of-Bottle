@@ -1,6 +1,8 @@
 package org.sob.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -40,7 +42,10 @@ public class MainServiceImpl implements MainService {
 			}
 		}
 		System.out.println("본인을 제외한 랜덤풀"+intList);
-		Random rand = new Random();
+		Date date_now = new Date(System.currentTimeMillis()); // 현재시간을 가져와 Date형으로 저장한다
+		SimpleDateFormat fourteen_format = new SimpleDateFormat("HHmmss");
+		
+		Random rand = new Random(Integer.parseInt(fourteen_format.format(date_now) + myNo));
 		
 		int result = intList.get(rand.nextInt(uvoList.size()-1));
 		System.out.println("나온랜덤값"+result);

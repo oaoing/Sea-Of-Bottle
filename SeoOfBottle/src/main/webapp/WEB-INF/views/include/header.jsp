@@ -5,7 +5,7 @@
      <script>
      
     function signOut(link) {
-    
+
     	if(!'${uvo.googleid}'){
     		console.log('User signed out.');
     	}else{

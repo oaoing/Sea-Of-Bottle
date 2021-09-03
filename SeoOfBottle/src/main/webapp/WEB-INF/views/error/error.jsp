@@ -29,8 +29,11 @@
 				<div class="col-lg-12">
 					<div class="login_box_img">
 						<div class="hover">
-							<h4>400</h4>
-							<a class="button button-account" href="/">Please Log In</a>
+							<h4>ERROR</h4>
+							<p>If this error repeats,
+							Please send a mail <br>
+							-- polkmn1024@gmail.com --</p>
+							
 						</div>
 					</div>
 				</div>

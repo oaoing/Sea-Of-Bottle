@@ -39,7 +39,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String list(HttpServletRequest httpServletRequest, HttpSession session, Model model) {
+	public String loginCheck(HttpServletRequest httpServletRequest, HttpSession session, Model model) {
 		// google login 후 결과 발송
 		UserVO user = null;
 		String email = httpServletRequest.getParameter("email");

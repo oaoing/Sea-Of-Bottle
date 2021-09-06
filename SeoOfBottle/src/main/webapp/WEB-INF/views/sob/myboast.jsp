@@ -116,7 +116,7 @@
 			<div class="col-lg-4">
 				<div class="blog_right_sidebar">
 					<aside class="single_sidebar_widget search_widget">
-						<button class="button button-login w-100" style="background:#c5322d; border:0;" onclick='signOut("/delete");'>회원 탈퇴</button>
+						<button class="button button-login w-100" style="background:#c5322d; border:0;" onclick='guestCheck();'>회원 탈퇴</button>
 						<div class="br"></div>
 					</aside>
 					<aside class="single_sidebar_widget post_category_widget">
@@ -219,7 +219,14 @@
 											})
 						}
 						showMyList();
-
+					
+						guestCheck = function(){
+							if(${uvo.customerno} == 16){
+								alert("게스트 아이디는 회원탈퇴가 불가능 합니다.");
+							}else{
+								signOut("/delete");
+							}
+						}
 					});
 </script>
 </body>

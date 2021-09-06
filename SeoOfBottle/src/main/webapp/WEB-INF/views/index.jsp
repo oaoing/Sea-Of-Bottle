@@ -91,17 +91,17 @@
 						<h3>Log in to enter</h3>
 						<form class="row login_form" action="login" method="post" id="contactForm" >
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
+								<input type="text" class="form-control" id="email" name="email" value="guest01@guest.com" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'">
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="password" class="form-control" id="pw" name="pw" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+								<input type="password" class="form-control" id="pw" name="pw" value="12341234" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 							</div>
-							<div class="col-md-12 form-group">
-								<p id="errorMessage"></p>
+							<div class="col-md-12 form-group text-left">
+								<p id="errorMessage">* 기본값은 둘러보기용 테스트 계정입니다.</p>
 								<button type="submit" value="submit" class="button button-login w-100">Log In</button>
 								
 							</div>
-							<div class="col-md-12 form-group">
+							<div class="col-md-12 form-group text-center">
 								<div class="g-signin2" data-longtitle="true" data-onsuccess="onSignIn"></div>
 							</div>
 						</form>
@@ -126,7 +126,7 @@
 
 	$(document).ready(function(){
 		if ('${error}'){
-			document.getElementById("errorMessage").textContent = '${error}';
+			document.getElementById("errorMessage").textContent = "* " + '${error}';
 		}
 	});
 

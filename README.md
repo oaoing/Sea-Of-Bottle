@@ -78,14 +78,17 @@
 ##### ER Diagram
 ![erd](./imgs/SeaOfBottle_ERD.png)
 
-[테이블 정의서](./doc/SeaOfBottle_테이블 정의서.xlsx )
+##### 기타 문서
+![etc](./imgs/shin.png)
 
 
-
+### oaoing
 
 ##### UseCase Diagram
 ![usecase](./imgs/SeaOfBottle_UseCase.jpg)
 
+##### 사용자 인터페이스 설계서
+![usecase](./imgs/SeaOfBottle_interface.jpg)
 
 
 

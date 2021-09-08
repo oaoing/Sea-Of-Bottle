@@ -55,7 +55,7 @@
 
 ## 개발 환경
 
-- eclipse Version: 2020-03 (4.15.0)
+- Spring Tool Suite(STS)
 
 - JavaSE-1.8
 

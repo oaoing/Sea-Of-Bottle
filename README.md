@@ -90,13 +90,13 @@
 ## 예시 화면
 
 ##### 로그인
-![login](./imgs/login.png)
+![login](./imgs/login.PNG)
 
 ##### 편지 목록
-![list](./imgs/list.png)
+![list](./imgs/list.PNG)
 
 ##### 편지 상세
-![detail](./imgs/detail.png)
+![detail](./imgs/detail.PNG)
 
 
 

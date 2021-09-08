@@ -73,15 +73,19 @@
 
 ## 개발 문서
 
-### ER Diagram
+### shin-seoung-gyun
+
+##### ER Diagram
 ![erd](./imgs/SeaOfBottle_ERD.png)
 
+[테이블 정의서](./doc/SeaOfBottle_테이블 정의서.xlsx )
 
 
 
 
-### UseCase Diagram
+##### UseCase Diagram
 ![usecase](./imgs/SeaOfBottle_UseCase.jpg)
+
 
 
 
@@ -108,7 +112,7 @@
 
 ## 학습 내용
 
-##### oaoing
+#### oaoing
 - Google Login API oauth 2.0
 
   ![oauth](./imgs/authorization-code.png)
@@ -205,7 +209,7 @@ public class LoginController {
 
 
 
-##### shin-seoung-gyun
+### shin-seoung-gyun
 - HTTP Session을 통한 유저데이터 관리
 ```java
 @GetMapping("/main")

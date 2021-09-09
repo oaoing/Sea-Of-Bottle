@@ -55,7 +55,7 @@
 
 ## 개발 환경
 
-- Spring Tool Suite(STS)
+- eclipse 4.15
 
 - JavaSE-1.8
 

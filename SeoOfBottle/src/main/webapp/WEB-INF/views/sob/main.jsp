@@ -87,7 +87,7 @@
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev }">
 								<li class="page-item"><a
-									href="main?pageNum=${pageMaker.startPage-1}&amount=${pageMaker.cri.amount}"
+									href="main?pageNum=${pageMaker.startPage-1}&amount=${pageMaker.cri.amount}&categoryid=${pageMaker.cri.categoryid }"
 									class="page-link" aria-label="Previous"> <span
 										aria-hidden="true"> <span class="lnr lnr-chevron-left"></span>
 									</span>
@@ -97,18 +97,18 @@
 								end="${pageMaker.endPage }" var="num">
 								<c:if test="${pageMaker.cri.pageNum == num }">
 									<li class="page-item active"><a
-										href="main?pageNum=${num}&amount=${pageMaker.cri.amount}"
+										href="main?pageNum=${num}&amount=${pageMaker.cri.amount}&categoryid=${pageMaker.cri.categoryid }"
 										class="page-link">${num}</a></li>
 								</c:if>
 								<c:if test="${pageMaker.cri.pageNum != num }">
 									<li class="page-item"><a
-										href="main?pageNum=${num}&amount=${pageMaker.cri.amount}"
+										href="main?pageNum=${num}&amount=${pageMaker.cri.amount}&categoryid=${pageMaker.cri.categoryid }"
 										class="page-link">${num}</a></li>
 								</c:if>
 							</c:forEach>
 							<c:if test="${pageMaker.next }">
 								<li class="page-item"><a
-									href="main?pageNum=${pageMaker.endPage+1}&amount=${pageMaker.cri.amount}"
+									href="main?pageNum=${pageMaker.endPage+1}&amount=${pageMaker.cri.amount}&categoryid=${pageMaker.cri.categoryid }"
 									class="page-link" aria-label="Next"> <span
 										aria-hidden="true"> <span class="lnr lnr-chevron-right"></span>
 									</span>

@@ -278,7 +278,7 @@ public class LoginController {
 ```
 > <small>org.sov.service.MainServiceImpl / register 일부</small>
 
-- interceptor를 활용한 post전동 후의 돌아가기 기능 으로 인한 중복 방지
+- interceptor를 활용한 post전송 후의 돌아가기 기능 으로 인한 중복 방지
 ```xml
 <interceptors> 
 <beans:bean id="webContentInterceptor" class="org.springframework.web.servlet.mvc.WebContentInterceptor">
